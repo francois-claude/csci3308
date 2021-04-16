@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSCI 3308 Lab 10</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%2010_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%2010_files/prism.css">
+
+	<script src="CSCI%203308%20Lab%2010_files/jquery-3.js"></script>
+	<script src="CSCI%203308%20Lab%2010_files/popper.js"></script>
+	<script src="CSCI%203308%20Lab%2010_files/bootstrap.js"></script>
+	<script src="CSCI%203308%20Lab%2010_files/clipboard.js"></script>
+	<script src="CSCI%203308%20Lab%2010_files/prism.js"></script><script src="CSCI%203308%20Lab%2010_files/clipboard_002.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%2010_files/labLayout.css">
+	<script src="CSCI%203308%20Lab%2010_files/labScripts.js"></script>
+	<script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 10 Heroku Website</h1>
+					<p class="lead">This lab will go over the steps needed to host a 
+NodeJS website and PostgreSQL database on Heroku. This lab is a "walk 
+through" lab where the main focus is to ensure you can host your group 
+project online.
+            To receive credit for this lab, your Heroku application must
+ run without errors and you must get marked off by your TA. You also 
+need to upload "lab_10_link.txt" to Canvas by the deadline. </p>
+        </div>
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">50</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+        			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the submission deadline will be next Friday at 10 AM.<br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+        <p class="h5"><a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab10_heroku_setup/lab10_website.zip">Download </a>the template and make sure you extract the files before using them.</p>
+
+			</div>
+
+      <div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Lab Overview</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample1" style="">
+					<br>
+					<br>
+                      The abbreviated steps for todays lab are as follows:
+          						<ol>
+          							<li>Regsiter an account with Heroku</li>
+          							<li>Create a new Heroku App</li>
+          							<li>Install Heroku CLI </li>
+      									<li>Make changes to the code/Add environment variables</li>
+      									<li>Upload the completed Node.js code to Heroku</li>
+          							<li>Setup PostgreSQL database on Heroku</li>
+          							<li>Submit a link to your Heroku App to Canvas</li>
+          						</ol>
+				</div>
+			</div>
+
+      <div class="card card-body" id="step2">
+        <div class="stepLine">
+          <p class="alignleft h5">Directory Structure</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="true" aria-controls="multiCollapseExample2">Expand</button>
+        </div>
+        <div class="collapse show" id="multiCollapseExample2" style="">
+					<div><img src="CSCI%203308%20Lab%2010_files/Lab_10_DirStructure.png" alt="Directory Structure" style="width:100%"></div>
+        </div>
+      </div>
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">1. Setup Heroku App</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="true" aria-controls="multiCollapseExample3">Expand</button>
+            <p class="alignright h5">(<span class="time" id="time3">20</span> Minutes)</p>
+        </div>
+				<div class="collapse show" id="multiCollapseExample3" style="">
+					<ol>
+						<dl>
+							<dt><li>Register Heroku Account</li></dt>
+							<dd>
+								<div class="row">
+									<div class="col-6">
+										<img src="CSCI%203308%20Lab%2010_files/heroku_register.png" alt="Screenshot of Heroku Registration Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Go to Heroku's Registration page <a href="https://signup.heroku.com/login" target="_blank">here</a> and create an account.</p>
+									</div>
+								</div>
+							</dd>
+							<br>
+							<hr>
+							<br>
+							<dt><li>Create a New App</li></dt>
+							<dd>
+								<div class="row">
+									<div class="col-6">
+										<img src="CSCI%203308%20Lab%2010_files/dashboard_heroku.png" alt="Screenshot of Heroku Dashboard Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Click on "Create New App"</p>
+									</div>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="CSCI%203308%20Lab%2010_files/heroku_create_app.png" alt="Screenshot of App Creation Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Name your app, there is no required name here because every
+ student submission will need to be a unique name. Please remember this 
+name as you will need it in further steps. Let's call this 'app_name' 
+for now</p>
+									</div>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="CSCI%203308%20Lab%2010_files/heroku_app_dash.png" alt="Screenshot of Heroku App Dashboard Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Once you have named your app, you'll be shown your Heroku App's Dashboard.</p>
+									</div>
+								</div>
+							</dd>
+							<!-- <dt><li>Configure the Buildpacks</li></dt>
+							<dd>
+								<div class="row">
+									<div class="col-6">
+										<img src="./img/heroku_settings.png" alt="Screenshot of Heroku Setting Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>In your dashboard, browse to the "Settings" tab</p>
+									</div>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="./img/heroku_build_pack.png" alt="Screenshot of App Creation Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Click on "Add buildpack"</p>
+									</div>
+								</div>
+								<br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="./img/heroku_add_build_pack.png" alt="Screenshot of Heroku App Dashboard Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Select "nodejs" and save your changes.</p>
+									</div>
+								</div>
+							</dd> -->
+							<dt><li>Configure Heroku CLI</li></dt>
+							<dd>To upload your code to Heroku, you'll need to install the 
+Heroku CLI. Installation is OS-dependent, and we'll provide a few 
+options below. All options and detailed instructions can be found <a href="https://devcenter.heroku.com/articles/Heroku-cli" target="_blank">here</a>.
+							</dd>
+							<dd>Linux Users:
+								<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">sudo</span> snap <span class="token function">install</span> --classic heroku</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							</dd>
+							<dd>MacOS Users:
+								<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>brew tap heroku/brew <span class="token operator">&amp;&amp;</span> brew <span class="token function">install</span> heroku</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							</dd>
+							<dd>Windows Users: 
+								<ul>
+									<li><a href="https://cli-assets.heroku.com/heroku-x64.exe" target="_blank">64-bit Installer</a></li>
+									<li><a href="https://cli-assets.heroku.com/heroku-x86.exe" target="_blank">32-bit Installer</a></li>
+								</ul>
+							</dd>
+							<dt>4. Login to Heroku</dt>
+							<dd>Before we can use the CLI, we'll need to login.
+								<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span></span>heroku login
+heroku: Press any key to open up the browser to login or q to exit:</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+							
+								<!-- <br>
+								<hr>
+								<br>
+								<div class="row">
+									<div class="col-6">
+										<img src="./img/upload_code_heroku.png" alt="Screenshot of instructions for uploading code to Heroku" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>Follow the directions for your App Dashboard for connecting your website's code to Heroku.
+                      <div class="alert alert-danger" role="alert">
+                        <b><u>IMPORTANT:</u></b> Make sure that you follow the instructions from WITHIN the "complete_student_site" directory.  If you haven't already, download the complete_student_site.zip file and unzip it to your local machine.
+                      </div>
+                      <div class="alert alert-secondary" role="alert">
+                        <b><u>ALTERNATIVE:</u></b>  If the website you created in <b>Lab 7</b> is working perfectly and there are no errors, you can upload it to Heroku instead of the complete_student_site we provided.
+                      </div>
+									</div>
+								</div>
+								<p>Below you'll find a guided walkthrough for changing your app to make it work with Heroku. You will do this by accessing the environment variables. An environment variable is a variable whose value is set outside the program, typically through functionality built into the operating system or microservice. An environment variable is made up of a name/value pair, and any number may be created and available for reference at a point in time. <a href="https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html"> Read Me</a> to understand more about environment variables in node.js</p>
+								<dl>
+									<dt>1. Configure the Database url.</dt>
+									<dl>
+										<p>As you are hosting the website on Heroku, the database should also be hosted on Heroku (You will do that in step 3). Hence, the db configuration in your code should point to environment variable DATABASE_URL whenever the code is run on Heroku (i.e., in a production environment). The DATABASE_URL will be automatically set by Heroku when you add database as a resource in your step 3.</p>
+										<pre><code class="language-js">let dbConfig = {
+ 	host: 'localhost',
+ 	port: 5432,
+ 	database: 'football_db',
+ 	user: 'postgres',
+ 	password: 'pwd'
+};
+
+const isProduction = process.env.NODE_ENV === 'production';
+dbConfig = isProduction ? process.env.DATABASE_URL : dbConfig;
+let db = pgp(dbConfig);</code></pre></dl></dl>
+								<dl>
+									<dt>2. Configure the port.</dt>
+									<dl>
+										<p>As you are hosting the website on Heroku, the hardcoded port 3000 might not be available. So, you will configure the port to environment variable PORT. This will automatically be assigned by Heroku when you run your app.</p>
+										<pre><code class="language-js">//app.listen(3000);
+const PORT = process.env.PORT || 8080;
+
+const server = app.listen(PORT, () => {
+	console.log(`Express running → PORT ${server.address().port}`);
+});</code></pre></dl></dl>
+								<dl><dt>3. Push your changes to Heroku</dt><dl>	<p>Now your code is ready to be pushed to Heroku. Once you push your code, it will generate a build for you. You can see the process on Overview tab of your Heroku dashboard. Please do the following steps inside your lab7 or downloaded complete_student_site</p>							<div class="row">
+									<div class="col-12">
+										<pre class="command-line" data-user="user" data-host="host"><code  class="language-bash">heroku login</code></pre>
+									</div>
+									<div class="col-12">
+										<pre class="command-line" data-user="user" data-host="host"><code  class="language-bash">git init
+heroku git:remote -a [app_name]</code></pre>
+									</div>
+									<div class="col-12">
+										<pre class="command-line" data-user="user" data-host="host"><code  class="language-bash">git add .
+git commit -am "Initial Setup"
+git push heroku master</code></pre>
+									</div>
+								</div></dl></dl>-->
+
+							
+						</dl>
+					</ol>
+				</div>
+			</div>
+      <div class="card card-body" id="step9">
+        <div class="stepLine">
+          <p class="alignleft h5">2. Configuring Environment variables</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(9)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample9" aria-expanded="true" aria-controls="multiCollapseExample9">Expand</button>
+        </div>
+        <div class="collapse show" id="multiCollapseExample9" style="">
+  <br>
+          <dl>
+            <ul>
+              <li>
+                <dt>Configuring environment variables in the server.js file (You will not be modifying any files here)</dt>
+                <dd>We are now going to be working with 2 environments, 
+development (local) and production(Heroku). So we will be adding some 
+environment variables that will allow us to seamlessly work in both 
+enviroments without having to change our configuration every time we run
+ our application in either environments. </dd>
+                <dd>
+                  <p>An environment variable is a variable whose value 
+is set outside the program, typically through functionality built into 
+the operating system or microservice. An environment variable is made up
+ of a name/value pair, and any number may be created and available for 
+reference at a point in time. <a href="https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html"> Read Me</a> to understand more about environment variables in node.js</p>
+                </dd>
+                <div class="alert alert-primary">
+                    <dd>These changes are already present in the 
+template code provided to you. Please read the explanation to understand
+ what these changes are.</dd>
+                </div>
+								<dl>
+									<dt>1. Configure the Database url.</dt>
+									<dl>
+										<p>As you are hosting the website on Heroku, the database 
+should also be hosted on Heroku (You will do that in step 4). Hence, the
+ db configuration in your code should point to environment variable 
+DATABASE_URL whenever the code is run on Heroku (i.e., in a production 
+environment). The DATABASE_URL will be automatically set by Heroku when 
+you add database as a resource in your step 3. Here we also configure 
+our development database to use the environment variables set in <code>.env</code>.</p>
+										<div class="code-toolbar"><pre class=" language-js"><code class=" language-js"><span class="token keyword">const</span> dev_dbConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+	host<span class="token punctuation">:</span> <span class="token string">'db'</span><span class="token punctuation">,</span>
+	port<span class="token punctuation">:</span> <span class="token number">5432</span><span class="token punctuation">,</span>
+	database<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">POSTGRES_DB</span><span class="token punctuation">,</span>
+	user<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">POSTGRES_USER</span><span class="token punctuation">,</span>
+	password<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">POSTGRES_PASSWORD</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">const</span> isProduction <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> dbConfig <span class="token operator">=</span> isProduction <span class="token operator">?</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">DATABASE_URL</span> <span class="token punctuation">:</span> dev_dbConfig<span class="token punctuation">;</span>
+
+<span class="token comment">// fixes: https://github.com/vitaly-t/pg-promise/issues/711</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isProduction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	pgp<span class="token punctuation">.</span>pg<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>ssl <span class="token operator">=</span> <span class="token punctuation">{</span>rejectUnauthorized<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> db <span class="token operator">=</span> <span class="token function">pgp</span><span class="token punctuation">(</span>dbConfig<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dl></dl>
+								<dl>
+									<dt>2. Configure the port.</dt>
+									<dl>
+										<p>As you are hosting the website on Heroku, the hardcoded 
+port 3000 might not be available. So, you will configure the port to 
+environment variable PORT. This will automatically be assigned by Heroku
+ when you run your app.</p>
+										<div class="code-toolbar"><pre class=" language-js"><code class=" language-js"><span class="token comment">//app.listen(3000);</span>
+<span class="token keyword">const</span> server <span class="token operator">=</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">PORT</span> <span class="token operator">||</span> <span class="token number">3000</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Express running → PORT </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>server<span class="token punctuation">.</span><span class="token function">address</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dl></dl>
+              </li>
+            </ul>
+<hr>
+            <dt>Where to configure environment Variables on Heroku?</dt> <br>
+						<p>On your Heroku Dashboard goto Settings and under Config Vars 
+click on Reveal Config Vars. We haven't added any yet, so you should see
+ something like this.</p>
+						<dd>				<div class="row">
+							<div class="col-12">
+								<img src="CSCI%203308%20Lab%2010_files/env_on_heroku.png" alt="Screenshot of Heroku Settings Page" class="img-fluid">
+							</div>
+
+						</div></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="card card-body" id="step4">
+        <div class="stepLine">
+          <p class="alignleft h5">3. Build Docker images</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="true" aria-controls="multiCollapseExample4">Expand</button>
+        </div>
+        <div class="collapse show" id="multiCollapseExample4" style="">
+          <dl>
+            <dt>1. Build Docker images</dt>
+						<dd>We'll be using Docker Compose for Local Development. You'll notice in docker-compose.yml that we've replaced the previous <code>image</code> keys with <code>build</code>.
+ Instead of just pulling images and running them, this refers to a 
+process of building custom images from Dokcerfiles. Before running our 
+app, we first need to build all the images. This step will initialize 
+your containers with the source code and all necessary packages for 
+deployment.
+            <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker-compose build</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+          </dl>
+        </div>
+      </div>
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">4. Setup Heroku PostgreSQL Database</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="true" aria-controls="multiCollapseExample5">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time5">30</span> Minutes)</p>
+        </div>
+				<div class="collapse show" id="multiCollapseExample5" style="">
+					<br>
+					<ol>
+					<dl>
+						<dt><li>Add a Heroku Resource</li></dt>
+						<dd>
+							<div class="row">
+									<div class="col-6">
+										<img src="CSCI%203308%20Lab%2010_files/postgres_resource.png" alt="Screenshot of Heroku Resource Page" class="img-fluid">
+									</div>
+									<div class="col-6">
+										<p>To create a PostgreSQL database, you'll need to first add a
+ new Heroku Resource. Select the Heroku Resource tab and type in 
+"postgres" to find the Heroku Postgres Resource. CHoose the default 
+"Hobby Dev -Free" option.</p>
+									</div>
+								</div>
+						</dd>
+            <dt><li>Get Heroku CLI token</li></dt>
+            <dd>Most heroku commands can be ran locally, but we'll use a
+ docker container for setting up Heroku postgres. You will need to 
+acquire an authentication key from Heroku to do so. Run the following 
+command: </dd>
+            <dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>heroku auth:token</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+            <dd>Now copy the token into <code>/heroku/.env</code> as an environment variable <code>HEROKU_API_KEY</code>. This allows us to run the heroku-cli in a docker container.</dd>
+            <dd>Your <code>/heroku/.env</code> file will look like:</dd>
+            <pre><code>
+              # TODO: ADD API KEY HERE
+              HEROKU_API_KEY= &lt;your_auth_token&gt;
+            </code> </pre>
+            <dt><li>Run the heroku-cli container</li></dt>
+            <dd>
+              We will use this container to set up our database in Postgres on Heroku.Run the image:
+                <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker-compose run heroku-cli</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+
+						<dt><li>Connect to Heroku PostgreSQL Database</li></dt>
+						<dd>
+              <p>Now within the container bash we will connect to the postgres database on Heroku</p>
+							<p>Make sure to replace <code>[app_name]</code> with the name of your actual Heroku app (The one you created in step 1).</p>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="ef5edd2724c2:/app"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="ef5edd2724c2:/app"></span></span>heroku pg:psql -a <span class="token punctuation">[</span>app_name<span class="token punctuation">]</span> </code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<p>If you forgot the app name, you can run the following command to list out your apps.</p>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="ef5edd2724c2:/app" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="ef5edd2724c2:/app"></span><span></span><span></span></span>heroku apps
+=== first.last@colorado.edu Apps
+[app_name]</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt><li>Create the Database Tables</li></dt>
+						<dd>Copy the following code into psql terminal to create the 
+football_player, footbal_games, and favorite_colors tables and populate 
+them with data.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-prompt="[app_name]::DATABASE="><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span><span data-prompt="[app_name]::DATABASE="></span></span>DROP TABLE football_games<span class="token punctuation">;</span>
+CREATE TABLE IF NOT EXISTS football_games <span class="token punctuation">(</span>
+  visitor_name VARCHAR<span class="token punctuation">(</span>30<span class="token punctuation">)</span>,       /* Name of the visiting team                     */
+  home_score SMALLINT NOT NULL,   /* Final score of the game <span class="token keyword">for</span> the Buffs         */
+  visitor_score SMALLINT NOT NULL,/* Final score of the game <span class="token keyword">for</span> the visiting team */
+  game_date DATE NOT NULL,        /* Date of the game                              */
+  players INT<span class="token punctuation">[</span><span class="token punctuation">]</span> NOT NULL,         /* This array consists of the football player ids <span class="token punctuation">(</span>basically a foreign key to the football_player.id<span class="token punctuation">)</span> */
+  PRIMARY KEY<span class="token punctuation">(</span>visitor_name, game_date<span class="token punctuation">)</span> /* A game<span class="token string">'s unique primary key consists of the visitor_name &amp; the game date (this assumes you can'</span>t have multiple games against the same team <span class="token keyword">in</span> a single day<span class="token punctuation">)</span> */
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+DROP TABLE football_players<span class="token punctuation">;</span>
+CREATE TABLE IF NOT EXISTS football_players<span class="token punctuation">(</span>
+  <span class="token function">id</span> SERIAL PRIMARY KEY,       /* Unique identifier <span class="token keyword">for</span> each player <span class="token punctuation">(</span>it<span class="token string">'s possible multiple players have the same name/similiar information) */
+  name VARCHAR(50) NOT NULL,   /* The player'</span>s first <span class="token operator">&amp;</span> last name */
+  year VARCHAR<span class="token punctuation">(</span>3<span class="token punctuation">)</span>,             /* FSH - Freshman, SPH - Sophomore, JNR - Junior, SNR - Senior */
+  major VARCHAR<span class="token punctuation">(</span>4<span class="token punctuation">)</span>,            /* The unique 4 character code used by CU Boulder to identify student majors <span class="token punctuation">(</span>ex. CSCI, ATLS<span class="token punctuation">)</span> */
+  passing_yards SMALLINT,      /* The number of passing yards <span class="token keyword">in</span> the players entire football career  */
+  rushing_yards SMALLINT,      /* The number of rushing yards <span class="token keyword">in</span> the players entire football career  */
+  receiving_yards SMALLINT,    /* The number of receiving yards <span class="token keyword">in</span> the players entire football career*/
+  img_src VARCHAR<span class="token punctuation">(</span>200<span class="token punctuation">)</span>         /* This is a <span class="token function">file</span> path <span class="token punctuation">(</span>absolute or relative<span class="token punctuation">)</span>, that locates the player<span class="token string">'s profile image */
+);
+
+INSERT INTO football_games(visitor_name, home_score, visitor_score, game_date, players)
+VALUES('</span>Colorado State<span class="token string">', 45, 13, '</span>20180831<span class="token string">', ARRAY [1,2,3,4,5]),
+('</span>Nebraska<span class="token string">', 33, 28, '</span>20180908<span class="token string">', ARRAY [2,3,4,5,6]),
+('</span>New Hampshire<span class="token string">', 45, 14, '</span>20180915<span class="token string">', ARRAY [3,4,5,6,7]),
+('</span>UCLA<span class="token string">', 38, 16, '</span>20180928<span class="token string">', ARRAY [4,5,6,7,8]),
+('</span>Arizona State<span class="token string">', 28, 21, '</span>20181006<span class="token string">', ARRAY [5,6,7,8,9]),
+('</span>Southern California<span class="token string">', 20, 31, '</span>20181013<span class="token string">', ARRAY [6,7,8,9,10]),
+('</span>Washington<span class="token string">', 13, 27, '</span>20181020<span class="token string">', ARRAY [7,8,9,10,1]),
+('</span>Oregon State<span class="token string">', 34, 41, '</span>20181027<span class="token string">', ARRAY [8,9,10,1,2]),
+('</span>Arizona<span class="token string">', 34, 42, '</span>20181102<span class="token string">', ARRAY [9,10,1,2,3]),
+('</span>Washington State<span class="token string">', 7, 31, '</span>20181110<span class="token string">', ARRAY [10,1,2,3,4]),
+('</span>Utah<span class="token string">', 7, 30, '</span>20181117<span class="token string">', ARRAY [1,2,3,4,5]),
+('</span>California<span class="token string">', 21, 33, '</span>20181124<span class="token string">', ARRAY [2,3,4,5,6])
+;
+
+INSERT INTO football_players(name, year, major, passing_yards, rushing_yards, receiving_yards, img_src)
+VALUES('</span>Cedric Vega<span class="token string">', '</span>FSH<span class="token string">', '</span>ARTS<span class="token string">', 15, 25, 33, '</span><span class="token punctuation">..</span>/resources/img/player1.jpg<span class="token string">'),
+('</span>Myron Walters<span class="token string">', '</span>SPH<span class="token string">', '</span>CSCI<span class="token string">', 32, 43, 52, '</span><span class="token punctuation">..</span>/resources/img/player2.jpg<span class="token string">'),
+('</span>Javier Washington<span class="token string">', '</span>JNR<span class="token string">', '</span>MATH<span class="token string">', 1, 61, 45, '</span><span class="token punctuation">..</span>/resources/img/player3.jpg<span class="token string">'),
+('</span>Wade Farmer<span class="token string">', '</span>SNR<span class="token string">', '</span>ARTS<span class="token string">', 14, 55, 12, '</span><span class="token punctuation">..</span>/resources/img/player4.jpg<span class="token string">'),
+('</span>Doyle Huff<span class="token string">', '</span>FSH<span class="token string">', '</span>CSCI<span class="token string">', 23, 44, 92, '</span><span class="token punctuation">..</span>/resources/img/player5.jpg<span class="token string">'),
+('</span>Melba Pope<span class="token string">', '</span>SPH<span class="token string">', '</span>MATH<span class="token string">', 13, 22, 45, '</span><span class="token punctuation">..</span>/resources/img/player6.jpg<span class="token string">'),
+('</span>Erick Graves<span class="token string">', '</span>JNR<span class="token string">', '</span>ARTS<span class="token string">', 45, 78, 98, '</span><span class="token punctuation">..</span>/resources/img/player7.jpg<span class="token string">' ),
+('</span>Charles Porter<span class="token string">', '</span>SNR<span class="token string">', '</span>CSCI<span class="token string">', 92, 102, 125, '</span><span class="token punctuation">..</span>/resources/img/player8.jpg<span class="token string">'),
+('</span>Rafael Boreous<span class="token string">', '</span>JNR<span class="token string">', '</span>MATH<span class="token string">', 102, 111, 105, '</span><span class="token punctuation">..</span>/resources/img/player9.jpg<span class="token string">'),
+('</span>Jared Castillo<span class="token string">', '</span>SNR<span class="token string">', '</span>ARTS<span class="token string">', 112, 113, 114, '</span><span class="token punctuation">..</span>/resources/img/player10.jpg<span class="token string">');
+
+DROP TABLE favorite_colors;
+CREATE TABLE IF NOT EXISTS favorite_colors(
+  hex_value VARCHAR(6) PRIMARY KEY, /* This is the hexvalue for the color, it assumes that the value DOES NOT # */
+  name VARCHAR(50),                 /* The html safe name for the color.  This can be null */
+  color_msg  TEXT NOT NULL          /* A message describing the chosen color */
+);
+
+INSERT INTO favorite_colors(hex_value, name, color_msg)
+VALUES('</span>FF6347<span class="token string">', '</span>TOMATO<span class="token string">', '</span>This color gets it name from the red fruit that at one <span class="token function">time</span> was considered poisonous<span class="token operator">!</span><span class="token string">'),
+('</span>3CB371<span class="token string">', '</span>Medium Sea Green<span class="token string">', '</span>Not sure what the difference is between Small <span class="token operator">&amp;</span> Large Sea Green<span class="token punctuation">..</span>. but I guess this one is <span class="token keyword">in</span> between them.<span class="token string">'),
+('</span>EE82EE<span class="token string">','</span>Violet<span class="token string">', '</span>Roses are Red, Violets are blue<span class="token punctuation">..</span>.<span class="token string">'),
+('</span>545AA7<span class="token string">','</span>Liberty<span class="token string">', '</span>Not to be confused with the color of the Liberty Bell <span class="token punctuation">(</span>which is indeed a copper color<span class="token punctuation">)</span><span class="token string">');
+
+INSERT INTO favorite_colors(hex_value, color_msg)
+VALUES('</span>FF2727<span class="token string">', '</span>An unnamed red color<span class="token string">'),
+('</span>27FF27<span class="token string">', '</span>An unnamed green color<span class="token string">'),
+('</span>870087<span class="token string">', '</span>An unnamed magenta color<span class="token string">'),
+('</span>8F8FFF<span class="token string">', '</span>An unnamed blue color'<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt><li>Exit the psql terminal</li></dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-prompt="[app_name]::DATABASE="><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="[app_name]::DATABASE="></span></span> \q</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <dt><li>Exit the container</li></dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="ef5edd2724c2:/app"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="ef5edd2724c2:/app"></span></span><span class="token keyword">exit</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<!-- <dt><li>Head to your App's Homepage</li></dt>
+						<dd>
+							On your Heroku App's Dashboard, click the "Open App" Button to open your App's webpage in a new tab.
+						</dd>
+						<br/>
+						<br/>
+						<br/> -->
+
+						<!--  -->
+					</dl>
+				</ol></div>
+			</div>
+      <div class="card card-body" id="step8">
+        <div class="stepLine">
+          <p class="alignleft h5">5. Deployment</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(8)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="true" aria-controls="multiCollapseExample8">Expand</button>
+        </div>
+        <div class="collapse show" id="multiCollapseExample8" style="">
+          <p>
+            As described in the Directory structure we have included 
+instructions in the Dockerfile to allow us to build our application for a
+ local development environment and for a production environment for 
+Heroku. We'll see how to run our application in both environments.
+          </p>
+          <dt>Deploying and running your application locally</dt>
+					<dd>Local development works just like we had in previous labs. The following command will bind your <code>src</code> folder into the container, connect to a local database, and run nodemon for live reloads.</dd>
+          <dd>
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker-compose up</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+          <hr>
+          <dt>Deploying your application to Heroku</dt>
+          <br>
+          <dd>
+            <p>Make sure to replace <code>[app_name]</code> with the name of your actual Heroku app (The one you created in step 1).</p>
+              <ol>
+                <li>
+                  <p>Login to Heroku's Container Registry</p>
+                  <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span></span>heroku container:login
+WARNING! Your password will be stored unencrypted in [PATH_TO_HOME]/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                </li>
+                <li>
+                  <p>Push the web container to Heroku</p>
+                  <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>heroku container:push web -a <span class="token punctuation">[</span>app_name<span class="token punctuation">]</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                </li>
+                <li>
+                  <p>Release the app in the container on Heroku</p>
+                  <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>heroku container:release web -a <span class="token punctuation">[</span>app_name<span class="token punctuation">]</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                </li>
+                <li>
+                  <p>To check everything worked, open you're app in the browser.</p>
+                  <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>heroku <span class="token function">open</span> -a <span class="token punctuation">[</span>app_name<span class="token punctuation">]</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                  <p>Alternatively, you can open your app through the Heroku website. On your Heroku App's Dashboard, click the <code>Open App</code> Button to open your App's webpage in a new tab.</p>
+                </li>
+                <li>
+                  <p>To check for errors if any, you can look at the logs.</p>
+                  <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>heroku logs --tail -a <span class="token punctuation">[</span>app_name<span class="token punctuation">]</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                </li>
+              </ol>
+          </dd>
+        </div>
+      </div>
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">6. Submission Guidelines</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="true" aria-controls="multiCollapseExample6">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample6" style="">
+					<ol>
+						<dl>
+							<dt><li>Create a link to your Heroku App</li></dt>
+							<dd>
+								In a text file (lab_10_link.txt), write down the following:
+								<ol>
+									<li>Your name</li>
+									<li>You partner's name (if you have one)</li>
+									<li>The link to your Heroku App</li>
+								</ol>
+							</dd>
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your text file to Canvas.  Make sure all submissions have been uploaded by the Deadline.
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">7. Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="true" aria-controls="multiCollapseExample7">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample7" style="">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-2" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-8">Description</th>
+									<th class="col-2" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-2">Upload Heroku app</td>
+									<td class="col-8">Your application is running on Heroku and accessible via &lt;app-name&gt;.herokuapp.com.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">80</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-8" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border:0;"></td>
+									<td class="col-8" style="border:0;"></td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+                      <div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%2010_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%2010_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+
+</div></div></body></html>

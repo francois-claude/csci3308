@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	    <title>CSCI 3308 Lab 1</title>
+	    <!-- Bootstrap core CSS & JS -->
+		<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%201_files/bootstrap.css">
+	    <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%201_files/prism.css">
+
+		<script src="CSCI%203308%20Lab%201_files/jquery-3.js"></script>
+		<script src="CSCI%203308%20Lab%201_files/popper.js"></script>
+		<script src="CSCI%203308%20Lab%201_files/bootstrap.js"></script>
+		<script src="CSCI%203308%20Lab%201_files/clipboard.js"></script>
+		<script src="CSCI%203308%20Lab%201_files/prism.js"></script><script src="CSCI%203308%20Lab%201_files/clipboard_002.js"></script>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%201_files/labLayout.css">
+		<script src="CSCI%203308%20Lab%201_files/labScripts.js"></script>
+	<script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 1 - Initial System Setup</h1>
+					<p class="lead">In this lab, we will be setting up some tools that 
+you will be using throughout this class.
+					To complete this lab, you should do all of the steps below as 
+instructed. You are required to complete steps 1 - 3 in recitation. If 
+you are unable to complete all the steps today, you must complete them 
+outside of the lab time. The output expected is mentioned at the bottom 
+of each part. Your files must include all the required content as 
+mentioned. <br><br>
+					<b>To receive credit for this lab, you must be present during the recitation, check in with your TA and show your work.</b></p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center; border: 0;">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center; border: 0;"><span id="eta">95</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+			</div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">Please note that submissions 
+will be due exactly one week after your respective lab sessions. For 
+Example, If your lab is on this Friday 10 AM, the submission deadline 
+will be next Friday 10 AM.</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Docker setup   -->
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 1. Setup Docker</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">35</span> Minutes)</p>
+				</div>
+
+				<div class="collapse show" id="multiCollapseExample1" style="">
+					<!-- OS Selection -->
+					<div class="stepLine">
+						<label for="os">Choose your Operating System:</label>
+						<select name="os" id="SelectOS1" class="selectOS">
+						   <option disabled="disabled" selected="selected" value="">------</option>
+						   <option value="MacOS">MacOS</option>
+						   <option value="Windows">Windows</option>
+						   <option value="Ubuntu">Ubuntu</option>
+						   <option value="Other">Other</option>
+						</select>
+					</div>
+
+					<div class="collapse show" id="multiCollapseExample1MacOS" data-parent="#multiCollapseExample1" style="">
+						<dl>
+							<dt>1. Download Docker Desktop</dt>
+							<dd>Go to <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker-Desktop</a> and click on “Download for Mac”.</dd>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_1.png" width="670px" height="350px">
+							</dd>
+							<dt>2. Install Docker Desktop</dt>
+							<dd>Click on the downloaded dmg file from the previous step. Move
+ the installed docker application to the applications folder if you wish
+ to.</dd>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_2.png" width="670px" height="350px">
+							</dd>
+							<dt>3. Opening the application </dt>
+							<dd>Open the Docker application using the spotlight search. Click on “Open” when prompted with the box below. </dd>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_3.png" width="290px" height="390px">
+							</dd>
+							<dt>4. Hit “OK” to provide privileged access to Docker Desktop.</dt>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_4.png" width="670px" height="260px">
+							</dd>
+							<dt>5. Verify that Docker Desktop is starting on your system.</dt>
+							<dd>Observe the little icon for docker on the menu bar of your system showing that the “Docker Desktop is starting”.</dd>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_5.png" width="290px" height="390px">
+							</dd>
+							<dt>5. Verify that Docker Desktop is finally running on your system.</dt>
+							<dd>Observe the little icon for docker on the menu bar of your system showing that the “Docker Desktop is running”.</dd>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_6.png" width="290px" height="390px">
+							</dd>
+							<dt>6. Docker Dashboard - Explore running containers and applications</dt>
+							<dd>From the Docker icon on the menu bar, select Dashboard. This 
+lists all your running containers and applications. You must have 
+running or stopped containers and applications to see them listed on the
+ Docker Dashboard.</dd>
+							<dd>This is how the Docker Desktop looks initially.</dd>
+							<dd>
+								<img src="CSCI%203308%20Lab%201_files/Docker_Setup_7.png" width="670px" height="350px">
+							</dd>
+							<!--
+							<dt>8. Running the Hello-world Container</dt>
+							<dd>Open the terminal and run the following command</dd>
+							<div class="col-8">
+										<pre class="command-line" data-user="user" data-host="host"><code  class="language-bash">docker run hello-world</code></pre>
+									</div>
+							<dd>Observe the output</dd>
+							<dd>
+								<img src="./img/Docker_Setup_8.png" height="332px" width="577px" >
+							</dd>
+							<dd>Finally, if you open the dashboard now, you will see the container eloquent_kapitsa below is a randomly created name. So, you’ll most likely have a different name.</dd>
+							<dd>
+								<img src="./img/Docker_Setup_9.png" height="332px" width="577px" >
+							</dd> -->
+
+						</dl>
+            <hr>
+            <div>
+              <dt>Recording Output</dt>
+              <dd>For this section, you are not required to take any screenshots.</dd>
+            </div>
+					</div>
+
+					<div class="collapse" id="multiCollapseExample1Windows" data-parent="#multiCollapseExample1">
+						<dl>
+							<dd>Refer <a href="https://www.youtube.com/watch?v=IjYm5p_nkHY&amp;ab_channel=BTNHD" target="_blank">Docker Desktop installation for Windows 10</a>.  </dd>
+              <dd>Refer <a href="https://docs.docker.com/docker-for-windows/install-windows-home/" target="_blank">Docker Desktop installation for Windows Home</a>.  </dd>
+							<dd>Docker Desktop Installer.exe can be found <a href="https://docs.docker.com/docker-for-windows/install/" target="_blank">here</a>. </dd>
+						</dl>
+            <dl>
+              <dd>For docker to work on your computer you need to have 
+virtualization enabled. If checking the Hyper-V in control panel does 
+not do so, you need to update the BIOS settings during bootup to get it 
+running. Please refer to this  <a href="https://support.hp.com/us-en/document/c04760917">link</a> for instructions on making this modification.</dd>
+            </dl>
+            <hr>
+            <div>
+              <dt>Recording Output</dt>
+              <dd>For this section, you are not required to take any screenshots.</dd>
+            </div>
+					</div>
+
+					<div class="collapse" id="multiCollapseExample1Ubuntu" data-parent="#multiCollapseExample1">
+						<dl>
+							<dt>Preface</dt>
+							<dd>These instructions are a fast-track install guide, and we 
+won't go through all of the details and options you have. We also assume
+ that you've never installed docker on your system, so we won't cover 
+cleaning up old installations. If you'd like more information, please 
+refer to the setup guide <a href="https://docs.docker.com/engine/install/ubuntu" target="_blank">here</a>.</dd>
+							<dt>1. Install dependencies and add the key.</dt>
+							<dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span></span><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> apt-transport-https ca-certificates <span class="token function">curl</span> gnupg-agent software-properties-common
+<span class="token function">curl</span> -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> <span class="token function">sudo</span> apt-key add -</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+							<dd>Check that you have the key. <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span></span><span class="token function">sudo</span> apt-key fingerprint 0EBFCD88
+pub   rsa4096 2017-02-22 [SCEA]
+      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid           [ unknown] Docker Release (CE deb) 
+sub   rsa4096 2017-02-22 [S]</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+							<dt>2. Setup the stable repository</dt>
+							<dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">sudo</span> add-apt-repository <span class="token string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu  <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> stable"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+							<dt>3. Install docker engine</dt>
+							<dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span></span><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> docker-ce docker-ce-cli containerd.io</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+							<dt>4. Install docker compose</dt>
+							<dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span></span></span><span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">"https://github.com/docker/compose/releases/download/1.27.4/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>"</span> -o /usr/local/bin/docker-compose
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+docker-compose --version
+docker-compose version 1.27.4, build 1110ad01</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd><br>
+							<dt>Optional: Post-installation steps</dt>
+							<dd>Docker always runs as root, which means you will have to use <code>sudo</code>
+ whenever running docker. Alternatively, you can create a user group to 
+ditch the use of sudo. There are pros and cons of both methods (mostly 
+security vs. convenience), but you don't need to decide on this right 
+now and The documentation discusses this in far greater detail <a href="https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user" target="_blank">here</a>. For now, just remember to prepend all of the docker commands such as <code>docker run</code> with <code>sudo</code>.</dd>
+						</dl>
+            <hr>
+            <div>
+              <dt>Recording Output</dt>
+              <dd>For this section, you are not required to take any screenshots.</dd>
+            </div>
+					</div>
+
+					<div class="collapse" id="multiCollapseExample1Other" data-parent="#multiCollapseExample1">
+						<p> Have an Operating system not covered in this guide? Please refer to the <a href="https://docs.docker.com/engine/install/" target="_blank">Docker documentation</a> for setup instructions. </p>
+            <hr>
+            <div>
+              <dt>Recording Output</dt>
+              <dd>For this section, you are not required to take any screenshots.</dd>
+            </div>
+					</div>
+				</div>
+			</div>
+<!-- (2) Docker Introduction  -->
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 2. Introduction to Docker</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="true" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">15</span> Minutes)</p>
+				</div>
+
+				<div class="collapse show" id="multiCollapseExample2" style="">
+					<dl>
+						<dt>1. Running the Hello World Container</dt>
+						<dd>Open the terminal and run the following command</dd>
+						<dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd><dd>You'll likely see information about the image being 
+pulled if it's not cached locally. This is normal, and will happen every
+ time you run a docker image for the first time. If all goes well the 
+above should be visible at the end of the output.</dd>
+						<!-- <dd>Observe the output</dd>
+						<dd>
+							<img src="./img/Docker_Setup_8.png" height="332px" width="577px" >
+						</dd> -->
+						<!-- <dd>Finally, if you open the dashboard now, you will see the container. Note that eloquent_kapitsa below is a randomly created name. So, you’ll most likely have a different name.</dd>
+						<dd>
+							<img src="./img/Docker_Setup_9.png" height="332px" width="577px" >
+						</dd> -->
+						<dt>2. Listing containers</dt>
+						<dd>Run the following command in terminal to see the containers on your system
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span></span>docker <span class="token function">ps</span> -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
+7164fe3c9664   hello-world   "/hello"   3 minutes ago   Exited (0) 3 minutes ago             great_kare</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd><br>
+						<dd>Note that <code>docker ps</code> by default only lists the running containers (a container is an instance of a docker image). We used the flag <code>-a</code> to lists all containers.</dd>
+						<dt>3. <a id="cleaningup">Removing stopped containers</a></dt>
+						<dd>Removing old containers is a vital part of using docker. One 
+way to this is by removing stopped containers such as the one reported 
+above.
+<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker <span class="token function">rm</span> <span class="token operator">&lt;</span>container_name<span class="token operator">&gt;</span> /* replace with your container name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            For example, here we're using the name "great_kare". Look at
+ the "NAMES" column in the snippet in part 2 of this section. This name 
+is automatically generated by docker, and yours will likely be 
+different.
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker <span class="token function">rm</span> great_kare </code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dd>Checking our containers again, and we can see that it has indeed been removed.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span></span>docker <span class="token function">ps</span> -a
+CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+
+						<dt>4. Removing containers automatically on exit</dt>
+						<dd>We can also use the flag <code>--rm</code> to remove the container automatically once it finishes execution.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker run --rm hello-world</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dd> You should see the same output as before. However, if you check for containers using <code>docker ps -a</code>, you'll notice it has already been removed. Wonderful!</dd>
+
+						<dt>5. Running an interactive container</dt>
+						<dd>You might've noticed that the hello-world image mentioned an 
+"ubuntu" image. What gives, that's an operating system? Let's give it a 
+go.
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker run -it ubuntu <span class="token function">bash</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dd> There are some new parts to this one, so let's break it down. The flag <code>-it</code>
+ tells docker you'd like to run the image interactively, and that you'd 
+like a tty shell (it's two flags really, but you'll almost always use 
+them together). The <code>bash</code> indicates that we'd like to use bash as our command.</dd>
+						<dd>Your command prompt should have changed a bit. Notice below that the user and host has changed.
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="be190571a423" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="be190571a423"></span></span> </code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dd>We'll be using this difference in prompt to indicate when the command is being executed in docker. Note that the host (<code>be190571a423</code>) is not likely to match on your system. That is because the host here is the generated container ID.</dd>
+						<dd>You can exit the container as follows:
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="be190571a423" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="be190571a423"></span></span><span class="token keyword">exit</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dd>Don't forget to clean up the container you just created! Remember, you can avoid this by using the flag <code>--rm</code>.
+
+						</dd><dt>5. Running an detached container</dt>
+						<dd>As well as being able to run containers interactively, we can run them in detached mode.
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span></span>docker run -dt ubuntu <span class="token function">bash</span>
+ace17ba3269cab8cf250c57841ab216f14963715ff646607be90af17a41a6ef6</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dd>We are now detached from the container but it's still running. We can check using:
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span></span>docker <span class="token function">ps</span>
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+ace17ba3269c   ubuntu    "bash"    2 minutes ago   Up 2 minutes             magical_thompson</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dd>We'll see why detached containers are useful soon, but for now
+ we'd like to stop this one. Since it is running, our previous methods 
+won't work.
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span></span>docker <span class="token function">rm</span> magical_thompson /* replace with your container name */
+Error response from daemon: You cannot remove a running container ace17ba3269cab8cf250c57841ab216f14963715ff646607be90af17a41a6ef6. Stop the container before attempting removal or force remove</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dd>As docker informs us, we must first stop the container, or we can force remove. Let's force remove the container.
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker <span class="token function">rm</span> -f magical_thompson /* replace with your container name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+
+						<dt>6. Wrapping up</dt>
+						<dd>Did you leave any containers? Make sure to double check! 
+You've got the basics of docker down, and feel free to come back to this
+ section as you need. As a tip, if you forget a command or flags, 
+docker's built in help is very useful.</dd>
+						<dd>
+						For top level info:
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker --help</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						Or for command specific information:
+						<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker COMMAND --help</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <hr>
+            <dt>Recording Output</dt>
+            <dd>For this section, you will export commands run in parts 
+1-5 and their outputs into a [your_name]_section2.txt file. Number the 
+commands as per the manual here. You will submit this file in a later 
+step.</dd>
+					</dl>
+				</div>
+			</div>
+
+<!-- (3) Git Setup  -->
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 3. Setup Git (version control software)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="true" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample3" style="">
+					<!-- OS Selection -->
+					<div class="stepLine">
+						<label for="os">Choose your Operating System:</label>
+						<select name="os" id="SelectOS2" class="selectOS">
+						   <option disabled="disabled" selected="selected" value="">------</option>
+						   <option value="MacOS">MacOS</option>
+						   <option value="Windows">Windows</option>
+						   <option value="Ubuntu">Ubuntu</option>
+						</select>
+					</div>
+				<div class="collapse show" id="multiCollapseExample3Ubuntu" data-parent="#multiCollapseExample3" style="">
+					<dl>
+						<dt>1. Install Git (a version control tool)</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span> <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">git</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>2. Set your git username to match your github account</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.name <span class="token string">"myUserName"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<div class="alert-warning">Don't forget to replace "myUserName" with your github username.</div>
+						</dd>
+						<dt>3. Verify your git username was updated</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.name</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>4. Set your git email to match your github account</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.email <span class="token string">"myUserName@gmail.com"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>5. Verify your git email was updated</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.email</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>6. Clone your github repo (It has been created for you by the 
+TA. You should have received an invite in your mailbox linked to your 
+GitHub account.)</dt>
+						<dd>
+              For points 6 &amp; 7, make sure to edit the name of the 
+repository after the copying the command into your terminal.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> clone https://github.com/myUserName/<span class="token operator">&lt;</span>REPOSITORY_NAME<span class="token operator">&gt;</span>.git /* replace with your repository name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>7. Go inside your repository folder on your system.</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">cd</span> <span class="token operator">&lt;</span>REPOSITORY_NAME<span class="token operator">&gt;</span> /* replace with your repository name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>8. Create a new file (to test your connection)</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host~/Labs_3308/"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host~/Labs_3308/"></span></span><span class="token function">vi</span> test.txt</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<ol>
+								<li>Switch to insert mode (press "i") to add text</li>
+								<li>Add any text you wish (This is a test!!!)</li>
+								<li>To save &amp; quit, press ctrl (to change mode) and type :wq(write &amp; quite) and hit enter</li>
+							</ol>
+						</dd>
+						<dt>9. Add &amp; Commit your changes to the repo</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host~/Labs_3308/"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host~/Labs_3308/"></span><span data-user="user" data-host="host~/Labs_3308/"></span><span data-user="user" data-host="host~/Labs_3308/"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Commit message goes here"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <hr>
+						<dt> Recording Output</dt>
+						<dd> For this section, you will export commands run in part 9 and 
+their outputs into a [your_name]_section3.txt file. You will submit this
+ file in a later step. </dd>
+					</dl>
+
+				</div>
+				<div class="collapse" id="multiCollapseExample3MacOS" data-parent="#multiCollapseExample3">
+					<dl>
+						<dt>1.Download Homebrew</dt>
+						<dd> Homebrew is a package manager used to simplify software installations on macOS. </dd>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span> /bin/bash -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="token variable">)</span></span>"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>2. Install Git</dt>
+						<dd> Run the following command to install Git </dd>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>brew <span class="token function">install</span> <span class="token function">git</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>
+							</dt><dt>3. Check if Git is installed properly</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> --version</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>
+						</dt><dt>4. Set your git username to match your github account</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.name <span class="token string">"myUserName"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<div class="alert-warning">Don't forget to replace "myUserName" with your github username.</div>
+						</dd>
+						<dt>5. Verify your git username was updated</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.name</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>6. Set your git email to match your github account</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.email <span class="token string">"myUserName@gmail.com"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>7. Verify your git email was updated</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.email</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <dt>8. Clone your github repo (It has been created for you 
+by the TA. You should have received an invite in your mailbox linked to 
+your GitHub account.)</dt>
+						<dd>
+              For points 8 &amp; 9, make sure to edit the name of the 
+repository after the copying the command into your terminal.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> clone https://github.com/myUserName/<span class="token operator">&lt;</span>REPOSITORY_NAME<span class="token operator">&gt;</span>.git /* replace with your repository name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>9. Go inside your repository folder on your system.</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">cd</span> <span class="token operator">&lt;</span>REPOSITORY_NAME<span class="token operator">&gt;</span> /* replace with your repository name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>10. Create a new file (to test your connection)</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host~/Labs_3308/"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host~/Labs_3308/"></span></span><span class="token function">vi</span> test.txt</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<ol>
+								<li>Switch to insert mode (press "i") to add text</li>
+								<li>Add any text you wish (This is a test!!!)</li>
+								<li>To save &amp; quit, press ctrl (to change mode) and type :wq(write &amp; quite) and hit enter</li>
+							</ol>
+						</dd>
+						<dt>11. Add &amp; Commit your changes to the repo</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host~/Labs_3308/"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host~/Labs_3308/"></span><span data-user="user" data-host="host~/Labs_3308/"></span><span data-user="user" data-host="host~/Labs_3308/"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Commit message goes here"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <hr>
+						<dt> Recording Output</dt>
+						<dd> For this section, you will export commands run in part 11 and
+ their outputs into a [your_name]_section3.txt file. You will submit 
+this file in a later step. </dd>
+					</dl>
+					</div>
+					<div class="collapse" id="multiCollapseExample3Windows" data-parent="#multiCollapseExample3">
+					<dl>
+						<dt>1. Install Git</dt>
+							<dd>Refer <a href="https://www.youtube.com/watch?v=SmbAn2_5uGs&amp;ab_channel=ServerAcademy" target="_blank">Git installation on Windows</a>.  </dd>
+							<dd>Executable file can be found <a href="http://git-scm.com/download" target="_blank">here</a>. </dd>
+							<!-- TODO: Windows Instructions -->
+						<dt>
+							</dt><dt>2. Check if Git is installed properly</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> --version</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>
+						</dt><dt>3. Set your git username to match your github account</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.name <span class="token string">"myUserName"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<div class="alert-warning">Don't forget to replace "myUserName" with your github username.</div>
+						</dd>
+						<dt>4. Verify your git username was updated</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.name</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>5. Set your git email to match your github account</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.email <span class="token string">"myUserName@gmail.com"</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>6. Verify your git email was updated</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> config --global user.email</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <dt>7. Clone your github repo (It has been created for you 
+by the TA. You should have received an invite in your mailbox linked to 
+your GitHub account.)</dt>
+						<dd>
+              For points 7 &amp; 8, make sure to edit the name of the 
+repository after the copying the command into your terminal.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">git</span> clone https://github.com/myUserName/<span class="token operator">&lt;</span>REPOSITORY_NAME<span class="token operator">&gt;</span>.git /* replace with your repository name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>8. Go inside your repository folder on your system.</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span><span class="token function">cd</span> <span class="token operator">&lt;</span>REPOSITORY_NAME<span class="token operator">&gt;</span> /* replace with your repository name */</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>9. Create a new file (to test your connection)</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host~/Labs_3308/"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host~/Labs_3308/"></span></span><span class="token function">vi</span> test.txt</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<ol>
+								<li>Switch to insert mode (press "i") to add text</li>
+								<li>Add any text you wish (This is a test!!!)</li>
+								<li>To save &amp; quit, press ctrl (to change mode) and type :wq(write &amp; quite) and hit enter</li>
+							</ol>
+						</dd>
+						<dt>10. Add &amp; Commit your changes to the repo</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host~/Labs_3308/"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host~/Labs_3308/"></span><span data-user="user" data-host="host~/Labs_3308/"></span><span data-user="user" data-host="host~/Labs_3308/"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Commit message goes here"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+            <hr>
+						<dt> Recording Output</dt>
+						<dd> For this section, you will export commands run in part 10 and
+ their outputs (where relevant) into a [your_name]_section3.txt file. 
+You will submit this file in a later step. </dd>
+					</dl>
+					</div>
+				</div>
+			</div>
+
+<!-- (4) PostgreSQL  -->
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 4. Pull &amp; Test PostgreSQL</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="true" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample4" style="">
+					<dl>
+						<dt>1. Pull and run PostgreSQL</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span></span>docker run -dt -v postgres-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD<span class="token operator">=</span>password postgres:latest
+3c2ad758d53767ae728a1de868f784af97a8c693b145465c49c0f37271386490</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dd> New flags:
+							<ul>
+								<li><code>-v postgres-data:/var/lib/postgresql/data</code>: bind
+ a volume "postgres-data" to /var/lib/postgresql/data. This volume will 
+now be preserved across subsequent runs of postges.</li>
+								<li><code>-e POSTGRES_PASSWORD=password</code>: Set an environment variable "POSTGRES_PASSWORD" within the container.</li>
+								<li><code>postgres:latest</code>: Different versions of containers can be specified by tags, this tells docker that we want the latest postgres image.</li>
+							</ul>
+						</dd>
+						<dt>2. Check the image is running</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span></span>docker <span class="token function">ps</span>
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS      NAMES
+3c2ad758d537   postgres:latest   "docker-entrypoint.s…"   5 seconds ago   Up 4 seconds   5432/tcp   bold_lalande</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+</dd><br>
+						<dt>3. Enter the container and switch to the postgres user account</dt>
+						<dd>
+							During the installation process, PostgreSQL created a new user 
+account named postgres. You'll be using this user account for most of 
+your database interactions. Remember to change the container ID to match
+ yours.
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker <span class="token function">exec</span> -it 3c2ad758d537 <span class="token function">bash</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="3c2ad758d537"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="3c2ad758d537"></span></span>psql -h localhost -U postgres</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>4. Create a practice database</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-prompt="postgres=#"><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="postgres=#"></span></span> create database practicedb<span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>5. Enter the practice database</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-prompt="postgres=#"><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="postgres=#"></span></span> \c practicedb<span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>6. Create a practice table</dt>
+							<dd>Copy the following code into psql terminal
+								<div class="code-toolbar"><pre class="command-line language-sql" data-prompt="practicedb=#"><code class=" language-sql"><span class="command-line-prompt"><span data-prompt="practicedb=#"></span><span data-prompt="practicedb=#"></span></span><span class="token keyword">create</span> <span class="token keyword">table</span> <span class="token keyword">if</span> <span class="token operator">not</span> <span class="token keyword">exists</span> store<span class="token punctuation">(</span>id <span class="token keyword">serial</span><span class="token punctuation">,</span> sname <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> qty <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> price <span class="token keyword">float</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> store <span class="token punctuation">(</span>sname<span class="token punctuation">,</span> qty<span class="token punctuation">,</span> price<span class="token punctuation">)</span> <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'pear'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'lemon'</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'orange'</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+</dd><br>
+						<dt>7. Test your table</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-prompt="practicedb=#" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="practicedb=#"></span><span></span><span></span><span></span><span></span><span></span></span> <span class="token keyword">select</span> * from store<span class="token punctuation">;</span>
+id | sname  | qty | price
+---+--------+-----+-------
+ 1 | apple  |  10 |     1
+ 2 | pear   |   5 |     2
+ 3 | banana |  10 |   1.5 </code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+
+						</dd>
+            <hr>
+            <dt>Recording Output</dt>
+            <dd>For this section, you will export queries run in parts 
+4-7 and outputs of 6&amp;7 into a [your_name]_section4.txt file. Number 
+the queries as per the manual here. You will submit this file in a later
+ step.</dd>
+            <hr>
+						<dt>8. Exit postgres</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-prompt="postgres=#"><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="postgres=#"></span></span> \q</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<dt>9. Exit docker and cleanup the container.</dt>
+						<dd>This is the same as in part 2, but as a reminder:
+<div class="code-toolbar"><pre class="command-line language-bash" data-user="root" data-host="3c2ad758d537"><code class=" language-bash"><span class="command-line-prompt"><span data-user="root" data-host="3c2ad758d537"></span></span> <span class="token keyword">exit</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span>docker <span class="token function">rm</span> -f 3c2ad758d537</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+<!-- (5) Node.js -->
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 5. Run &amp; Test Node.js</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="true" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time5">10</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample5" style="">
+					<dl>
+						<dt>1. Create practice Node.js website</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span> <span class="token function">vim</span> test_server.js</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							Copy into your file the following code.  As a note, you can also 
+use the built-in text editor instead of vim/nano to modify the text 
+files.
+							However, it is still strongly encouraged for you to become 
+familiar with a terminal text editor.  Not all systems have a desktop to
+ work within!
+							<div class="code-toolbar"><pre class=" language-bash"><code class=" language-bash">const http <span class="token operator">=</span> require<span class="token punctuation">(</span><span class="token string">'http'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+const <span class="token function">hostname</span> <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span><span class="token punctuation">;</span>
+const port <span class="token operator">=</span> 3000<span class="token punctuation">;</span>
+
+const server <span class="token operator">=</span> http.createServer<span class="token punctuation">((</span>req, res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  res.statusCode <span class="token operator">=</span> 200<span class="token punctuation">;</span>
+  res.setHeader<span class="token punctuation">(</span><span class="token string">'Content-Type'</span>, <span class="token string">'text/plain'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  res.end<span class="token punctuation">(</span><span class="token string">'Hello World\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+server.listen<span class="token punctuation">(</span>port, hostname, <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  console.log<span class="token punctuation">(</span><span class="token variable"><span class="token variable">`</span>Server running at http://$<span class="token punctuation">{</span>hostname<span class="token punctuation">}</span>:$<span class="token punctuation">{</span>port<span class="token punctuation">}</span>/<span class="token variable">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+						</dd>
+						<!-- <dt>1. Install curl (a data transfer tool)</dt>
+						<dd>
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo apt-get install curl</code></pre>
+						</dd>
+						<dt>2. Add the Node.js PPA (Personal Package Archive)</dt>
+						<dd>
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</code></pre>
+						</dd>
+						<dt>3. Install Node.js</dt>
+						<dd>
+							<pre class="command-line" data-user="csci3308" data-host="csci3308-VirtualBox"><code  class="language-bash"> sudo apt-get install -y nodejs</code></pre>
+						</dd>
+						<dt>4. Create practice Node.js website</dt> -->
+
+						<dt>2. Start your Node.js website in a docker container</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span> docker run -dt -v <span class="token variable"><span class="token variable">$(</span><span class="token function">pwd</span><span class="token variable">)</span></span>:/app -p 3000:3000 node:12-alpine node /app/test_server.js</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+
+              If you are using a windows OS use the following command:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span></span> docker run -dt -v <span class="token string">"%cd%"</span>:/app -p 3000:3000 node:12-alpine node /app/test_server.js</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+
+              New flags:
+							<ul>
+								<li><code>-v $(pwd):/app</code> (or) <code>-v "%cd%":/app</code>:
+ Bind the current directory (on your local machine) to /app in the 
+container. This is great for development, as everything you change in 
+the working directory of your host machine will be reflected in the 
+docker container</li>
+							    <li><code>-p 3000:3000</code>: Map port 3000 of the host to port 3000 in the container.</li>
+								<li><code> node /app/test_server.js</code> Run our script in the container.</li>
+							</ul>
+							Now check that it works by browsing to <a href="http://127.0.0.1:3000/" target="
+              ">http://127.0.0.1:3000</a> in Chrome.
+						</dd>
+            <hr>
+            <dt>Recording Output</dt>
+            <dd>Take a screenshot of your browser window showing the 
+address bar and the words Hello World. You will submit this image in a 
+later.</dd>
+            <hr>
+						<dt>3. Locate and cleanup the running docker container.</dt>
+						<dd> Feel free to refer back to Section 2. <!-- <a href="#cleaningup">here</a>. -->
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 6. Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(7)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="true" aria-controls="multiCollapseExample7">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time7">5</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample7" style="">
+					<ol>
+						<dl>
+							<dt><li>Upload files/screenshots to the Lab_1 folder which you 
+will create inside the github repo created for you. Look at 2.4 in the 
+appendix for instructions on creating a folder inside a repository.</li></dt>
+							<dd>
+								 Use the github WebGUI to upload your files to the Lab_1 folder in repo <b>or</b>,
+ if you are confident in your git skills, run the following commands 
+inside your local git directory. Make sure you copy your screenshots 
+into your local git directory.
+								 <div class="code-toolbar"><pre class="command-line language-bash" data-prompt="$"><code class=" language-bash"><span class="command-line-prompt"><span data-prompt="$"></span><span data-prompt="$"></span><span data-prompt="$"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Adding all of the screenshots for lab1"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							</dd>
+							<dt><li>Create a link to your github repo</li></dt>
+							<dd>
+								In a text file (lab_1_{your name}_link.txt), write down the following:
+								<ol>
+									<li>Your name</li>
+									<li>The link to your Github Repo.</li>
+								</ol>
+							</dd>
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your text file to Canvas by the deadline.
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="true" aria-controls="multiCollapseExample7">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample7" style="">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-3" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-8">Description</th>
+									<th class="col-1" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-3">Docker Setup</td>
+									<td class="col-8">File with the basic commands to understand Docker.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">Git installation</td>
+									<td class="col-8">File with the three git commands and their outputs to upload test.txt to your Github Repo.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">PostgreSQL installation</td>
+									<td class="col-8">File with the queries and outputs to insert and retrieve the contents of the table.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">NodeJS installation</td>
+									<td class="col-8">Screenshot shows the browser's address bar and website content.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-8" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3" style="border:0;"></td>
+									<td class="col-8" style="border:0;"></td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+      <div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Part B: NO TAKE HOME EXERCISE FOR THIS LAB</p>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">(Appendix) Setup Github Repository</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseAppendix1" aria-expanded="true" aria-controls="multiCollapseAppendix1">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseAppendix1" style="">
+					<dl>
+						<dd>This section is not necessary for this lab, as we've already 
+created a repository for you. It is primarily here as a reference, 
+should you need instructions on creating a GitHub repository in the 
+future.</dd>
+						<dt>1. Sign up for Github</dt>
+						<dd>If you do not already have an account, create one at <a href="https://github.com/" target="_blank">Github</a></dd>
+						<dt>2. Create a New Github Repo</dt>
+						<dd>
+							<div class="row">
+								<div class="col-4">
+									1. Click the "+" in the upper right corner on your github page and select "New repository"
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%201_files/git_setup_1.PNG">
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-4">
+									2. Set your new repository's information: <br>
+									<b>Owner:</b> your github username (default)<br>
+									<b>Repository name:</b> Labs_3308 <br>
+									<b>Description:</b> My first github repo! <br>
+									<b>Public or Private:</b> Please select the private option.<br>
+									<b>Initialize with Readme:</b>This is also optional, but go ahead and have github at a README file to your repo <br>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%201_files/git_setup_4.PNG" width="559px" height="452px">
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-4">
+									3. Add your TA and instructor as collaborators to the Labs_3308 repository.
+									<ul>
+										<li>Goto your repo Labs_3308</li>
+										<li>Click on Settings</li>
+										<li>Under "Manage access" , you will find a button "Invite a collaborator"</li>
+										<li>You can find your TA and instructor github usernames <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/resources/html/githubUserNames.html" target="_blank">here</a></li>
+									</ul>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%201_files/git_setup_5.PNG" width="670px" height="452px">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-4">
+									4. Create a folder Lab_1 with sample file inside (This is the 
+folder where you check-in all the files related to Lab_1).
+									<ul>
+										<li>Goto your repo Labs_3308</li>
+										<li>Click on "Add file" &gt; "Create new file"</li>
+										<li>Now type "Lab_1/sample.txt"(without quotes as shown in the
+ image) : This creates a folder Lab_1 with file inside that folder named
+ sample.txt</li>
+										<li>Now click on "Commit new file" button at the bottom</li>
+									</ul>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%201_files/git_setup_6.PNG">
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-4">
+									Copy your new repository's https address so you can clone it locally.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%201_files/git_setup_7.PNG">
+								</div>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%201_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%201_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	
+
+</body></html>

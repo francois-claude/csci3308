@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSCI 3308 Lab 8</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%208_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%208_files/prism.css">
+
+	<script src="CSCI%203308%20Lab%208_files/jquery-3.js"></script>
+	<script src="CSCI%203308%20Lab%208_files/popper.js"></script>
+	<script src="CSCI%203308%20Lab%208_files/bootstrap.js"></script>
+	<script src="CSCI%203308%20Lab%208_files/clipboard.js"></script>
+	<script src="CSCI%203308%20Lab%208_files/prism.js"></script><script src="CSCI%203308%20Lab%208_files/clipboard_002.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%208_files/labLayout.css">
+	<script src="CSCI%203308%20Lab%208_files/labScripts.js"></script>
+	<script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 8 - Web Services</h1>
+					 <div class="row mt-2">
+              <p class="alert alert-primary"><strong>To be eligible for 
+any credit for the lab, attendance is mandatory. Make sure to upload a 
+link to the GitHub repository. Unexcused absence or missing submissions 
+on Canvas will receive 0 grade even if code is completed and committed 
+to GitHub on time.</strong></p>
+          </div>
+					<p class="lead">In the lab, we will use a REST API to create a web 
+application to display movie reviews from NY Times.You will edit the 
+template (below) which includes all of the files necessary for this web 
+application.
+					To receive credit for this lab, you MUST upload "lab_8_link.txt" to
+ Canvas by the deadline.</p>
+					<dd>
+            <div class="row">
+    					<div class="col-12">
+    						<p class="card card-body deadline">This lab is due right 
+before recitation next week.
+						For Example, If your lab is on this Friday at 10 AM, the 
+submission deadline will be next Friday at 10 AM. There is no late 
+policy for labs.</p>
+    					</div>
+    				</div>
+					</dd>
+				<p class="h5"><a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab8_webservices/Lab8_website.zip" target="_blank">Download </a>the template and make sure you extract the files before using them.</p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">110</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+			  </div>
+			</div>
+
+      <div class="card card-body" id="step1">
+        <div class="stepLine">
+          <p class="alignleft h5">Part A: Lab Overview</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample1">
+          <br>
+          <p>In today's lab, we will create a web application that 
+accesses the NYTimes API to retrieve movie reviews and then displays 
+these reviews on a web page. The template includes all of the files 
+necessary to make this work, but is missing some code. You will need to 
+edit two files, server.js and reviews.ejs, to write the code to send a 
+GET request to NYTimes's API to retrieve movie reviews and to return 
+these to the front-end for display. You can see an example of the 
+completed web page below.</p>
+          <hr>
+          <dt>Directory structure</dt>
+          <br>
+          <dd>
+            <pre>    |--Lab8_Website
+          |--node_modules
+          |--views
+              |--pages
+                  |--NYTimes_home.ejs
+              |--partials
+                  |--footer.ejs
+                  |--header.ejs
+                  |--reviews.ejs        (You will need edit this file)
+          |--docker-compose.yml
+          |--package-lock.json
+          |--package.json
+          |--server.js                 (You will need to edit this file)
+            </pre>
+          </dd>
+          <dt>Final web page</dt>
+          <br>
+          <dd>
+            <img src="CSCI%203308%20Lab%208_files/output.png" alt="An Example of a completed Tweet Page" class="img-fluid">
+          </dd>
+        </div>
+      </div>
+			<div class="card card-body" id="step0">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 0. Activate NYTimes Developer Account</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(0)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample0" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time0">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample0">
+					<br>
+					<p>In order to access NYTimes's information, you'll first need to create a developer account.</p>
+					<hr>
+					<dt>1. Create a developer account</dt>
+					<br>
+					<dd>
+						<p>You can create an account <a href="https://developer.nytimes.com/accounts/create" target="_blank">here</a>.</p>
+						<br>
+						<div>
+              <img src="CSCI%203308%20Lab%208_files/create_account.png" width="90%">
+						</div>
+						<br>
+						<p>You will receive a confirmation email. Verify your email and then, log into your NYTimes account.</p>
+						<br>
+            <div>
+              <img src="CSCI%203308%20Lab%208_files/verifyemail.png" width="90%">
+            </div>
+					</dd>
+          <hr>
+          <dl>
+            <dt>Recording Output</dt>
+            <dd>Take a screenshot of the verification email and save it as <code>PartA_Section0.png</code> </dd>
+          </dl>
+				</div>
+			</div>
+
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 1. Create Keys in App </p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<br>
+					<hr>
+					<dt>1. Create a new app</dt>
+					<br>
+					<dd>
+						<p>Click on the dropdown button on the top right of the page. Then click on "Apps".</p>
+						<br>
+						<div>
+							<img src="CSCI%203308%20Lab%208_files/create_app.png" style="width: 90%;">
+						</div>
+						<br>
+            <p>Click on the "New App" button</p>
+            <br>
+            <div>
+              <img src="CSCI%203308%20Lab%208_files/new_app.png" style="width: 90%;">
+            </div>
+            <br>
+						<p>Fill in the details for your new app:</p>
+            <ol>
+              <li><strong>App Name: </strong>Lab8-csci3308</li>
+              <li><strong>Description: </strong>This is for a lab activity for CSCI 3308</li>
+              <li>Enable the "Movie Reviews API" by clicking on the "Enable" button to the right of the row. It is highlighted in the image below.</li>
+              <li>Once the details are filled out click on the "CREATE" button.</li>
+            </ol>
+						<div>
+							<img src="CSCI%203308%20Lab%208_files/new_app_fill_details.png" style="width: 90%;">
+						</div>
+						<br>
+            <br>
+						<p>You will be redirected to the below page. Copy the key and save
+ it as you will be using it in the server.js file to make the API calls.
+ Then click on the "SAVE" button.</p>
+						<br>
+						<div>
+							<img src="CSCI%203308%20Lab%208_files/api_keys.png" style="width: 90%;">
+						</div>
+						<br>
+						</dd>
+				</div>
+			</div>
+
+      <div class="card card-body" id="step14">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 2. Set up and run the application</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(14)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample14" aria-expanded="false" aria-controls="multiCollapseExample14">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time2">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample14">
+          <dl>
+            <dt>1. Navigate to the Lab8_website folder</dt>
+            <dd>Once you've downloaded the Lab8_website folder linked at
+ the top of this page, navigate to that directory in terminal. You 
+should see a file docker-compose.yml</dd>
+            <dd>MacOS and Linux Users:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span data-user="user" data-host="host"></span><span></span></span><span class="token function">ls</span>
+docker-compose.yml  package.json  package-lock.json  server.js  views
+<span class="token function">pwd</span>
+/[SOMEWHERE]/First_Last_Labs/Lab8_Website</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+            <!-- <dt>1. </dt> -->
+            <dd>
+              Windows Command Prompt:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span></span><span class="token function">dir</span> /b
+docker-compose.yml
+package.json
+package-lock.json
+server.js
+views</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+            <!-- <dt>1. </dt> -->
+            <dd>
+              Windows Powershell:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span></span>cmd /c <span class="token function">dir</span> /b
+docker-compose.yml
+package.json
+package-lock.json
+server.js
+views</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+            <dt>3. Shut down the containers from Lab 7</dt>
+            <dd>Before we get started, make sure that your containers 
+from lab 7 are shut down. We'll be using the same port, so if they're 
+still running we won't be able to move forward. Here's the command to do
+ so (your data will be preserved, so don't worry about that).<div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span></span>docker stop lab_website_3_web_1 lab_website_3_db_1
+lab_website_3_web_1
+lab_website_3_db_1</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+            <dd>Note that you can also use docker-compose for this, but you'd have to navigate to or know the path to the last lab.</dd>
+            <dt>4. Installing Packages</dt>
+            <dd>Currently, you'll notice their is no node_modules folder
+ in the current directory. We'll need to install some packages for our 
+app to work, and we can do this inside of docker as follows.</dd>
+            <dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>docker-compose run web <span class="token function">npm</span> <span class="token function">install</span>
+Creating lab8_website_web_run ... done
+
+&gt; nodemon@2.0.7 postinstall /home/node/app/node_modules/nodemon
+&gt; node bin/postinstall || exit 0
+
+Love nodemon? You can now support the project via the open collective:
+&gt; https://opencollective.com/nodemon/donate
+
+npm WARN nytimes@1.0.0 No description
+npm WARN nytimes@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+added 189 packages from 93 contributors and audited 190 packages in 2.374s
+
+13 packages are looking for funding
+run `npm fund` for details
+
+found 0 vulnerabilities</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+            <dd>Similar to a normal docker run command, this command runs the <code>web</code>
+ image (defined in docker-compose.yml). This allows us to install the 
+necessary packages with npm, even if npm isn't installed on our host 
+system.</dd>
+            <dt>5. Starting Docker Compose</dt>
+            <dd>Now that we're in the right place and have our packages installed, starting docker compose is quite simple.</dd>
+            <dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>docker-compose up
+Starting lab8_website_web_1 ... done
+Attaching to lab8_website_web_1
+web_1 |
+web_1 | &gt; nytimes@1.0.0 dev /home/node/app
+web_1 | &gt; nodemon server.js
+web_1 |
+web_1 | [nodemon] 2.0.7
+web_1 | [nodemon] to restart at any time, enter `rs`
+web_1 | [nodemon] watching path(s): *.*
+web_1 | [nodemon] watching extensions: js,mjs,json
+web_1 | [nodemon] starting `node server.js`
+web_1 | 3000 is the magic port</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+            <dd>In comparison to the last lab, there are a couple of 
+things to note in this command. First off, we're running the command in 
+an attached mode so that our terminal will follow the logs in the 
+container. We will not be working with a database in this lab, so you'll
+ also notice that we only have a single container running, namely <code>web_1</code>. The final change is that rather than running <code>node server.js</code>, our container is running <code>nodemon server.js</code>.</dd>
+            <dd><a href="https://github.com/remy/nodemon" target="_blank">nodemon</a>
+ is a useful package for node development, as it will automatically 
+restart the application when changes are detected in the source code. 
+This means we never have to restart the docker container manually, even 
+when making changes to the server.js file. Simply let the docker process
+ run in the foreground for logging purposes.</dd>
+            <dt>6. Checking it worked</dt>
+            <dd>Before we move on, open <a href="http://localhost:3000/" target="_blank">http://localhost:3000</a> in your browser and you should see the below page.</dd>
+            <dd>
+              <img src="CSCI%203308%20Lab%208_files/home_page.png" style="width:90%;">
+            </dd>
+            <dt>7. Docker Compose Resources</dt>
+            <dd>For the purposes of this lab, Ctrl-C and the command 
+from step 4 should be all you need. If you get stuck with any 
+docker-compose related issues or would simply like a reresher on some of
+ the commands, please refere to Part A Section 2 of Lab 7 (linked <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab7_nodejs/index.html" target="_blank"> here</a>).</dd>
+        </dl></div>
+			</div>
+
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 3. Make an API Request</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">20</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<p>In this section, we will demonstrate how your server makes a request to the NYTimes API</p>
+					<hr>
+					<dl>
+						<dt>1. Make a NYTimes API Request with Axios</dt>
+						<dd>
+							<p>Axios is a lightweight HTTP client that provides a bunch of 
+utility functions to make GET and POST requests to different web 
+services. Axios can make a request to a given URL and will return a 
+response object. By default, Axios' response object is a JSON object.</p>
+							<div class="code-toolbar"><pre class="row language-js"><code class=" language-js">
+<span class="token function">axios</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  url<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;api-key=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>api_key<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
+    method<span class="token punctuation">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+    dataType<span class="token punctuation">:</span><span class="token string">'json'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">items</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Send some parameters</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Handle errors</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<dl class="row">
+								<dt class="col-sm-2">url : ``</dt>
+								<dd class="col-sm-10">We use a pair of backticks `` to build the
+ request url. This url comprises the resource URL for searching movie 
+reviews, https://api.nytimes.com/svc/movies/v2/reviews/search.json, and a
+ number of search parameters which we have appended to the url. 
+Backticks are template literals or string literals that allow embedded 
+expression (i.e. variables). You can read more about template literals <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals" target="_blank">here.</a></dd>
+								<dt class="col-sm-2">method: 'GET'</dt>
+								<dd class="col-sm-10">The NYTimes API specifies that this 
+request must be a GET request. Remember, GET requests carry the request 
+parameters in the url.</dd>
+								<dt class="col-sm-2">dataType: 'json'</dt>
+								<dd class="col-sm-10">We want the return object to be JSON because it is easy to parse.</dd>
+								<dt class="col-sm-2">.then(items =&gt; {</dt>
+								<dd class="col-sm-10">The function that executes if the request was successful and returns a response object.</dd>
+								<dt class="col-sm-2">.catch(error =&gt; {</dt>
+								<dd class="col-sm-10">The function that exectues if the request fails (for whatever reason) and returns and error.</dd>
+							</dl>
+						</dd>
+						<dt>2. Display Reviews</dt>
+						<dd>
+							<div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">items</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>items<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>items<span class="token punctuation">.</span>data<span class="token punctuation">.</span>results<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> items<span class="token punctuation">.</span>data<span class="token punctuation">.</span>results<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>items<span class="token punctuation">.</span>data<span class="token punctuation">.</span>results<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+							<dl class="row">
+								<dt class="col-sm-4">.then(items =&gt; {</dt>
+								<dd class="col-sm-8">This is the function that executes if the 
+request was successful. Remember =&gt; is the shorthand notation for 
+function(items) {...}</dd>
+								<dt class="col-sm-4">console.log()</dt>
+								<dd class="col-sm-8">console.log() enables logging or printing 
+variables to the console and is helpful in determining the contents of 
+any variable including a request's response object.</dd>
+								<dt class="col-sm-4">.catch(error =&gt; {</dt>
+								<dd class="col-sm-8">This is the function that executes if the 
+request failed. A failed request almost always returns an error object. 
+Remember =&gt; is the shorthand notation for function(error) {...}</dd>
+								<dt class="col-sm-4">What is in the response object?</dt>
+								<dd class="col-sm-8">You can look at an example response object <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab8_webservices/sample_response.json" target="_blank">here</a>.</dd>
+							</dl>
+						</dd>
+					</dl>
+          <dl>
+            <dt>3. Update server.js</dt>
+            <dd>Update the .then() and the .catch() sections of the 
+axios call to parse the API response and render the 'NYTimes_home' page 
+while sending the data to the UI.</dd>
+            <dd>The .catch() section should render the 'NYTimes_home' page with an error message.</dd>
+            <dd>Hint: If you are unsure how to complete this task, look at the '/' route in the server.js file.</dd>
+          </dl>
+
+          <hr>
+          <dl>
+            <dt>Recording Output</dt>
+            <dd>At the end of this section your server.js file should be complete.</dd>
+          </dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step4">
+					<div class="stepLine">
+						<p class="alignleft h5">Part A: Section 4. Updating reviews.ejs</p>
+            <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+						<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+            <p class="alignright h5">(<span class="time" id="time4">60</span> Minutes)</p>
+        	</div>
+					<div class="collapse" id="multiCollapseExample4">
+						<br>
+						<p>In order to display the information from the NYTimes API call 
+on the web page, you will have to write some EJS code to dynamically 
+fill in the reviews values.</p>
+						<hr>
+						<dl>
+							<dt>1. Process the reviews (edit reviews.ejs)</dt>
+							<dd>
+								<br>
+									<pre>You will need to add a new Bootstrap card for each review with the followign information:
+
+1. Name of the movie: Place this at the top of the card. You can do this by using a h4 tag with the
+                      display_title from the  result set.
+
+2. Link to the movie review: Display a link to the movie review. Your link should make use of class="btn btn-primary"
+                      to display it as a button. The text for the button will come from the "suggested_link_text" and the link will come from the "url" parameters.
+
+3. Date of review publication: The next data to display is the date on which the review was published.
+                      You can make use of the p tag. The value can be founf in the "publication_date" parameter.
+
+4. Summary of the review: The last part of the card would be to display the summary review that is stored
+                      in the "summary_short" parameter.
+
+The final output of your page should look similar to the output page shown in the "Lab Overview" section.
+
+Hint: Use card columns to display more than one card in a row. You can also use padding to make the card look more presentable.
+								</pre>
+								<br>
+								<p>You can find the documentation for Bootstrap cards <a href="https://getbootstrap.com/docs/4.0/components/card/" target="_blank">here</a>.</p>
+							</dd>
+							<div class="alert alert-warning" role="alert">
+								<b><u>HINT:</u></b> - You can use string concatenation to insert
+ variables into HTML code. (e.g., var example = '&lt;div 
+class="card-body"&gt;' + variable + '&lt;/div&gt;';)
+							</div>
+						</dl>
+            <hr>
+            <dl>
+              <dt>Recording Output</dt>
+              <dd>At the end of this section your reviews.ejs file should be complete.</dd>
+            </dl>
+					</div>
+				</div>
+      <div class="card card-body" id="step7">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 0. Objectives &amp; Resources</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample7" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  In this assignment, you will be creating a photo gallery that populates images based on few search criteria.
+              </li>
+              <li class="list-group-item">
+                  We will use the <a href="https://www.flickr.com/services/api/" target="_blank"> Flickr API </a> as source of images for your gallery.
+              </li>
+              <li class="list-group-item">
+                Your final website should be similar to the animation below.
+                <br><br>
+                <div>
+                  <img src="CSCI%203308%20Lab%208_files/sample2.gif" alt="This is an animated gif image, but it does not move" style="height:auto; width:100%;">
+                </div>
+            </li>
+          </ul>
+
+          <div class="row">
+              <table class="table table-bordered" style="margin: 3%;">
+                  <thead>
+                      <tr>
+                          <th scope="col">Resource</th>
+                          <th scope="col">Link</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="row">What is DOM?</th>
+                          <td><a target="_blank" class="btn btn-outline-primary" href="https://www.youtube.com/watch?v=XD7fYLQeQIg" role="button">Link1</a> &nbsp; &nbsp;
+                                  <a target="_blank" class="btn btn-outline-primary" href="https://www.geeksforgeeks.org/dom-document-object-model/" role="button">Link2</a></td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Document.get Methods</th>
+                          <td><a target="_blank" class="btn btn-outline-primary" href="https://www.digitalocean.com/community/tutorials/how-to-access-elements-in-the-dom" role="button">Link</a></td>
+                      </tr>
+
+                      <tr>
+                          <th scope="row">String templating</th>
+                          <td><a target="_blank" class="btn btn-outline-primary" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals" role="button">Link</a> <br> Note: The ${variable_name} way is the easiest way to do string concat. I personally use it for all my projects</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Making $.ajax calls to API</th>
+                          <td><a target="_blank" class="btn btn-outline-primary" href="https://www.tutorialsteacher.com/jquery/jquery-ajax-method" role="button">Link</a> <br>Note: You can use $.get too, but this is just easier</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Flickr API</th>
+                          <td><a target="_blank" class="btn btn-outline-primary" href="https://www.flickr.com/services/api/" role="button">Link</a></td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Flickr Search API Explorer</th>
+                        <td><a target="_blank" class="btn btn-outline-primary" href="https://www.flickr.com/services/api/explore/flickr.photos.search" role="button">Link</a></td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      <div class="card card-body" id="step8">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 1. Creating Flickr api_key </p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(8)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample8" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                As we are using Flickr as the data source, your first step is to create a Flickr account. Click here to <a href="https://identity.flickr.com/sign-up" target="_blank">signup</a> for Flickr.
+              </li>
+              <li class="list-group-item">
+                  Fill out the form with relevant details and click on the signup button.
+                  <br>
+                  <br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/signup.png" alt="Screenshot of the signup page">
+                  </div>
+              </li>
+                <li class="list-group-item">
+                  Upon pressing the submit button, you will be prompted to verify your email.
+                  <br>
+                  <br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/verify_email.png" alt="Screenshot of the signup page">
+                  </div>
+              </li>
+                <li class="list-group-item">
+                  Login to the provided email account and verify your 
+account. The verification email would be similar to the screenshot 
+below.
+                  <br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/email.png" alt="Screenshot of the signup page">
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  If the verification is successful, you will land on a 
+page similar to the screenshot provided below. Now, login to your Flickr
+ account.
+                  <br><br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/email_verified.png" alt="Screenshot of the signup page">
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  Follow this <a href="https://www.flickr.com/services/apps/create/" target="_blank">link</a> and click on "Get Your API key".
+                  <br><br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/get_key.png" alt="Screenshot of the signup page">
+                  </div>
+
+                  <div class="alert alert-primary">
+                    <p><b>Note:</b> Make sure that you are logged in to your Flickr account before clicking on the link provided above.</p>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  Click on "Apply for a Non Commercial Key".
+                  <br><br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/non_com_key.png" alt="Screenshot of the signup page">
+                  </div>
+              </li>
+              <li class="list-group-item">
+                  Provide a name and description for your application. 
+After reviewing the terms, click on submit to access your key.
+                  <br><br>
+                  <div class="col-12">
+                    <img class="img-fluid" src="CSCI%203308%20Lab%208_files/app_desc.png" alt="Screenshot of the signup page">
+                  </div>
+              </li>
+            <li class="list-group-item">
+                On clicking the submit button, you will find your API key.
+                <br><br>
+                <div class="col-12">
+                  <img class="img-fluid" src="CSCI%203308%20Lab%208_files/api_key_working.png" alt="Screenshot of the signup page">
+                </div>
+                <hr>
+                <dl>
+                  <dt>Recording Output</dt>
+                  <dd>Take a screenshot here to show that you created API keys for the Flickr API. Name the screenshot <code>PartB_Section1.png</code></dd>
+                </dl>
+            </li>
+            <!-- <li class="list-group-item">
+              <p class="alignleft h5">Alternate Solution: Not recommended</p><br>
+            </li>
+            <li class="list-group-item">
+                In case you are not able to create your own key, you can use the key provided below. But please remember that Flickr has a rate limit of 3600 requests/hour for a particular API key. So, this key might not work if the limit has been exceeded. You will have to wait for the next hour before you can make more requests.
+                <br><br>
+                <div class="alert alert-primary">
+                  <p><b>API KEY: </b> cd4542dbd9a243f2ba1dd0537dae22e1</p>
+                </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step9">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 2. Reading the Flickr API docs </p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(9)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample9" aria-expanded="false" aria-controls="multiCollapseExample9">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample9" style="padding-top:30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                   The documentation for the Flickr API can be found <a href="https://www.flickr.com/services/api/" target="_blank">here</a>.
+              </li>
+              <li class="list-group-item">
+                You will be using the Flickr Photos search API to fetch 
+images for your website. The Flickr search API return a list of photos 
+matching some criteria. Its documentation can be found <a href="https://www.flickr.com/services/api/flickr.photos.search.html" target="_blank">here</a>.
+              </li>
+              <li class="list-group-item">
+                The search criteria for the API can be specified using 
+the API arguments. The decription and usage of the arguments can be 
+found in the Flickr search API documentation page linked above.
+                <br><br>
+                <b>API Arguments to be used for this homework</b><br><br>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    api_key : This is the only mandatory argument. Please use the api_key obtained in Part 1.
+                  </li>
+                  <li class="list-group-item">
+                    tags : Use this to filter the photos based on tags.
+                  </li>
+                  <li class="list-group-item">
+                    extras : Use this to retrieve image_url of the 
+photo. For example, if you need the API to also return a link to the 
+image, set the extras argument to <code>url_sq</code>.
+                  </li>
+                  <li class="list-group-item">
+                    privacy_filter :  Use value 1 to access only public photos.
+                  </li>
+                  <li class="list-group-item">
+                    safe_search : Use value 1 to access only safe photos.
+                  </li>
+                  <li class="list-group-item">
+                    page : The page to return.
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                In order to explore the API and play around with its arguments, you can use the search <a href="https://www.flickr.com/services/api/explore/flickr.photos.search" target="_blank">API explorer</a> provided by Flickr. You can use this to build the required url for the API.
+              </li>
+              <li class="list-group-item">
+                <b>Building url using API explorer</b><br><br>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    Prepare your request in the explorer by providing the required arguments.
+                  </li>
+                  <li class="list-group-item">
+                    Make sure that you set the output type as json in the API explorer.
+                  </li>
+                  <li class="list-group-item">
+                    Select the the "Do Not Sign Call" checkbox and click on the "Call Method" button.
+                  </li>
+                  <li class="list-group-item">
+                    At the bottom of the page you should be able to find the completely formed url based on your arguments.
+                  </li>
+                </ul>
+
+              </li>
+
+
+
+          </ul>
+        </div>
+      </div>
+      <div class="card card-body" id="step10">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 3: To Do</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(10)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample10" aria-expanded="false" aria-controls="multiCollapseExample10">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample10" style="padding-top:30px;">
+          <div class="alert alert-primary">
+            <strong>For this section, you do not need a docker 
+container. You will run the HTML file within a browser on your host 
+computer just like you did in Lab 4.</strong>
+          </div>
+          <div>
+              <ul class="list-group">
+                <li class="list-group-item">
+              <b>1. HTML</b><br><br>
+              <ul class="list-group">
+                <li class="list-group-item">
+                    You will create an HTML page with the following components.
+                </li>
+                <li class="list-group-item">
+                    1. A dropdown to select number of images to load. You should provide values 30, 50 and 70 in this dropdown.
+                </li>
+                <li class="list-group-item">
+                    2. A text box to enter the tags to filter the photos.
+                </li>
+                <li class="list-group-item">
+                    3. A Submit button to call the Flickr API.
+                </li>
+                <li class="list-group-item">
+                  4. A placeholder div component for adding the images returned by Flickr.
+                </li>
+              </ul>
+              <br>
+              <div class="alert alert-primary">
+                <p><b>Note:</b> Make sure that you have bootstrap imported in your HTML file.</p>
+              </div>
+              </li>
+              <li class="list-group-item">
+              <b>2. Javascript </b><br><br>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  You will be using AJAX to call the Flickr API. Create a
+ javascript file and define a function called makeApiCall() that does 
+the following.
+                </li>
+                <li class="list-group-item">
+                  1. Retrieve all the required API arguments from the 
+HTML page created. For example, number of images to load from the 
+dropdown.
+                </li>
+                <li class="list-group-item">
+                  2. Build the search API url based on the arguments retrieved in the previous step. You can use <a href="https://www.flickr.com/services/api/explore/flickr.photos.search" target="_blank">API explorer</a> to do this.<br>
+                    <a href="https://www.flickr.com/services/rest/?method=flickr.photos.search&amp;api_key=cd4542dbd9a243f2ba1dd0537dae22e1&amp;tags=trucks&amp;tag_mode=all&amp;format=rest">Sample response</a>
+                    <br><br>
+                    <p><b>Note:</b> Make sure to include all the arguments mentioned in Part 2 in the API url.</p>
+
+                </li>
+                <li class="list-group-item">
+                  3. Make an AJAX call to the newly built url. Remember 
+that you should set the return datatype of the AJAX call as json.<br>
+                  <dl>
+                  <dt>1. Make a Flickr API Request with Ajax and Jquery</dt>
+                  <dd>
+                    <div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> url <span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">;</span> <span class="token comment">//Place your Flickr API Call Here</span>
+        $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>url<span class="token punctuation">:</span>url<span class="token punctuation">,</span> dataType<span class="token punctuation">:</span><span class="token string">"json"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                    <dl class="row">
+                      <dt class="col-sm-2">var url = ''</dt>
+                      <dd class="col-sm-10">Inside of the single quotes 
+'', you'll need to create the API URL to access data from Flickr. The 
+format of the URL would look like
+                        <br>
+                      <code>https://www.flickr.com/services/rest/?method=flickr.photos.search&amp;api_key={key}&amp;tags={tag}&amp;tag_mode={tag_mode}&amp;privacy_filter=&amp;safe_search=&amp;content_type=&amp;extras=url_o&amp;per_page={number}&amp;format={return_format}&amp;nojsoncallback=1</code>
+
+                      <br> Make sure to replace the query parameter placeholders (e.g. {key}) with real values. Be sure to not include the '{' '}' </dd>
+                      <dt class="col-sm-2">$.ajax({...</dt>
+                      <dd class="col-sm-10">To access Flickr's data, 
+we'll use ajax to make a call to our url for json information.  The key 
+part here is that our call will return a json object called data.  The 
+data object will include the photo id and related information. </dd>
+                    </dl>
+                  </dd>
+                  <dt>2. Display Your Flickr image Data</dt>
+                  <dd>
+                    <div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> url <span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">;</span> <span class="token comment">//Place your Flickr API Call Here</span>
+        $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>url<span class="token punctuation">:</span>url<span class="token punctuation">,</span> dataType<span class="token punctuation">:</span><span class="token string">"json"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Review all of the data returned</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Image title: "</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>current<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//View Image title</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                    <dl class="row">
+                      <dt class="col-sm-4">console.log(data);</dt>
+                      <dd class="col-sm-8">To review all of the data 
+provided by Flickr, we'll print it out to the console.  Open your Web 
+Browser and you can see all of the fields loaded into our JSON data.  
+The main fields we will be concerned with are currently image title and 
+URL to display the image.</dd>
+                      <dt class="col-sm-4">data.current.title</dt>
+                      <dd class="col-sm-8">To access the image title, 
+we'll need to use the following format: data.current.FIELD_NAME.  In 
+this example, we are retrieving the image title.</dd>
+                      <dt class="col-sm-4">Complete List of Data Point Fields</dt>
+                      <dd class="col-sm-8">Flickr provides far more 
+information than what we'll need for today's lab.  To see all of the 
+types of information you can retrieve, checkout the documentation's 
+complete list of data point fields <a href="https://www.flickr.com/services/api/" target="_blank">here</a></dd>
+                    </dl>
+                  </dd>
+                </dl>
+                </li>
+                <li class="list-group-item">
+                  4. Use the photos returned by the API to populate your
+ gallery. You should use bootstrap cards to display the images within 
+the placeholder div created in Part 3.1.4.
+                  <br><br>Each card should include the following details:
+
+                <ul class="list-group">
+                      <br>
+                      <li class="list-group-item">
+                        a. Photo to be displayed. Use "img" tag for this. Make sure that all card has the same height and width.
+                      </li>
+                      <li class="list-group-item">
+                        b. Photo Title. Use "p" tag for this.
+                      </li>
+                    
+                  </ul>
+                </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+              <b>3. Navigation Bar and consolidating code</b><br><br>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  Link this website to the version of your personal 
+website created in previous lab. There should be a link in the nav bar 
+that redirects to this new photo gallery.
+                </li>
+                <li class="list-group-item">
+                  At the end of this step, you should have a complete 
+website with your code from previous take home assignments.
+                </li>
+              </ul>
+              </li></ul>
+              
+          </div>
+        </div>
+      </div>
+
+			<div class="card card-body" id="step11">
+				<div class="stepLine">
+					<p class="alignleft h5">Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample11" aria-expanded="false" aria-controls="multiCollapseExample11">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample11">
+          <dl>
+						<dt>Prepare your submission</dt>
+						<dd>After working on the Lab_Website folder files that you 
+downloaded, include that folder in the directory structure as shown 
+below.</dd>
+            <dd>Make sure NOT to upload the node_modules folder.</dd>
+						<dd> Final Directory Structure (make sure to double check this is how it is on github after you push):<br><br>
+						<pre>|--Lab_8
+  |--screenshots
+  |     |--PartA_Section0.png
+  |     |--PartB_Section1.png
+  |--Lab8_Website
+  |     |--views
+  |         |--pages
+  |             |--NYTimes_home.ejs
+  |         |--partials
+  |             |--footer.ejs
+  |             |--header.ejs
+  |             |--reviews.ejs        (You will need edit this file)
+  |     |--server.js                 (You will need to edit this file)
+  |     |--package.json
+  |     |--package-lock.json
+  |     |--docker-compose.yml
+  |--Personal_Website <i>(Copy this folder from Lab5 and include signup and tic-tac-toe folders from take home)</i>
+  |	|--mypage.html <i>(make sure your navbar has a link to the Flickr API gallery)</i>
+  |	|--projects.html
+  |	|--signup-modal
+  |		|--login.html
+  |		|--login.js
+  |		|--login.css
+  |	|--tic-tac-toe (extra credit)
+  |		|--index.html
+  |		|--rules.js
+  |	|--FlickrAPI
+  |		|--index.html
+  |		|--js
+  |			|--script.js
+  |	|--img
+  |		|--...</pre>
+            </dd>
+						<dd> Note that ALL images included in your page. e.g. 
+img/your_image.jpg should be contained in the GitHub repository, unless 
+it's publicly available on the web</dd>
+						<dt>Upload files to the Lab_8 folder which you will create inside 
+the github repo created for you. Look at 2.4 in the appendix of Lab 1 
+for instructions on creating a folder inside a repository.</dt>
+						<dd>Use the github WebGUI to upload your Lab_8 folder into repo <b>or</b>,
+ if you are confident in your git skills, run the following commands 
+inside your local git directory. Make sure you copy your screenshots 
+into your local git directory.
+							 <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Adding all of the files for lab8"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dt>Create a link to your github repo</dt>
+						<dd>In a text file (lab_8_{your name}_link.txt), write down the following:
+							<ol>
+								<li>Your name</li>
+								<li>The link to your Github Repo.</li>
+							</ol>
+						</dd>
+						<dt>Submit to Canvas</dt>
+						<dd>Submit your text file to Canvas by the deadline.</dd>
+			    <dt><div class="alert alert-success" role="alert">
+			        **Write your name and your partner’s (if any) on the first line of each file.**
+			      </div></dt>
+				</dl></div>
+			</div>
+
+			<div class="card card-body" id="step12">
+				<div class="stepLine">
+					<p class="alignleft h5">Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample12" aria-expanded="false" aria-controls="multiCollapseExample12">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample12">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-2" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-8">Description</th>
+									<th class="col-2" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-2">Developer account setup</td>
+									<td class="col-8">Screenshot of e-mail which asks you to verify your NYTimes Developer account.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">5</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Generate Keys &amp; Tokens</td>
+									<td class="col-8">Update API Key in server.js file.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">5</td>
+								</tr>
+                <tr class="d-flex">
+                  <td class="col-2">Update server.js</td>
+                  <td class="col-8">Update the .then() and .catch() blocks with the appropriate response.</td>
+                  <td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+                </tr>
+								<tr class="d-flex">
+									<td class="col-2">Update reviews.ejs file</td>
+									<td class="col-8">Update reviews.ejs file to display cards. </td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Reading json response</td>
+									<td class="col-8">Understand the reviews JSON tree from response &amp; correctly fetching &amp; displaying data. </td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Creating Flickr API key</td>
+									<td class="col-8">A screenshot showing Flickr API key was 
+created. You can update this key after submission. Leave a note in the 
+submission txt file if you recreate the key so that the graders can use 
+our key.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">4</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Creating HTML page to display gallery from FlickrAPI</td>
+									<td class="col-8">The page has fields to select number of 
+images, enter tags, submit button to call Flickr API and a div to hold 
+the images after the API response is received. This page is linked to 
+your personal website through the navbar.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">12</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Updating the javascript code.</td>
+									<td class="col-8">Make AJAX call to API and build cards to display the data received from the API.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">14</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-8" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border:0;"></td>
+									<td class="col-8" style="border:0;"></td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+                      <hr>
+                      <div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%208_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%208_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+
+</div></div></body></html>

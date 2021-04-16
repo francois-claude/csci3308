@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSCI 3308 Lab 5</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%205_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%205_files/prism.css">
+
+	<script src="CSCI%203308%20Lab%205_files/jquery-3.js"></script>
+	<script src="CSCI%203308%20Lab%205_files/popper.js"></script>
+	<script src="CSCI%203308%20Lab%205_files/bootstrap.js"></script>
+	<script src="CSCI%203308%20Lab%205_files/clipboard.js"></script>
+	<script src="CSCI%203308%20Lab%205_files/prism.js"></script><script src="CSCI%203308%20Lab%205_files/clipboard_002.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%205_files/labLayout.css">
+	<script src="CSCI%203308%20Lab%205_files/labScripts.js"></script>
+  <script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+  <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 5 Client Side Javascript</h1>
+					<p class="lead">In this lab, we will build on the website we 
+created last week. We will learn how to work with javascript and add 
+javascript to your website to upgrade its functionality. You will edit 
+the extended template (below) which includes all of the work you did 
+last week.
+					To receive credit for this lab, you MUST complete steps 1 through 4
+ in recitation and get marked off by your TA. You MUST complete step 5 
+(either in recitation or on your own) and upload "lab_5_link.txt" to 
+Canvas by the deadline.
+				 <b>You may work with a partner. </b> If you do, make sure to include your partners name at the top of "lab_5_link.txt".</p>
+				 <b><u>Please try to understand the purpose of each line in examples given and then start writing JS code.</u></b>
+				 <br><br>
+					<p class="h5"><a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/Lab_Website_2.zip">Download </a>the extended template and make sure you extract the files before using them.</p>
+					<br>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">95</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the submission deadline will be next Friday at 10 AM.<br>
+							There is no late policy for labs.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step0">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: What your website will look like after today's lab</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample0" aria-expanded="false" aria-controls="multiCollapseExample0">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample0">
+					<p>Below you will find examples of what your website will look like at the end of this lab. </p>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="CSCI%203308%20Lab%205_files/registration_page.gif" alt="Screenshot of the registration page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Registration Page</p>
+							<p>The registration page will now be updated to hide/show sections of the form, based on the user's radio button selection. </p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="CSCI%203308%20Lab%205_files/home_page.gif" alt="Screenshot of the home page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Home Page</p>
+							<p>The home page now contains a row of html buttons.  Each button, when clicked, will change the webpage's background color.</p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="CSCI%203308%20Lab%205_files/stats_page.png" alt="Screenshot of the football season statistics page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Football Season Statistics Page</p>
+							<p>The javascript for the statistics page won't actually be 
+interactive.  Instead the javascript will start when the page is loaded 
+and determine the winner of each game and calculate the total 
+wins/losses for the Buffs this season.</p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<img class="img-fluid" src="CSCI%203308%20Lab%205_files/player_info_page.gif" alt="Screenshot of the player information page">
+						</div>
+						<div class="col-6">
+							<p class="h4"> Player Information Page</p>
+							<p> The player information page will have two pieces of 
+functionality handled by javascript.  First, javacript will populate the
+ dropdown menu which will allow the user to pick which player's 
+information to view.  Secondly, when a player's name is selected 
+javascript will then show their information and image. </p>
+						</div>
+					</div>
+					<br>
+					<hr>
+					<br>
+					<div class="row" style="padding:15px">
+						<p class="h3">Directory Structure</p>
+						<p>The website directory structure has now been updated to contain
+ a new folder (js) for our javascript files and a new file 
+my_scripts.js.
+						</p><pre>Directory Structure:
+|--Lab_Website_2
+	|--views
+		|--login.html
+		|--register.html
+		|--home.html
+		|--team_stats.html
+		|--player_info.html
+	|--resources
+		|--css
+			|--signin.css
+			|--my_style.css
+		|--img
+			|--beproudcapaabanner.jpg
+			|--cu_boulder_logo.jpg
+			|--favicon.ico
+			|--temp_image.svg
+			|--helmet.jpg
+			|--player1.jpg
+			|--player2.jpg
+			|--player3.jpg
+			|--player4.jpg
+		|--js
+			|--my_scripts.js
+</pre>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 1. Javascript Tutorial</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">15</span> Minutes)</p>
+				</div>
+				<div style="padding-left:20px" class="collapse" id="multiCollapseExample1">
+
+						<ol>
+							<dl>
+								<dt><li>Using Javascript to change HTML content</li></dt>
+								<dd>
+									Client-side javascript can make HTML pages more dynamic and interactive. <b>How does javascript know which HTML element to change?</b> Let's look at an example.
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html">
+<span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>document.getElementById(<span class="token punctuation">'</span>demo<span class="token punctuation">'</span>).innerHTML = Date();<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Display Date and Time.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>demo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+									</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<button class="btn btn-primary" onclick="document.getElementById('demo').innerHTML = Date();"> Display Date and Time.</button>
+									<p id="demo"></p>
+									<br>
+
+									<dl class="row">
+										<dt class="col-sm-5">onclick="document.getElementById('demo').innerHTML = Date()"</dt>
+										<dd class="col-sm-7">document.getElementById('demo').innerHTML = Date() is the javascript code that will execute "onclick" of the button</dd>
+										<dt class="col-sm-5">document.getElementById('demo')</dt>
+										<dd class="col-sm-7">The "document" object refers to the HTML 
+document which contains all of the content on the page. 
+"getElementById()" is a function that retrieves the HTML element with a 
+specific id, in this case "demo"</dd>
+										<dt class="col-sm-5">innerHTML</dt>
+										<dd class="col-sm-7">"innerHTML" is the element property that contains the HTML markup within the element</dd>
+										<dt class="col-sm-5">Date()</dt>
+										<dd class="col-sm-7">"Date()" is a javascript object that 
+represents the day and time. Javascript stores dates as milliseconds 
+since January 01, 1970, 00:00:00 UTC (Universal Time Coordinated)</dd>
+										<dt class="col-sm-5">id="demo"</dt>
+										<dd class="col-sm-7">This line allows us to tag the paragraph 
+element so that we can reference it inside of our javascript code. 
+Remember that element ids have to be unique.</dd>
+									</dl>
+								</dd>
+								<br>
+								<dt><li>HTML &lt;script&gt; tag </li></dt>
+								<dd>
+									Placing our javascript code inside of our HTML tags can be 
+messy, especially for more complex javascript code. We can place our 
+javascript code inside a separate set of &lt;script&gt; tags like this:
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html">
+<span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+		<span class="token keyword">function</span> <span class="token function">displayDate</span><span class="token punctuation">(</span><span class="token parameter">id</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token function">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>displayDate(<span class="token punctuation">'</span>demo2<span class="token punctuation">'</span>);<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Display Date and Time.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>demo2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+									</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<button class="btn btn-primary" onclick="displayDate('demo2');"> Display Date and Time.</button>
+									<p id="demo2"></p>
+									<script>
+										function displayDate(id) {
+											document.getElementById(id).innerHTML = Date();
+										}
+									</script>
+									<br>
+									<dl class="row">
+										<dt class="col-sm-5">onclick="displayDate(demo2)"</dt>
+										<dd class="col-sm-7">Our "onclick" method now calls a function named "displayDate()" and we are passing in the string "demo2"</dd>
+										<dt class="col-sm-5">function displayDate(id)</dt>
+										<dd class="col-sm-7">This line defines our new function that takes one parameter, id</dd>
+										<dt class="col-sm-5">document.getElementById(id).innerHTML = Date();</dt>
+										<dd class="col-sm-7">This line is pretty much the same as before. We have simply moved it into a function.</dd>
+									</dl>
+								</dd>
+								<br>
+								<dt><li>Javascript in a separate file</li></dt>
+								<dd>
+									You can place your javascript code inside the HTML 
+&lt;script&gt; tags or you can place your javascript code inside a 
+separate file. <b>How do we link the javascript and HTML files?</b> We can link our javascript file to our HTML file by placing a reference in our HTML file like so:
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../resources/js/my_scripts.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+									</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<br>
+									<b>Note, this has already been done for you for this lab. There is no need to link any files in this lab</b>
+								</dd>
+								<br>
+								<dt><li>Using the Console</li></dt>
+								<dd>
+									In developer mode, you can view your html code and a javascript
+ console which can display error messages and log messages.  To write a 
+value to the console, use the following javascript code:
+									<div class="code-toolbar"><pre class=" language-js"><code class=" language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Your message here"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Print a text message to the console</span>
+										console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable_name<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//This can also be a simply variable print statement</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								</dd>
+								<br>
+								<dt><li>Using an Alert popup</li></dt>
+								<dd>
+									Sometimes it can be easier/flashier to have a popup display 
+some information.  This is often used as a way to display a warning 
+message to the user.  For example, they might have entered bad 
+information or perhaps an API call failed.  To have an alert message 
+popup, use the following code:
+									<div class="code-toolbar"><pre class=" language-js"><code class=" language-js"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Warning!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Popup warning message</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								</dd>
+							</dl>
+						</ol>
+
+
+
+
+
+				</div>
+			</div>
+
+            <div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 2. Home Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">10</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="CSCI%203308%20Lab%205_files/home_page.gif" alt="Screenshot of the home page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								No HTML ID's have been added to modify on the home page.  
+Instead, a series of buttons have been added that call the changeColor()
+ method which modfies the body tag's background color.
+							</dd>
+							<br>
+							<dt><li>To Do</li></dt>
+							<dd>
+								Write a javascript function that meets the following specifications:
+							<pre>
+changeColor(color)
+	parameter:
+		color- A css color
+
+	purpose: This method will set the html body's background color to the
+			 provided parameter.
+							</pre>
+							</dd>
+						<hr>
+            <dt>Recording Output</dt>
+            <dd>At this point your my_scripts.js file should have a complete implementation for the changeColor() function.</dd>
+            <hr>
+						</ol>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 3. Registration Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">20</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="CSCI%203308%20Lab%205_files/registration_page.gif" alt="Screenshot of the registration page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								<dl class="row">
+									<dt class="col-sm-3">ID Name</dt>
+									<dd class="col-sm-9"><b>Description of ID</b></dd>
+									<hr>
+									<dt class="col-sm-3">student_status</dt>
+									<dd class="col-sm-9">This has been applied to a div encapsulating the entire student status group (Graduate vs Undergraduate &amp; Student Level)</dd>
+									<dt class="col-sm-3">undergrad_select</dt>
+									<dd class="col-sm-9">This has been applied to the select list for Undergraduate Student Level (Freshman, Sophomore, Junior, Senior)</dd>
+									<dt class="col-sm-3">grad_select</dt>
+									<dd class="col-sm-9">This has been applied to the select list for Graduate Student Level (MA, MBA, PhD)</dd>
+								</dl>
+							</dd>
+							<br>
+
+
+							<dt><li>To Do</li></dt>
+							<dd>
+								Write a javascript function that meets the following specifications:
+								<pre>
+viewStudentStatus(id, toggle)
+	parameters:
+		id - The css id of the html tag being updated.
+		toggle - 0 - hide the html tag and 1 - make the html tag visible
+
+	purpose: This method will accept the id of an html tag and a toggle value.
+			 The method will then set the html tag's css visibility and height.
+			 To hide the html tag (toggle - 0), the visibility will be set to hidden and
+			 the height will be set to 0.
+			 To reveal the html tag (toggle - 1), the visibility will be set to inherit
+			 (which will inherit its display property from parent element)
+			 and the height will be set to auto.
+			 resource: <a href="https://www.w3schools.com/cssref/pr_class_visibility.asp" target="_blank">CSS Visibility Property</a>
+								</pre>
+							</dd>
+              <hr>
+              <dt>Recording Output</dt>
+              <dd>At this point your my_scripts.js file should have a 
+complete implementation for the changeColor(), viewStudentStatus() 
+functions.</dd>
+              <hr>
+							<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>onclick=""</p></b>
+									<p>The onclick attribute can list a javascript method (or 
+methods, seperated by semi-colons ;) to call when an html element has 
+been selected.  We often use this with buttons and anchor tags but it 
+can technically be applied to just about any html tag (Check out 
+technical details <a href="https://www.w3schools.com/tags/ev_onclick.asp">here</a> for unsupported tags).</p>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>increaseValue()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Increase<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateNum<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">increaseValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">var</span> number <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"updateNum"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span><span class="token comment">//retrieve the current number</span>
+		number<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//Increase by 1</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"updateNum"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> number<span class="token punctuation">;</span><span class="token comment">//Update to show the new number value</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as: <button class="btn btn-primary" onclick="increaseValue()">Increase</button>&nbsp;&nbsp;&nbsp;<span id="updateNum">0</span></p>
+								<script>
+									function increaseValue(){
+										var number = document.getElementById("updateNum").innerHTML;//retrieve the current number
+										number++;//Increase by 1
+										document.getElementById("updateNum").innerHTML = number;//Update to show the new number value
+									}
+								</script>
+
+								<a class="btn btn-warning dropdown-toggle" id="hidetext1" href="#explanation1" onclick="showExplanation(1)">More information</a>
+								<br>
+								<div id="explanation1" style="display:none;">
+										<dl class="row">
+												<dt class="col-sm-5">onclick="increaseValue()"</dt>
+												<dd class="col-sm-7">increaseValue() is the javascript 
+method that will be called.  This method needs to be included either 
+inside this html file (between a set of script tags as shown above) or 
+referenced in an included external javascript file</dd>
+												<dt class="col-sm-5">id="updateNum"</dt>
+												<dd class="col-sm-7">Often we will need to access a specific
+ tag's information.  To do this we will need that tag to have a unique 
+id. Remember we use id's only once but can use classes multiple times.  <b>So Don't Reuse Id's!</b></dd>
+												<dt class="col-sm-5">function increaseValue()</dt>
+												<dd class="col-sm-7">This is the method declaration for our 
+function increaseValue.  Note that this method has no parameters listed.
+  We'll have examples below to show how we can work with method 
+parameters</dd>
+												<dt class="col-sm-5">var number</dt>
+												<dd class="col-sm-7">This is a variable declaration.  In 
+javascript we do not list variable data types but simply state when we 
+want a variable to be declared.  The number variable has a local scope 
+and can only be accessed inside increaseValue.  For more on Variable 
+Scope, check out this <a href="https://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/"> article</a></dd>
+												<dt class="col-sm-5">document.getElementById("updateNum").innerHTML</dt>
+												<dd class="col-sm-7">We can retrieve a specific tag's 
+information by using the the getElementByID() method.  We can then read 
+its current html information, update its css, or even update its html 
+information.  For this example, we are using the innerHTML attribute to 
+read in its current value &amp; then update it.</dd>
+											</dl>
+								</div>
+
+
+
+									<hr>
+									<b><p>Calling a Function With Parameters</p></b>
+									<p>In the previous example, we called a method with no 
+parameters.  But we don't want to make an individual method for every 
+option on our website!  Instead, we'll want to look at using parameters 
+to help us reuse our code and make our javascript code base more 
+maintainable.</p>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateValueByNum(5)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Increase By 5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateValueByNum(-5)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Decrease By 5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>changeNumber<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">updateValueByNum</span><span class="token punctuation">(</span><span class="token parameter">changeBy</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">var</span> number <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"changeNumber"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span><span class="token comment">//retrieve the current number</span>
+		number<span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token operator">+</span> changeBy<span class="token punctuation">;</span><span class="token comment">//Increase/Decrease by passed in parameter.</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"changeNumber"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> number<span class="token punctuation">;</span><span class="token comment">//Update to show the new number value</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <button class="btn btn-primary" onclick="updateValueByNum(5)">Increase By 5</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="updateValueByNum(-5)">Decrease By 5</button>&nbsp;&nbsp;&nbsp;<span id="changeNumber">0</span></p>
+									<script>
+										function updateValueByNum(changeBy){
+											var number = document.getElementById("changeNumber").innerHTML;//retrieve the current number
+											number= parseInt(number) + changeBy;//Increase/Decrease by passed in parameter.
+											document.getElementById("changeNumber").innerHTML = number;//Update to show the new number value
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext2" href="#explanation2" onclick="showExplanation(2)">More information</a>
+									<br>
+									<div id="explanation2" style="display:none;">
+										<dl class="row">
+											<dt class="col-sm-5">onclick="updateValueByNum(5)"</dt>
+											<dd class="col-sm-7">When we call a method that requires a 
+parameter, we must provide the value it needs AND ensure it is the 
+expected data type.  Javascript isn't a compiled language like C# or 
+Java, so you won't know until runtime if your values are correct.  So 
+make sure you use numeric or text parameters correctly.</dd>
+											<dt class="col-sm-5">parseInt(number) + changeBy</dt>
+											<dd class="col-sm-7">Because javascript doesn't have explicit
+ data types, it tries to automatically determine the most appropriate 
+datatype at run time.  Unfortunately it can often be wrong!  In our 
+example here, we have used parseInt() to explicitly tell javascript that
+ our parameter should be treated as an integer.  Why?  Because by 
+default javascript will first treat our innerHTML data as as text 
+information (a String).  This means our "+" operator would first be 
+interpreted as a concatenation not an addition!  So we will use one of 
+the parse methods to tell javascript how to correctly interpret our 
+data. </dd>
+										</dl>
+									</div>
+
+									<hr>
+									<b><p>Conditional Logic</p></b>
+									<p>In javascript, conditional logic uses a syntax similiar to 
+C#, C++, and Java.  In the example below, we've update our 
+updateValueByNum() method to now have an upper &amp; lower bound of 10 
+&amp; -10.  </p>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateValueByNumBounded(5)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Increase By 5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>updateValueByNumBounded(-5)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Decrease By 5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>changeNumberBounded<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">updateValueByNumBounded</span><span class="token punctuation">(</span><span class="token parameter">changeBy</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">var</span> number <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"changeNumberBounded"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span><span class="token comment">//retrieve the current number</span>
+		number<span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token operator">+</span> changeBy<span class="token punctuation">;</span><span class="token comment">//Increase/Decrease by passed in parameter.</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>number <span class="token operator">&gt;</span> <span class="token number">10</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span><span class="token comment">//Ensure we don't go above 10</span>
+			number <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>number <span class="token operator">&lt;</span> <span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span><span class="token comment">//Ensure we don't go below -10</span>
+			number <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"changeNumberBounded"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> number<span class="token punctuation">;</span><span class="token comment">//Update to show the new number value</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div><br>
+									<p>Displayed as: <button class="btn btn-primary" onclick="updateValueByNumBounded(5)">Increase By 5</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="updateValueByNumBounded(-5)">Decrease By 5</button>&nbsp;&nbsp;&nbsp;<span id="changeNumberBounded">0</span></p>
+									<script>
+										function updateValueByNumBounded(changeBy){
+											var number = document.getElementById("changeNumberBounded").innerHTML;//retrieve the current number
+											number= parseInt(number) + changeBy;//Increase/Decrease by passed in parameter.
+											if(number > 10)
+											{//Ensure we don't go above 10
+												number = 10;
+											}
+											else if(number < -10)
+											{//Ensure we don't go below -10
+												number = -10;
+											}
+											document.getElementById("changeNumberBounded").innerHTML = number;//Update to show the new number value
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext3" href="#explanation3" onclick="showExplanation(3)">More information</a>
+									<br>
+                 					<div id="explanation3" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-3">if(number &gt; 10)</dt>
+											<dd class="col-sm-9">Javascript conditional logic syntax 
+requires you to write the conditional statement in between a set of 
+paranethsis.  This is identical to Java/C++/C# syntax.  If you are a 
+Python programmer, please note that the curly braces are required but 
+tabbing/spacing is only encouraged (not a requirement by the 
+interpreter).</dd>
+											<dt class="col-sm-3">else if(number &lt; -10)</dt>
+											<dd class="col-sm-9">Similiar syntax to the "if statement", 
+the "else if" will only be evaluated when the "if statement" results in a
+ false statement.</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+									<b><p>Modifying Style</p></b>
+									<p>Instead of just modfiying the values/content of an html 
+page, we can also modify the pages look and feel via updates to its css!
+  The example below will increase and decrease the width of a horizontal
+ bar</p>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>changeWidth(<span class="token punctuation">'</span>increase<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Increase Width<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>changeWidth(<span class="token punctuation">'</span>decrease<span class="token punctuation">'</span>)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Decrease Width<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>barWidthExample<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">background-color</span><span class="token punctuation">:</span>green<span class="token punctuation">;</span><span class="token property">color</span><span class="token punctuation">:</span>white<span class="token punctuation">;</span><span class="token property">text-align</span><span class="token punctuation">:</span>center<span class="token punctuation">;</span><span class="token property">width</span><span class="token punctuation">:</span>20%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Bar!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">changeWidth</span><span class="token punctuation">(</span><span class="token parameter">direction</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">var</span> width <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"barWidthExample"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>width<span class="token punctuation">;</span><span class="token comment">//retrieve the current width</span>
+		width <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>width<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'%'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Remove the % percent sign from our width value</span>
+												 <span class="token comment">//and convert it to an integer</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>direction <span class="token operator">==</span> <span class="token string">'increase'</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span><span class="token comment">//Increase our width</span>
+			width <span class="token operator">=</span> width <span class="token operator">+</span> <span class="token number">5</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>direction <span class="token operator">==</span> <span class="token string">'decrease'</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span><span class="token comment">//Decrease our width</span>
+			width <span class="token operator">=</span> width <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>width <span class="token operator">&gt;</span> <span class="token number">100</span> <span class="token operator">||</span> width <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span><span class="token comment">//If our width becomes too large/small, reset to our default width</span>
+			width <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"barWidthExample"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>width<span class="token operator">=</span> width<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'%'</span><span class="token punctuation">;</span><span class="token comment">//update to our new width</span>
+																						   <span class="token comment">//and make sure it is treated as a percentage</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div><br>
+									<p>Displayed as: <button class="btn btn-primary" onclick="changeWidth('increase')">Increase Width</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" onclick="changeWidth('decrease')">Decrease Width</button>&nbsp;&nbsp;&nbsp;</p><div id="barWidthExample" style="background-color:green;color:white;text-align:center;width:20%;"> Bar! </div><p></p>
+									<script>
+										function changeWidth(direction){
+											var width = document.getElementById("barWidthExample").style.width;//retrieve the current width
+											width = parseInt(width.replace('%', ''));//Remove the % percent sign from our width value
+																					 //and convert it to an integer
+											if(direction == 'increase')
+											{//Increase our width
+												width = width + 5;
+											}
+											else if(direction == 'decrease')
+											{//Decrease our width
+												width = width - 5;
+											}
+											if(width > 100 || width <= 0)
+											{//If our width becomes too large/small, reset to our default width
+												width = 20;
+											}
+											document.getElementById("barWidthExample").style.width= width.toString() + '%';//update to our new width
+																															   //and make sure it is treated as a percentage
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext4" href="#explanation4" onclick="showExplanation(4)">More information</a>
+									<br>
+									<div id="explanation4" style="display:none;">
+
+									<dl class="row">
+										<dt class="col-sm-5">document.getElementById("barWidthExample").style.width</dt>
+										<dd class="col-sm-7">After the ".style" we can list any css 
+attribute to view its current value or update it's current value.  This 
+is basically accessing the css attribute like a variable.  The only 
+caveat for accessing css attributes is that multi-word css attributes 
+use a dash, but the javascript equivalent will instead use camelCase.  
+Example - (CSS) font-size becomes (JS) fontSize</dd>
+										<dt class="col-sm-5">width.replace('%', '')</dt>
+										<dd class="col-sm-7">Many CSS attributes contain text &amp; 
+numeric information.  To work with the numeric part, we'll need to 
+seperate our numbers and text.  An easy option is to replace the 
+characters we don't want with empty space ''.  Once we have the extra 
+characters removed, we can modify the numeric part of our attribute.  
+Some other text values you may need to remove include 'px', 'em', '#'.</dd>
+										<dt class="col-sm-5">width.toString() + '%'</dt>
+										<dd class="col-sm-7">Now that we have finished updating our 
+width's value, we need to convert it back to a usable percentage.  We 
+use the .toString() method to treat our variable now as a piece of text 
+and append the "%".  We have now successfully converted our text to a 
+number and then back to text!</dd>
+									</dl>
+								</div>
+							</div></dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+
+
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 4. Football Season Statistics Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample4">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="CSCI%203308%20Lab%205_files/stats_page.png" alt="Screenshot of the football season statistics page" width="50%">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								<dl class="row">
+									<dt class="col-sm-3">ID Name</dt>
+									<dd class="col-sm-9"><b>Description of ID</b></dd>
+									<hr>
+									<dt class="col-sm-3">stats_table</dt>
+									<dd class="col-sm-9">This id marks the table tag that holds the scores for each game this season. </dd>
+									<dt class="col-sm-3">wins</dt>
+									<dd class="col-sm-9">This id marks the table cell that holds the Buffs number of wins this season.</dd>
+									<dt class="col-sm-3">losses</dt>
+									<dd class="col-sm-9">This id marks the table cell that holds the Buffs number of losses this season.</dd>
+								</dl>
+							</dd>
+							<br>
+							<dt><li>To Do</li></dt>
+							<dd>
+								Write a javascript function that meets the following specifications:
+							<pre>
+loadStatsPage() method:
+	parameters: none
+
+	purpose: This method will iterate through the stats table and
+			 do the following:
+				1. Read through each row of the table &amp; determine which team won
+				   the game.
+
+				2. Update the winner column to the name of the winning team.
+
+				3. Keep track of the number of wins/losses for the Buffs.
+
+				4. Update the second table to show the total number of wins/losses for the Buffs.
+							</pre>
+							</dd>
+              <hr>
+              <dt>Recording Output</dt>
+              <dd>At this point your my_scripts.js file should have a 
+complete implementation for the changeColor(), viewStudentStatus(), 
+loadStatsPage() functions.</dd>
+              <hr>
+
+							<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>onload attribute</p></b>
+									<p>The onload attribute can be used to call a method as soon as
+ the page has loaded into the browser.  This is a great way to run a 
+method once and have it programmatically load the content of a webpage. 
+ For this lab we have the onload attribute attached to our body tag, but
+ for the example below we will be applying the onload option to an img 
+tag.</p>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>practiceImg<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>img/dummy.png<span class="token punctuation">"</span></span> <span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>randomImage()<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Randomly Chosen Image for Onload Example<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">randomImage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"practiceImg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">/* The onload is called once an image has been rendered.
+		Without this line of code
+		Our webpage will cycle through our images in an endless loop!  For the body tag
+		this isn't necessary.*/</span>
+		<span class="token keyword">var</span> pickImage <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Pick a random number between 0 and 3</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>pickImage <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"practiceImg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>src<span class="token operator">=</span> <span class="token string">"img/tree.jpg"</span><span class="token punctuation">;</span> <span class="token comment">//Source: https://www.gograph.com/vector-clip-art/tree-roots.html</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>pickImage <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"practiceImg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>src<span class="token operator">=</span> <span class="token string">"img/sun.jpg"</span><span class="token punctuation">;</span> <span class="token comment">//Source: https://www.gograph.com/vector-clip-art/sun.html</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">else</span>
+		<span class="token punctuation">{</span>
+			document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"practiceImg"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>src<span class="token operator">=</span> <span class="token string">"img/moon.jpg"</span><span class="token punctuation">;</span> <span class="token comment">//Source: //Source: https://www.gograph.com/vector-clip-art/moon.html</span>
+		<span class="token punctuation">}</span>
+
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div><br>
+									<p>Displayed as: <img id="practiceImg" src="CSCI%203308%20Lab%205_files/tree.jpg" onload="randomImage()" alt="Randomly Chosen Image for Onload Example"></p>
+									<script>
+										function randomImage(){
+											document.getElementById("practiceImg").onload = null;//The onload is called once an image has been rendered. Without this line of code
+															 									 //Our webpage will cycle through our images in an endless loop!
+											var pickImage = Math.floor((Math.random() * 10) / 3);//Pick a random number between 0 and 3
+											if(pickImage == 0)
+											{
+												document.getElementById("practiceImg").src= "img/tree.jpg"; //Source: https://www.gograph.com/vector-clip-art/tree-roots.html
+											}
+											else if(pickImage == 1)
+											{
+												document.getElementById("practiceImg").src= "img/sun.jpg"; //Source: https://www.gograph.com/vector-clip-art/sun.html
+											}
+											else
+											{
+												document.getElementById("practiceImg").src= "img/moon.jpg"; //Source: //Source: https://www.gograph.com/vector-clip-art/moon.html
+											}
+											console.log(pickImage);
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext5" href="#explanation5" onclick="showExplanation(5)">More information</a>
+									<br>
+									<div id="explanation5" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-5">onload=""</dt>
+											<dd class="col-sm-7">Just like the onclick attribute, we can 
+call a specific method (including parameters if needed) when our tag is 
+loaded by the browser. While we have applied it to the img tag in our 
+example, we will instead apply the onload="" attribute to our body for 
+our lab today.</dd>
+											<dt class="col-sm-5">Math.random() </dt>
+											<dd class="col-sm-7">This javascript method will return a 
+decimal value between 0 &amp; 1.  We've add a bit of arithmetic to our 
+method call to change our range to be between 0 &amp; 3</dd>
+											<dt class="col-sm-5">document.getElementById("practiceImg").src</dt>
+											<dd class="col-sm-7">We can modify just about any attribute 
+of an html tag with javascript.  In this example we are modifying the 
+image's src attribute to allow us to programmtically choose which image 
+is displayed.</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+									<b><p>for loops</p></b>
+									<p>The syntax in javascript for loop is the same as 
+Java/C++/C#.  Inside the for loop declaration you'll set a counter, set 
+the condition for when the loop ends, and finally choose how much the 
+counter updates by.</p>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>practiceLoop()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Run Loop<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loopNum<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">practiceLoop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">''</span>
+		<span class="token keyword">var</span> counter<span class="token punctuation">;</span><span class="token comment">//Standard practice to declare the counter outside the for loop</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span>counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> counter <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> counter<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			text <span class="token operator">=</span> text <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> counter<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"loopNum"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> text<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <button class="btn btn-primary" onclick="practiceLoop()">RunLoop</button>&nbsp;&nbsp;&nbsp;<span id="loopNum">0</span></p>
+									<script>
+										function practiceLoop(){
+											var text = '';
+											var counter;//Standard practice to declare the counter outside the for loop
+											for(counter = 0; counter < 10; counter++)
+											{
+												text = text + ' ' + counter.toString();
+											}
+											document.getElementById("loopNum").innerHTML = text;
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext6" href="#explanation6" onclick="showExplanation(6)">More information</a>
+									<br>
+									<div id="explanation6" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-3">counter=0;</dt>
+											<dd class="col-sm-9">The first statement of a javascript for 
+loop is generally used to set the counting variable.  But this can also 
+be used to set a series of variables before the for loop begins.  
+Example: for(counter=0, text=' '; counter &lt; 10; counter++)  We can 
+use commas to separate our variable update statements.  Also, this 
+statement is technically optional (say if you want to use an existing 
+counter value) for(;counter &lt; 10;counter++) </dd>
+											<dt class="col-sm-3">counter &lt; 10 </dt>
+											<dd class="col-sm-9">Our second statement is a conditional 
+statement.  This must evaluate to either true or false.  Once this 
+evaluates to false, our for loop will end.</dd>
+											<dt class="col-sm-3">counter++</dt>
+											<dd class="col-sm-9">The third and final statement will be 
+our update statement.  This will increment/decrement our counter by a 
+set interval after each loop iteration.  <b style="color:red">This is the only acceptable place to modify the counter!</b>
+  Please remember to follow good coding practices and only modfiy the 
+counter in the for loop declaration.  If you need to update it 
+elsewhere, then you should be using a while loop.</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+									<b><p>Accessing Tables</p></b>
+									<p>It is possible to step through the individual cells of a 
+table using some handy Javascript code!  Here we'll learn how to step 
+through the table's row &amp; columns.  </p>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>practiceTable()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Update Table<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>table table-striped<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p_table<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>7<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">function</span> <span class="token function">practiceTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword">var</span> table <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"p_table"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//Retrieve our table element</span>
+		<span class="token keyword">var</span> row_counter<span class="token punctuation">;</span><span class="token comment">//Keeps track of our row index</span>
+		<span class="token keyword">var</span> col_counter<span class="token punctuation">;</span><span class="token comment">//Keeps track of our column index</span>
+		<span class="token keyword">var</span> cell_value<span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span>row_counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> row_counter <span class="token operator">&lt;</span> table<span class="token punctuation">.</span>rows<span class="token punctuation">.</span>length<span class="token punctuation">;</span> row_counter<span class="token operator">++</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span><span class="token comment">//Outer for loop iterates over each row</span>
+			<span class="token keyword">for</span><span class="token punctuation">(</span>col_counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> col_counter <span class="token operator">&lt;</span> table<span class="token punctuation">.</span>rows<span class="token punctuation">[</span>row_counter<span class="token punctuation">]</span><span class="token punctuation">.</span>cells<span class="token punctuation">.</span>length<span class="token punctuation">;</span> col_counter<span class="token operator">++</span><span class="token punctuation">)</span>
+			<span class="token punctuation">{</span>
+				cell_value <span class="token operator">=</span> table<span class="token punctuation">.</span>rows<span class="token punctuation">[</span>row_counter<span class="token punctuation">]</span><span class="token punctuation">.</span>cells<span class="token punctuation">[</span>col_counter<span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span><span class="token comment">//Read in a cells current value</span>
+				cell_value <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>cell_value<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment">//Increase the cell's value by 2</span>
+				table<span class="token punctuation">.</span>rows<span class="token punctuation">[</span>row_counter<span class="token punctuation">]</span><span class="token punctuation">.</span>cells<span class="token punctuation">[</span>col_counter<span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> cell_value<span class="token punctuation">;</span><span class="token comment">//Update the actual html of the cell</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div><br>
+									<p>Displayed as: <button class="btn btn-primary" onclick="practiceTable()">Update Table</button>&nbsp;&nbsp;&nbsp;
+											</p><table class="table table-striped" id="p_table">
+												<tbody><tr>
+													<td>0</td><td>1</td><td>2</td>
+												</tr>
+												<tr>
+													<td>3</td><td>4</td><td>5</td>
+												</tr>
+												<tr>
+													<td>6</td><td>7</td><td>8</td>
+												</tr>
+											</tbody></table>
+
+									<p></p>
+									<script>
+										function practiceTable(){
+											var table = document.getElementById("p_table");//Retrieve our table element
+											var row_counter;//Keeps track of our row index
+											var col_counter;//Keeps track of our column index
+											var cell_value;
+											for(row_counter = 0; row_counter < table.rows.length; row_counter++)
+											{//Outer for loop iterates over each row
+												for(col_counter = 0; col_counter < table.rows[row_counter].cells.length; col_counter++)
+												{
+													cell_value = table.rows[row_counter].cells[col_counter].innerHTML;//Read in a cells current value
+													cell_value = parseInt(cell_value) + 2;//Increase the cell's value by 2
+													table.rows[row_counter].cells[col_counter].innerHTML = cell_value;//Update the actual html of the cell
+												}
+											}
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext7" href="#explanation7" onclick="showExplanation(7)">More information</a>
+									<br>
+									<div id="explanation7" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-5">document.getElementById("p_table");</dt>
+											<dd class="col-sm-7">To work with our table, we need to 
+retrieve it's document element.  The easiest option is to retrieve it 
+with .getElementByID() and store the returned value in a variable.  That
+ variable can now be used to access our table!</dd>
+											<dt class="col-sm-5">table.rows.length </dt>
+											<dd class="col-sm-7">The javascript table is basically a two 
+dimensional array, but we'll need to access the the information with an 
+interesting dot notation.  Here we have said that we want the array 
+containing our rows and accessed its length (the number of rows in our 
+table)</dd>
+											<dt class="col-sm-5">table.rows[row_counter].cells.length</dt>
+											<dd class="col-sm-7">We are now retrieving the number or 
+cells (or columns) in our given row.  Since it is technically possible 
+for our rows to have different number of cells (thanks to colspan and 
+rowspan) it's a good idea to assume that each row has a unique length to
+ "future proof" your code.  </dd>
+											<dt class="col-sm-5">table.rows[row_counter].cells[col_counter].innerHTML</dt>
+											<dd class="col-sm-7">Now we are accessing the actuall html 
+value of our cell. In this example we are working with innerHTML, but 
+you could still use this to modify the cells style as well: 
+table.rows[row_counter].cells[col_counter].style.css_attribute_here.  </dd>
+										</dl>
+
+									</div>
+
+									<hr>
+								</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 5. Player Information Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time7">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample5">
+					<dl>
+						<ol>
+							<dt><li>What it will look like</li></dt>
+							<dd>
+								<img class="img-fluid" src="CSCI%203308%20Lab%205_files/player_info_page.gif" alt="Screenshot of the player information page">
+							</dd>
+							<br>
+							<dt><li>HTML ID's</li></dt>
+							<dd>
+								<dl class="row">
+									<dt class="col-sm-3">ID Name</dt>
+									<dd class="col-sm-9"><b>Description of ID</b></dd>
+									<hr>
+									<dt class="col-sm-3">p_year</dt>
+									<dd class="col-sm-9">The player's year in college </dd>
+									<dt class="col-sm-3">p_major</dt>
+									<dd class="col-sm-9">the player's major in college</dd>
+									<dt class="col-sm-3">g_played</dt>
+									<dd class="col-sm-9">the number of games played for Buffs</dd>
+									<dt class="col-sm-3">player_img</dt>
+									<dd class="col-sm-9">the player's photo (must set src and alt)</dd>
+									<dt class="col-sm-3">p_yards</dt>
+									<dd class="col-sm-9">the number of passing yards</dd>
+									<dt class="col-sm-3">r_yards</dt>
+									<dd class="col-sm-9">the number of rushing yards</dd>
+									<dt class="col-sm-3">rec_img</dt>
+									<dd class="col-sm-9">the number of receiving yards</dd>
+									<dt class="col-sm-3">avg_p_yards</dt>
+									<dd class="col-sm-9">the average number of passing yards for the player's Buff career</dd>
+									<dt class="col-sm-3">avg_r_yards</dt>
+									<dd class="col-sm-9">the average number of rushing yards for the player's Buff career</dd>
+									<dt class="col-sm-3">avg_rec_yards</dt>
+									<dd class="col-sm-9">the average number of receiving yards for the player's Buff career</dd>
+								</dl>
+							</dd>
+							<br>
+
+						<dt><li>To Do</li></dt>
+						<dd>
+							Write a javascript function that meets the following specifications:
+						<pre>
+loadPlayersPage() method:
+	parameters: none
+
+	purpose: This method will populate the dropdown menu to allow the
+		 user to select which player's information to view.
+
+		 To handle this, you will need to iterate through the players array
+		 and do the following for each player:
+			1. Create an anchor tag
+			2. Set the href to "#", this will make sure the
+				   anchor tag doesn't change pages
+			3. Set the onclick to call switchPlayers method
+				   (this will need to pass in the index inside the players array)
+			4. Set the anchor tag's text to the player's name.
+
+		 After setting all of the anchor tags, update the innerHTML of the dropdown menu.
+		 As a note, the id for the dropdown menu is player_selector.
+
+
+switchPlayers(playerNum) method:
+	parameters:
+		playerNum - The index of the football player in the players array.
+
+	purpose:
+		This method will update the the spans on the player's information pageX
+		and calculate the average passing, rushing, and receiving yards.
+
+		Span ids:
+			p_year     - the player's year in college
+			p_major    - the player's major in college
+			g_played   - the number of games played for Buffs
+			player_img - the player's photo (must set src and alt)
+			p_yards    - the number of passing yards
+			r_yards    - the number of rushing yards
+			rec_yards  - the number of receiving yards
+
+		Calculated values:
+			avg_p_yards   - the average number of passing yards for the player's Buff career
+			avg_r_yards   - the average number of rushing yards for the player's Buff career
+			avg_rec_yards - the average number of receiving yards for the player's Buff career
+						</pre>
+						</dd>
+            <hr>
+            <dt>Recording Output</dt>
+            <dd>At this point your my_scripts.js file should have a 
+complete implementation for the changeColor(), viewStudentStatus(), 
+loadStatsPage(), loadPlayersPage(), switchPlayers() functions.</dd>
+            <hr>
+
+							<dt><li>Code Examples</li></dt>
+
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>Create html content using Javascript function</p></b>
+									<p>In below html code, we will see that initially there are 
+only 3 options, but as we click "Append Options to Dropdown" button we 
+will see options being added to the dropdown by making a call to 
+javascript function. Also we can see the selected option being changed 
+dynamically.</p>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>addChoice()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Append Options to Dropdown<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+Dropdown: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choices<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choices<span class="token punctuation">"</span></span> <span class="token attr-name">onchange</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>changeChoice(this.value)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Choice_1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Choice_2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Choice_3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+Selected Choice: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sel_ch<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Choice_1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">var</span> choice_index <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span><span class="token comment">//Global variable!</span>
+	<span class="token keyword">function</span> <span class="token function">addChoice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> ele <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"choices"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> choice <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"option"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        choice<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Choice_"</span><span class="token operator">+</span>choice_index<span class="token punctuation">;</span>
+        choice<span class="token punctuation">.</span>value <span class="token operator">=</span> choice_index<span class="token punctuation">;</span>
+        ele<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>choice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        choice_index<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">function</span> <span class="token function">changeChoice</span><span class="token punctuation">(</span><span class="token parameter">ch</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"sel_ch"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span><span class="token string">"Choice_"</span><span class="token operator">+</span>ch<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as:
+<button class="btn btn-primary" onclick="addChoice()">Append Options to Dropdown</button>
+Dropdown: <select name="choices" id="choices" onchange="changeChoice(this.value)">
+    <option value="1" selected="selected">Choice_1</option>
+    <option value="2">Choice_2</option>
+    <option value="3">Choice_3</option>
+  </select>
+Selected Choice: <b id="sel_ch">Choice_1</b>
+<script>
+	var choice_index = 4;//Global variable!
+	function addChoice(){
+        var ele = document.getElementById("choices");
+        var choice = document.createElement("option");
+        choice.innerHTML = "Choice_"+choice_index;
+        choice.value = choice_index;
+        ele.add(choice);
+        choice_index++;
+    }
+    function changeChoice(ch) {
+        document.getElementById("sel_ch").innerHTML="Choice_"+ch;
+    }
+</script>
+<br>
+<br>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext8" href="#explanation8" onclick="showExplanation(8)">More information</a>
+									<br>
+									</p><div id="explanation8" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-5">var choice_index = 4;</dt>
+											<dd class="col-sm-7">We'll be using choice_index to increment
+ the option sequentially (Since there are already 3 options, we will 
+start appending from 4th option).It has been declared OUTSIDE our 
+function, which means it has a global scope.  With a global scope, the 
+variable can be accessed outside the function and keep its value after 
+the method has been exited.  Now be careful with global variables, they 
+need to be unique and if variable names are duplicated across multiple 
+javascript files you might get some unusual behavior/variable values.
+											</dd><dt class="col-sm-5"> var choice = document.createElement("option");</dt>
+											<dd class="col-sm-7">To create an html option tag</dd>
+											<dt class="col-sm-5">choice.innerHTML , choice.value </dt>
+											<dd class="col-sm-7">To access attributes of option tag that is created above</dd>
+										</dl>
+
+									</div>
+
+									<hr>
+								</div>
+							</dd>
+
+
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>Working with Objects</p></b>
+									<p>In Javascript we can create an array with named fields 
+(called an Object).  For this lab we will be working with a global 
+object called Players which holds some player information.  Below we'll 
+work with a local object and use it to populate some html span fields.</p>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loadObjectData()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Load Data<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+Fruit: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>objectField1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span> | Color: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>objectField2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+	<span class="token keyword">var</span> fruit_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//Global variable!</span>
+	<span class="token keyword">function</span> <span class="token function">loadObjectData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		fruit <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>fruit_name<span class="token punctuation">:</span> <span class="token string">'apple'</span><span class="token punctuation">,</span> fruit_color<span class="token punctuation">:</span><span class="token string">'red'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+				 <span class="token punctuation">{</span>fruit_name<span class="token punctuation">:</span> <span class="token string">'pumpkin'</span><span class="token punctuation">,</span> fruit_color<span class="token punctuation">:</span><span class="token string">'orange'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+				 <span class="token punctuation">{</span>fruit_name<span class="token punctuation">:</span> <span class="token string">'blueberry'</span><span class="token punctuation">,</span> fruit_color<span class="token punctuation">:</span><span class="token string">'blue'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+				 <span class="token punctuation">{</span>fruit_name<span class="token punctuation">:</span> <span class="token string">'grapes'</span><span class="token punctuation">,</span> fruit_color<span class="token punctuation">:</span><span class="token string">'purple'</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'objectField1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> fruit<span class="token punctuation">[</span>fruit_index<span class="token punctuation">]</span><span class="token punctuation">.</span>fruit_name<span class="token punctuation">;</span>
+		document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'objectField2'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> fruit<span class="token punctuation">[</span>fruit_index<span class="token punctuation">]</span><span class="token punctuation">.</span>fruit_color<span class="token punctuation">;</span>
+		fruit_index<span class="token operator">++</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>fruit_index <span class="token operator">&gt;=</span> fruit<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token comment">//If we've gone too far, reset the index to 0.</span>
+		<span class="token punctuation">{</span>
+			fruit_index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <button class="btn btn-primary" onclick="loadObjectData()">Load Data</button>
+										&nbsp;&nbsp;&nbsp;Fruit: <span id="objectField1"></span> | Color: <span id="objectField2"> </span></p>
+									<script>
+										var fruit_index = 0;//Global variable!
+										function loadObjectData(){
+											var fruit = [{fruit_name: 'apple', fruit_color:'red'},
+													 {fruit_name: 'pumpkin', fruit_color:'orange'},
+													 {fruit_name: 'blueberry', fruit_color:'blue'},
+													 {fruit_name: 'grapes', fruit_color:'purple'}];
+
+											document.getElementById('objectField1').innerHTML = fruit[fruit_index].fruit_name;
+											document.getElementById('objectField2').innerHTML = fruit[fruit_index].fruit_color;
+											fruit_index++;
+											if(fruit_index >= fruit.length)//If we've gone too far, reset the index to 0.
+											{
+												fruit_index = 0;
+											}
+										}
+									</script>
+
+									<a class="btn btn-warning dropdown-toggle" id="hidetext9" href="#explanation9" onclick="showExplanation(9)">More information</a>
+									<br>
+									<div id="explanation9" style="display:none;">
+
+										<dl class="row">
+											<dt class="col-sm-3">var fruit_index = 0;</dt>
+											<dd class="col-sm-9">We'll be using fruit_index to step 
+through our fruit object array.  It has been declared OUTSIDE our 
+function, which means it now has a global scope.  With a global scope, 
+the variable can be accessed outside the function AND keep its value 
+after the method has been exited.  Now be careful with global variables,
+ they need to be unique and if variable names are duplicated across 
+multiple javascript files you might get some unusual behavior/variable 
+values.
+											</dd><dt class="col-sm-3">[{}, {}, {}]</dt>
+											<dd class="col-sm-9">To create an object we need to use a set
+ of curly braces { } to surround our object's fields.  This has been 
+further surrounded by a set of [ ] square brackets to allow us to create
+ an array.  We use a comma to seperate each object entered in our array</dd>
+											<dt class="col-sm-3">fruit_name: '  '</dt>
+											<dd class="col-sm-9">Ob object in Javascript is made up of named field entries.  To access a field we use dot notation - fruit[0].fruit_name </dd>
+										</dl>
+
+									</div>
+
+									<hr>
+								</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+
+      <div class="card card-body" id="step10">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 0. Instructions</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample10" aria-expanded="false" aria-controls="multiCollapseExample10">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample10" style="padding-top:30px;">
+        <ol>
+          <li>There are in total 2 questions in this homework and the first question (Part 1) is mandatory.</li>
+          <li>The instructions for each question are presented in each part below.</li>
+          <li>Please follow the instructions carefully.</li>
+          <li>Please open the HTML file in your browser to see if your code works and open it up in a
+            text editor like Sublime / Atom / Visual Studio Code to read through the code and understand the function calls.</li>
+          <li>We've 1 Extra credit question worth 10 points with instructions in its own section</li>
+        </ol>
+          <br>
+          <div class="alert alert-primary">
+            <p><b>Note: You are allowed creative freedom to create 
+custom css styles or to adopt different bootstrap classes than the ones 
+shown in the examples to present your website.</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="card card-body" id="step11">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 1. Sign Up Dialogs with Modals</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(11)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample11" aria-expanded="false" aria-controls="multiCollapseExample11">Expand</button>
+        </div>
+        <div class="collapse" id="multiCollapseExample11" style="padding-top:30px;">
+          <div class="alert alert-primary" style="background-color:lightgrey;">
+            <p>Download the archive <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/signup-modal.zip" target="_blank"><b>signup-modal.zip</b></a></p>
+            <p> You will be editing the <i>login.js</i> and <i>login.css</i> files. You should not need to edit <i>login.html</i> in order to make the password validation functional, but that is where the changes you make will be evident.
+          </p></div>
+        	<p>The first portion of this assignment is dedicated to 
+understanding modals. As shown in the example below, modals allow you to
+ incorporate a pop-up dialog into your website for any interactions that
+ you want to happen in a sub-window on your website. Modals are 
+typically used for log-in and sign-up interfaces, but could be used to 
+display any content on your webpage.</p>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+				  Launch demo modal
+				</button>
+			<br>
+			<br>
+      <p> You will be creating a modal to allow users to sign up for a 
+website with their name and a password. The example provided below has 
+the input components your modal is expected to accept, but using 
+Javascript and regular expressions you will be adding in scripts to make
+ the password validation functional. </p>
+      <a href="#myModal" class="btn btn-primary" data-toggle="modal" onclick="openModal()">Click to Open Sign Up
+      Modal</a>
+      <br><br>
+      <p>For the following questions, you will likely find it helpful to consult these resources: </p>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resourceModal">
+          Resource Links
+        </button>
+          <br>
+          <br>
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#part1_q1_collapse" aria-expanded="false" aria-controls="part1_q1_collapse">
+              Question 1.1
+              </button>
+            </p>
+            <div class="collapse" id="part1_q1_collapse">
+              <div class="card card-body">
+                <p>For these questions, you will modifying the javascript code we provide in the file <i>login.js</i>
+ in /resources/js/login.js to match password properties. We have 
+provided the skeleton code for a function called openModal() that will 
+handle your regex expressions. We have provided comments in the included
+ file to</p>
+                <ol>
+                  <li>Write the regular expression for Javascript to match lowercase characters. <text></text></li>
+                  <li>Write the regular expression for Javascript to match uppercase characters. </li>
+                  <li>Write the regular expression for Javascript to match digits. </li>
+                  <li>Change the minLength variable such that the length of the password is at least 8 characters.</li>
+                </ol>
+              </div>
+            </div>
+            <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#part1_q2_collapse" aria-expanded="false" aria-controls="part1_q2_collapse">
+          Question 1.2
+        </button>
+      </p>
+      <div class="collapse" id="part1_q2_collapse">
+        <div class="card card-body">
+          You are going to work with on the CSS using the classLists feature in this question. <br> <br>
+          <p>
+            <strong>Objective: </strong><br>
+            The password needs to have a lowercase character, an 
+uppercase character, a digit, should match the confirm password field 
+and should be 8 characters long at least.<br>
+            If you notice after clicking the "Click to Open Signup Modal", right at the bottom there are 5 rows. For example: <a href="https://imgur.com/5qkA7YV"><img src="CSCI%203308%20Lab%205_files/5qkA7YV.png" title="source: imgur.com"></a> <br>
+            What you are going to be doing is playing with the bootstrap
+ classes to change there from a red with a cross to green with a check 
+mark when the condition is satisfied <br>
+          </p>
+
+            <p><b>For an example, let's consider just the lowercase condition</b></p>
+            <ul class="list-group-flush">
+              <li class="list-group-item">In the beginning, this is what you have: a red cross with “A
+                lowercase letter in red”: <a href="https://imgur.com/5qkA7YV"><img src="CSCI%203308%20Lab%205_files/5qkA7YV.png" title="source: imgur.com"></a></li>
+              <li class="list-group-item">If a lower case is entered you need to make the following display: <a href="https://imgur.com/Opzzdfl"><img src="CSCI%203308%20Lab%205_files/Opzzdfl.png" title="source: imgur.com"></a></li>
+            </ul>
+          <br>
+          <strong>There is one if-else block for each of the following:</strong><br>
+          <ul class="list-group-flush">
+            <li class="list-group-item">If lowerCaseLetters regex matches or not.</li>
+            <li class="list-group-item">If upperCaseLetters regex matches or not</li>
+            <li class="list-group-item">If numbers regex matches or not.</li>
+            <li class="list-group-item">If the minimum length of the password is &gt;= minLength or not.</li>
+          </ul>
+          <br>
+          <b>First, use console.log to check the value of any classList, for example:</b> <br>
+          <ul class="list-group-flush">
+            <li class="list-group-item">console.log(letter.classList)</li>
+            <li class="list-group-item">You should an array be getting a single element, with a value
+              “invalid”</li>
+          </ul>
+        <br>
+          <p><b>Let's dive deeper on how to achieve what needs to be done.
+          Let's consider just the lowercase condition again.</b></p>
+          <ul class="list-group-flush">
+            <li class="list-group-item">In the beginning, this is what you have: a red cross with “A
+              lowercase letter in red”: <a href="https://imgur.com/5qkA7YV"><img src="CSCI%203308%20Lab%205_files/5qkA7YV.png" title="source: imgur.com"></a></li>
+            <li class="list-group-item">If we enter the "if" condition, that would mean that we have a
+              lowercase character entered. So the above needs to change.</li>
+            <li class="list-group-item">To do this, all you need to do is <i>remove</i> the invalid class, and <i>add</i>
+              the correct class that would have the display look as follows: <a href="https://imgur.com/Opzzdfl"><img src="CSCI%203308%20Lab%205_files/Opzzdfl.png" title="source: imgur.com"></a></li>
+          </ul>
+          <br>
+          <p><b>This needs to be done everywhere we have the classList.add()
+                function and classList.remove() function.</b></p>
+          <ul class="list-group-flush">
+
+            <li class="list-group-item">You can look up the names of the css classes from the login.css
+              file. </li>
+            <li class="list-group-item">The class that needs to go into these functions is defined in the
+              CSS file 'login.css'. <br>
+              <i>Note: Do not use classes from outside this file and do not add classes to this file.</i>
+            </li>
+          </ul>
+          <br>
+          <p><b>Rubric:</b></p>
+          <ol class="list-group-flush">
+            <li class="list-group-item">"A Lowercase letter" changes 
+from red to green after lower case is entered in the password field. If a
+ lower case character is removed and no other lower case characters 
+remain it moves from green to red too. </li>
+            <li class="list-group-item">"A capital (Uppercase) letter" 
+changes from red to green after an upper case is entered in the password
+ field. If an upper case character is removed and no other uppper case 
+characters remain it moves from green to red too. </li>
+            <li class="list-group-item">"A number" changes from red to 
+green after a digit is entered in the password field. If a digit is 
+removed and no other digits remain it moves from green to red too. </li>
+            <li class="list-group-item">"Minimum 8 characters" changes 
+from red to green after password of length greater than 7 is entered. If
+ characters are deleted and the length of the password is less than 8, 
+it moves from green to red.</li>
+          </ol>
+      </div>
+      </div>
+      <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_3_collapse" aria-expanded="false" aria-controls="rule_3_collapse">
+          Question 1.3
+        </button>
+      </p>
+      <div class="collapse" id="rule_3_collapse">
+        <div class="card card-body">
+          <p>
+            <strong>Objective: </strong><br>
+            Validate that the text in the password field and confirm password field are equal.
+          </p>
+          <ul class="list-group-flush">
+            <li class="list-group-item"> You need to validate that the text in the password field and confirm password field are equal.
+            </li>
+            <li class="list-group-item"> For one point, all that you have to do is look at the line “var
+              passEqualsConfPass = false;” and replace false, with the correct variable comparison to make
+              sure that the passwords match.
+            </li>
+            <li class="list-group-item"> For the second point, repeat what you did in Question 1.2 for the
+              if and else conditions for the match element.
+            </li>
+          </ul>
+          <br>
+          <p><b>Rubric:</b></p>
+          <ol class="list-group-flush">
+            <li class="list-group-item">"Password and Confirm Password 
+Match" changes from red to green after the confirm password field 
+matches the password field. If they dont match, it needs to move from 
+green to red. </li>
+          </ol>
+        </div>
+      </div>
+      <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_4_collapse" aria-expanded="false" aria-controls="rule_4_collapse">
+           Question 1.4
+        </button>
+      </p>
+      <div class="collapse" id="rule_4_collapse">
+        <div class="card card-body">
+        <p>
+          <strong>Objective: </strong><br>
+          Enable the Button when all the conditions for a valid password are satisfied.
+        </p>
+          <ul class="list-group-flush">
+            <li class="list-group-item"> What you will notice is that if any of the conditions for the password have a red cross, the button is disabled.</li>
+            <li class="list-group-item">What you need to do is in the enableButton() function, there is a
+              line that says “var condition = false”, replace the false with the right condition such that
+              if we have all green ticks, the button gets enabled and you can click it. </li>
+            <li class="list-group-item"> Click the button to see a successful Modal</li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_5_collapse" aria-expanded="false" aria-controls="rule_5_collapse">
+           Question 1.5
+        </button>
+      </p>
+      <div class="collapse" id="rule_5_collapse">
+        <div class="card card-body">
+        <p>
+          <strong>Objective: </strong><br>
+          To link all the pages together, much like we saw in Lab 4 
+(HTML &amp; CSS). This will allow us to navigate across different pages 
+in our website.
+        </p>
+          <ul class="list-group-flush">
+            <li class="list-group-item"> Link the Sign Up page to the 
+Nav Bar in your personal website created from Lab 4 (mypage.html from 
+previous assignment(Personal_Website)) </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+      </div>
+      
+      <div class="card card-body" id="step12">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B: Section 2. Tic-Tac-Toe (Extra credit)</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(12)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample12" aria-expanded="false" aria-controls="multiCollapseExample12">Expand</button>
+      </div>
+      <div class="collapse" id="multiCollapseExample12" style="padding-top:30px;">
+        <div class="container">
+            <div class="alert alert-primary" role="alert" style="background-color:lightgrey;">
+                <p>Download the archive <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/tic-tac-toe.zip" target="_blank"><b>tic-tac-toe.zip</b></a>
+</p><pre>Directory Structure:
+    |--tic-tac-toe
+      |--tic-tac-toe.html
+      |--rules.js
+</pre>
+                <p></p>
+                <p>Implement the functions defined in <b>rules.js</b></p>The tic-tac-toe board verification logic can be found <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/Board-verification-logic.pdf" target="_blank"><b>here</b></a><p></p>
+              </div>
+              <div class="alert alert-warning">
+                <p>You'll not be modifying <b>tic-tac-toe.html</b> </p>
+              </div>
+        </div>
+        <div class="container">
+          <h4> Implement these rules Rules in <b><u>rules.js</u></b> </h4>
+          <h7> These same rules are defined in <b><u>rules.js</u></b></h7>
+        <br><br>
+        <dl class="">
+          <div class="row">
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_1_collapse" aria-expanded="false" aria-controls="rule_1_collapse">
+              Rule 1
+              </button>
+            </p>
+            <div class="collapse" id="rule_1_collapse">
+              <div class="card card-body">
+                <ol>
+                  <li>Input fields for the player 1 or player 2 names 
+cannot be empty. Show an alert if the user tries to start the game 
+without entering these two fields.  <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/names_cannot_be_empty.png" target="_blank">See picture</a> </li>
+                  <li>The game should not start if any of these fields are empty upon clicking the play button. <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/game_cant_start.png" target="_blank">See picture</a> </li>
+                  <li>Once the game has started, these two input fields 
+should be disabled. The two fields should show the Move types of player 1
+ and player 2 (X or O). <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/fields_disabled.png" target="_blank">See picture</a></li>
+                  <li>Once the game has started, The turn information should be should be shown. <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/turn_information.png" target="_blank">See picture</a><br>Note: Turn starts with "X". The turn is shown in "Bold".</li>
+                  <li>Once the game has started, clicking on begin play should alert - "Already started. Please <b>Reset Play</b> to start again." <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/reset_play.png" target="_blank">See picture</a></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#rule_2_collapse" aria-expanded="false" aria-controls="rule_2_collapse">
+              Rule 2
+              </button>
+            </p>
+            <div class="collapse" id="rule_2_collapse">
+              <div class="card card-body">
+                <ol>
+                  <li>The reset play button should reset the whole game.
+ (At any time when reset is clicked - All the three text boxes should be
+ cleared and Turn should be set to the default message.) </li>
+                  <li>The text boxes for entering name should be enabled back. </li>
+                  <li>The Tic Tac Toe Grid should be set to its default entries. </li>
+                  <li>Clicking reset play again and again shall have the same effect every time (or no effect when clicked multiple times).<br>Note: Do not just reload the page. (No marks will be awarded for that.)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              Rule 3
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                <ol>
+                  <li>The text box to enter Move should only take values
+ (A1, A2, A3, B1, B2, B3, C1, C2, C3) (Hint: It will be validated after 
+clicking on <b>Play</b>) </li>
+                  <li>Invalid moves should be reported by an alert 
+message.(You are encouraged to use Modal which you learned in HW1 - 
+Usage is not mandatory.) <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/invalid_move.png" target="_blank">See picture</a></li>
+                  <li>If the move is a valid move, the grid should be 
+updated with the correct move (Player 1 is always - 'X', and Player 2 is
+ always 'O' (This is not zero!)) - The turn information should also be 
+updated (Example: After the first move - turn is set to 'O' <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/move_info.png" target="_blank">See picture</a></li>
+                  <li>A move should always be a valid move. (Example: If
+ say a move was made in the already filled cell, it should be 
+invalidated with an alert.) </li>
+                  <li>If the game has not started, clicking on <b>Play</b> should give an alert "The game has not started."</li>
+                  <li>After any move, the state of the table should be 
+validated. If there is a winner - Show it in an alert message - (Ex - 
+Winner is X or O) - Displaying name is not important. <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab5_javascript/resources/img/alert_winner.png" target="_blank">See picture</a> </li>
+                  <li>The game should reset itself once a winner is determined.</li>
+                  <li>After all the moves have exhausted, you're not required to display any message. (It should be obvious to Reset play.)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </dl>
+
+          <hr>
+          <p>Similar to sign-up page, link the Tic Tac Toe page to the 
+Nav Bar in your personal website created from Lab 4 (mypage.html from 
+previous assignment(Personal_Website)) </p>
+          <hr>
+        </div>
+      </div>
+          </div>
+        
+      
+    
+  
+
+			<!-- submission ######################################################## -->
+			<div class="card card-body" id="step20">
+				<div class="stepLine">
+					<p class="alignleft h5">Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(20)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample20" aria-expanded="false" aria-controls="multiCollapseExample20">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time5">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample20">
+					<dl>
+						<dt>Prepare your submission</dt>
+						<dd>After working on the Lab_Website folder files that you 
+downloaded, include that folder in the directory structure as shown 
+below.</dd>
+						<dd> Final Directory Structure (make sure to double check this is how it is on github after you push):
+						<pre>|--Lab_5
+	|--Lab_Website_2
+	|	|--views
+	|	|	|--login.html
+	|	|	|--register.html
+	|	|	|--home.html
+	|	|	|--team_stats.html
+	|	|	|--player_info.html
+	|	|--resources
+	|		|--css
+	|		|	|--signin.css
+	|		|	|--my_style.css
+	|		|--img
+	|			|--beproudcapaabanner.jpg
+	|			|--cu_boulder_logo.jpg
+	|			|--favicon.ico
+	|			|--temp_image.svg
+	|		|--js
+	|			|--my_scripts.js
+	|
+	|--Personal_Website <i>(Copy this folder from Lab4 and include signup and tic-tac-toe folders from take home)</i>
+	|	|--mypage.html <i>(make sure your navbar has a link to signup page and tic-tac-toe(if attempted extra credit))</i>
+	|	|--projects.html
+	|	|--signup-modal
+	|		|--login.html
+	|		|--login.js
+	|		|--login.css
+	|	|--tic-tac-toe (extra credit)
+	|		|--index.html
+	|		|--rules.js
+	|	|--img
+	|		|--...</pre></dd>
+						<dd> Note that ALL images included in your page. e.g. 
+img/your_image.jpg should be contained in the GitHub repository, unless 
+it's publicly available on the web</dd>
+						<dt>Upload files to the Lab_5 folder which you will create inside 
+the github repo created for you. Look at 2.4 in the appendix of Lab 1 
+for instructions on creating a folder inside a repository.</dt>
+						<dd>Use the github WebGUI to upload your Lab_5 folder into repo <b>or</b>,
+ if you are confident in your git skills, run the following commands 
+inside your local git directory. Make sure you copy your screenshots 
+into your local git directory.
+							 <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Adding all of the files for lab5"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dt>Create a link to your github repo</dt>
+						<dd>In a text file (lab_5_{your name}_link.txt), write down the following:
+							<ol>
+								<li>Your name</li>
+								<li>The link to your Github Repo.</li>
+							</ol>
+						</dd>
+						<dt>Submit to Canvas</dt>
+						<dd>Submit your text file to Canvas by the deadline.</dd>
+			    <dt><div class="alert alert-success" role="alert">
+			        **Write your name and your partner’s (if any) on the first line of each file.**
+			      </div></dt>
+				</dl></div>
+			</div>
+
+		<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample8">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-2" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-8">Description</th>
+									<th class="col-2 text-center" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-2">Registration Page</td>
+									<td class="col-8">Based on radio button values, your html tags should be either visible/hidden. <br>To understand better, refer to the output GIF in step 1 under Registration Page.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Home page</td>
+									<td class="col-8">Based on the background colour button you click, your background colour of home page should change.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Football Season Statistics Page</td>
+									<td class="col-8">loadStatsPage() method should update 2 tables
+ i.e., Winner column in first table, Win &amp; Losses in second 
+table.(Please don't hard-code the values)</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">15</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Player Information page</td>
+									<td class="col-8">loadPlayersPage() method should implement the dropdown menu to allow user to select which player's information to view.
+									switchPlayers(playerNum) method should update the respective player information in the table after calculations.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">15</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Sign up Modal</td>
+									<td class="col-8">The validations are responsive to the text 
+entered in the sign up modal and your sign up page is linked to your 
+personal website through the navbar.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">30</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Tic Tac Toe - Extra Credit</td>
+									<td class="col-8">The game is functional, follows the rules of 
+the game specified in the writeup and the tic tac toe page is linked to 
+your personal website through the navbar.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">30 (EC)</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-8" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border:0;"></td>
+									<td class="col-8" style="border:0;"></td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100 (+30)</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main><!-- /.container -->
+<!-- modals for demo -->
+    <div class="modal fade" id="resourceModal" tabindex="-1" role="dialog" aria-labelledby="resourceModalTitle" aria-hidden="true">
+  	  <div class="modal-dialog modal-dialog-centered" role="document">
+  	    <div class="modal-content">
+  	      <div class="modal-header">
+  	        <h5 class="modal-title" id="resourceModalLongTitle">Links!</h5>
+  	        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+  	          <span aria-hidden="true">×</span>
+  	        </button>
+  	      </div>
+  	      <div class="modal-body">
+            <div class="container">
+                <h4> Resources needed for the below questions: </h4>
+                <div class="row">
+                  <table class="table table-striped table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">Resource</th>
+                        <th scope="col">Link</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Javascript Regular Expressions</th>
+                        <td><a class="btn btn-primary" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" role="button" target="_blank">Link</a></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">ClassList property</th>
+                        <td><a class="btn btn-primary" href="https://www.w3schools.com/jsref/prop_element_classlist.asp" role="button" target="_blank">Link</a></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Button disabled property</th>
+                        <td><a class="btn btn-primary" href="https://www.w3schools.com/tags/att_button_disabled.asp" role="button" target="_blank">Link</a></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">getElementById</th>
+                        <td><a class="btn btn-primary" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById" role="button" target="_blank">Link</a></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Conditional Operators</th>
+                        <td><a class="btn btn-primary" href="https://www.w3schools.com/js/js_comparisons.asp" role="button" target="_blank">Link</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+
+
+  	      </div>
+  	      <div class="modal-footer">
+  	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Example Modal Window</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Your content will go here.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-login">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="avatar">
+              <img src="CSCI%203308%20Lab%205_files/avatar.png" alt="Avatar">
+            </div>
+            <h4 class="modal-title">Sign Up Page</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" class="form-control" name="firstName" placeholder="First Name" required="required">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="lastName" placeholder="Last Name" required="required">
+            </div>
+            <div class="form-group">
+              <input id="psw" type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+              <input id="cpsw" type="password" class="form-control" name="confirm password" placeholder="Confirm Password" required="required">
+            </div>
+            <div class="form-group">
+              <button id="my_submit_button" class="btn btn-primary btn-block login-btn" disabled="disabled" onclick="onClickFunction()">Sign Up</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div id="message" style="display:block">
+              <h3>Password must contain the following:</h3>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+              <p id="match" class="invalid">Password and Confirm Password Match</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- end modals -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%205_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%205_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+  
+
+</body></html>

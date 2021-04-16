@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <script>
+//<![CDATA[
+!function(e){var t={};function s(r){if(t[r])return t[r].exports;var n=t[r]={i:r,l:!1,exports:{}};return e[r].call(n.exports,n,n.exports,s),n.l=!0,n.exports}s.m=e,s.c=t,s.d=function(e,t,r){s.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},s.r=function(e){"undefined"!==typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},s.t=function(e,t){if(1&t&&(e=s(e)),8&t)return e;if(4&t&&"object"===typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(s.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)s.d(r,n,function(t){return e[t]}.bind(null,n));return r},s.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return s.d(t,"a",t),t},s.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},s.p="//assets0.headwayapp.co/assets/packs/",s(s.s=838)}({838:function(e,t,s){"use strict";s.r(t);s(839),s(840)},839:function(e,t,s){},840:function(e,t){var s,r=function(e,t){return function(){return e.apply(t,arguments)}},n=[].indexOf||function(e){for(var t=0,s=this.length;t<s;t++)if(t in this&&this[t]===e)return t;return-1},i={}.hasOwnProperty;s=function(){function e(){this.log=r(this.log,this)}return e.prototype.CODENAME="CaptainAmerica",e.prototype.postMessage=function(){var e,t,s;return t=(e=Array.prototype.slice.call(arguments)).shift(),s=e,window.parent.postMessage([this.CODENAME,t,s],"*")},e.prototype.setStyles=function(e,t){var s,r;for(s in r=[],t)r.push(e.style[s]=t[s]);return r},e.prototype.log=function(){if(this.options.debug)return console.log("[Headway Debug]",arguments)},e.prototype.diff=function(e,t){return e.filter((function(e){return n.call(t,e)<0}))},e}(),window.App=function(e){function t(e){this.applyTranslations=r(this.applyTranslations,this),this.replaceBaseUrl=r(this.replaceBaseUrl,this),this.setDetailsHeight=r(this.setDetailsHeight,this),this.setListHeight=r(this.setListHeight,this),this.serverStore=r(this.serverStore,this),this.trackEvent=r(this.trackEvent,this),this.markSeen=r(this.markSeen,this),this.markRead=r(this.markRead,this),this.markAllSeen=r(this.markAllSeen,this),this.markItems=r(this.markItems,this),this.setState=r(this.setState,this),this.initState=r(this.initState,this),this.badgeCount=r(this.badgeCount,this),this.reload=r(this.reload,this),this.refresh=r(this.refresh,this),this.getCurrentIds=r(this.getCurrentIds,this),this.migrateLocalStorage=r(this.migrateLocalStorage,this),this.onceReady=r(this.onceReady,this),this.showDetails=r(this.showDetails,this),this.showIndex=r(this.showIndex,this),this.wheneverClosed=r(this.wheneverClosed,this),this.setBadge=r(this.setBadge,this),this.wheneverOpened=r(this.wheneverOpened,this),this.readMessage=r(this.readMessage,this),this.makeInaccessible=r(this.makeInaccessible,this),this.makeAccessible=r(this.makeAccessible,this),this.removeOutlineOnClick=r(this.removeOutlineOnClick,this),this.setupDefaults=r(this.setupDefaults,this),this.getChangelogs=r(this.getChangelogs,this),t.__super__.constructor.call(this),this.options=e,this.elements={logItems:document.querySelectorAll(".logItem"),backLinks:document.querySelectorAll(".back"),indexCont:document.getElementById("index"),logDetailsItem:document.querySelectorAll(".logDetailsItem"),innercont:document.querySelector(".innercont"),title:document.querySelector("h3"),readMore:document.querySelectorAll(".link a"),seeMore:document.querySelector(".footer a"),footer:document.querySelector(".footer")},this.current={data:null},this.setupDefaults(),this.log("App.constructor",this.options,this.elements,this.current)}return function(e,t){for(var s in t)i.call(t,s)&&(e[s]=t[s]);function r(){this.constructor=e}r.prototype=t.prototype,e.prototype=new r,e.__super__=t.prototype}(t,e),t.prototype.getChangelogs=function(){var e,t,s,r,n,i,o,a,l,h,u;if(this.changelogs)return this.changelogs;for(this.changelogs=[],s=n=0,i=(l=this.elements.logItems).length;n<i;s=++n)u=l[s],r=parseInt(u.dataset.id),o=this.elements.logDetailsItem[s],e=""!==u.querySelector(".category").innerText?[u.querySelector(".category").innerText]:[],t=(a=o.querySelector(".long noscript")).textContent||a.innerHTML,this.changelogs.push({id:r,title:null!=(h=u.querySelector(".title"))?h.innerText:void 0,categories:e,content:{short:u.querySelector(".short").innerHTML,long:t,more:!!o.querySelector("a.more")},dateTime:new Date(u.dataset.date),url:o.querySelector(".link a").href});return this.changelogs},t.prototype.setupDefaults=function(){var e,t,s,r,n,i,o,a,l,h;for(a=this.elements.logItems,h=this,e=function(e,t){var s,r,n;return s={position:t+1,id:parseInt(e.dataset.id),title:(null!=(n=e.querySelector(".title"))?n.innerText.replace(/\.$/,""):void 0)||"",category:e.querySelector(".label").dataset.labelValue||null},null!=(r=h.elements.logDetailsItem[t].querySelector(".link a"))&&r.addEventListener("click",(function(){return h.postMessage("setAction",{event:"onReadMore",data:s})})),h.removeOutlineOnClick(e),e.addEventListener("click",(function(r){return r.stopPropagation(),r.preventDefault(),h.showDetails(t),h.trackEvent("/r/read/"+h.accountId+"/"+e.dataset.id),h.markRead(e.dataset.id),h.postMessage("setAction",{event:"onShowDetails",data:s})}))},t=s=0,n=a.length;s<n;t=++s)e(o=a[t],t);for(r=0,i=(l=this.elements.backLinks).length;r<i;r++)o=l[r],this.removeOutlineOnClick(o),o.addEventListener("click",function(e){return function(t){return t.stopPropagation(),t.preventDefault(),e.showIndex()}}(this));if(document.addEventListener("click",(function(e){var t;if(e.target.matches(".videoThumbWidth"))return t=e.target.closest(".logDetailsItem"),o=t.querySelector(".link a"),window.open(o.href)})),this.elements.logItems.length>0)return window.addEventListener("message",function(e){return function(t){var s,r,n,i;if(n=(s=t.data)[0],i=s[1],r=s[2],n===e.CODENAME)return e.readMessage(i,r)}}(this))},t.prototype.removeOutlineOnClick=function(e){return e.addEventListener("click",(function(){return e.classList.add("noOutline")})),e.addEventListener("blur",(function(){return e.classList.remove("noOutline")}))},t.prototype.makeAccessible=function(e){var t,s,r,n,i;for(e.removeAttribute("aria-hidden"),i=[],t=0,s=(n=e.querySelectorAll("a")).length;t<s;t++)r=n[t],i.push(r.removeAttribute("tabindex"));return i},t.prototype.makeInaccessible=function(e){var t,s,r,n,i;for(e.setAttribute("aria-hidden","true"),i=[],t=0,s=(n=e.querySelectorAll("a")).length;t<s;t++)r=n[t],i.push(r.setAttribute("tabindex","-1"));return i},t.prototype.readMessage=function(e,t){switch(e){case"opened":return this.wheneverOpened();case"closed":return this.wheneverClosed();case"ready":return this.onceReady(t[0]);case"markSeen":return this.markSeen(t[0]);case"markAllSeen":return this.markAllSeen();case"markRead":return this.markRead(t[0]);case"reload":return this.reload()}},t.prototype.wheneverOpened=function(){return this.showIndex(),this.visible=!0,this.markAllSeen(),this.trackEvent("/r/open/"+this.accountId)},t.prototype.setBadge=function(){return this.postMessage("setBadge",this.badgeCount())},t.prototype.wheneverClosed=function(){return this.visible=!1,setTimeout(this.showIndex,300)},t.prototype.showIndex=function(){var e,t,s,r,n;for(this.elements.innercont.classList.remove("detailsOpen"),this.setListHeight(),this.makeAccessible(this.elements.indexCont),n=[],t=0,s=(r=this.elements.logDetailsItem).length;t<s;t++)e=r[t],n.push(this.makeInaccessible(e));return n},t.prototype.showDetails=function(e){var t,s,r,n;for(this.elements.innercont.classList.add("detailsOpen"),this.setDetailsHeight(e),this.makeInaccessible(this.elements.indexCont),s=0,r=(n=this.elements.logDetailsItem).length;s<r;s++)t=n[s],this.makeInaccessible(t);return this.makeAccessible(this.elements.logDetailsItem[e])},t.prototype.onceReady=function(e){if(e.newWidgetPositioning?(document.body.classList.add(e.position.x||"right"),document.body.classList.add(e.position.y||"bottom")):(document.body.classList.add("right"),document.body.classList.add("bottom")),this.options.debug=e.options.debug,this.options.baseUrl=e.options.baseUrl,this.token=e.options.token,this.current.data=e,this.localStorage=e.localStorage,this.accountId=e.options.account,this.applyTranslations(),this.migrateLocalStorage())return this.initState(),this.markItems("read"),this.markItems("seen"),setTimeout(this.refresh,6e4),null!=this.elements.seeMore&&this.options.baseUrl&&(this.elements.seeMore.href=this.options.baseUrl),this.setListHeight(),this.postMessage("widgetReady",{options:this.options,changelogs:this.getChangelogs(),state:this.state,badgeCount:this.badgeCount()}),this.log("App.setupDefaults#ready",e)},t.prototype.migrateLocalStorage=function(){return"server"!==this.options.activeStorage||null==this.token||!this.localStorage.seen.length&&!this.localStorage.read.length||(this.serverStore("/r/seen/"+this.accountId,"token="+this.token+"&seen="+this.localStorage.seen.join(","),(e=this,function(){return e.serverStore("/r/read/"+e.accountId,"token="+e.token+"&read="+e.localStorage.read.join(","),(function(){return e.postMessage("migrateLocalStorage")}))})),!1);var e},t.prototype.getCurrentIds=function(){var e,t,s,r,n;for(n=[],s=0,r=(t=Array.prototype.slice.call(this.elements.logItems)).length;s<r;s++)e=t[s],n.push(parseInt(e.dataset.id));return n},t.prototype.refresh=function(){if(this.options.autorefresh)return!0===this.visible?setTimeout(this.refresh,200):this.reload()},t.prototype.reload=function(){return document.location.reload()},t.prototype.badgeCount=function(){var e,t,s,r,n,i,o,a;if("server"===this.options.activeStorage&&null==this.token)return 0;for(t=this.options.expireAfter||Infinity,e=0,a=(new Date).getTime(),n=0,i=(o=document.querySelectorAll(".logItem")).length;n<i;n++)"true"!==(s=o[n]).dataset.seen&&(r=new Date(s.dataset.date).getTime(),Math.floor((a-r)/864e5)>=t||(e+=1));return e},t.prototype.initState=function(){return this.state="server"===this.options.activeStorage?this.options.state||{read:[],seen:[]}:this.localStorage},t.prototype.setState=function(e,t){return this.state[e]=t,this.postMessage("setState",this.state),this.markItems(e),this.setBadge()},t.prototype.markItems=function(e){var t,s,r,n,i,o;if((s=this.state[e]).length>0){for(o=[],n=0,i=s.length;n<i;n++)t=s[n],(r=document.querySelector("*[data-id='"+t+"']"))?(r.dataset[e]=!0,o.push(r.classList.add(e))):o.push(void 0);return o}},t.prototype.markAllSeen=function(){var e,t;if(t=function(){var t,s,r,n;for(n=[],t=0,s=(r=this.getChangelogs().reverse()).length;t<s;t++)e=r[t],n.push(e.id);return n}.call(this),this.setState("seen",this.diff(this.state.seen,t).concat(t)),"server"===this.options.activeStorage)return this.serverStore("/r/seen/"+this.accountId,"token="+this.token+"&seen="+t.join(","))},t.prototype.markRead=function(e){if(this.setState("read",this.diff(this.state.read,[e]).concat([e])),"server"===this.options.activeStorage)return this.serverStore("/r/read/"+this.accountId,"token="+this.token+"&read="+e)},t.prototype.markSeen=function(e){if(this.setState("seen",this.diff(this.state.seen,[e]).concat([e])),"server"===this.options.activeStorage)return this.serverStore("/r/seen/"+this.accountId,"token="+this.token+"&seen="+e)},t.prototype.trackEvent=function(e){if(this.options.track)return this.xhr(e)},t.prototype.serverStore=function(e,t,s){if(null==t&&(t=""),this.token)return this.xhr(e,t,s)},t.prototype.xhr=function(e,t,s){var r;return null==t&&(t=""),(r=new XMLHttpRequest).open("POST",e),r.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),r.onreadystatechange=function(){if(4===this.readyState&&200===this.status&&null!=s)return s()},r.send(t)},t.prototype.setListHeight=function(){var e,t,s,r;return r=(t=document.getElementById("index")).querySelector(".topBar").offsetHeight,s=t.querySelector(".logList").scrollHeight,e=t.querySelector(".footer").offsetHeight,this.postMessage("setHeight",{height:r+s+e})},t.prototype.setDetailsHeight=function(e){var t,s,r,n,i,o,a,l,h;for(i=0,o=(a=this.elements.logDetailsItem).length;i<o;i++)n=a[i],this.setStyles(n,{display:"none"});return(r=this.elements.logDetailsItem[e].querySelector("noscript"))&&(t=(t=r.innerHTML).replace(/&gt;/g,">").replace(/&lt;/g,"<").replace(/&amp;/g,"&"),r.parentNode.innerHTML=t,this.addTargetBlank(this.elements.logDetailsItem[e]),this.replaceBaseUrl(this.elements.logDetailsItem[e])),this.setStyles(this.elements.logDetailsItem[e],{display:""}),h=this.elements.logDetailsItem[e].querySelector(".topBar").offsetHeight,l=this.elements.logDetailsItem[e].querySelector(".slideBody").scrollHeight,s=this.elements.logDetailsItem[e].querySelector(".bottomBar").offsetHeight,this.postMessage("setHeight",{height:h+l+s})},t.prototype.replaceBaseUrl=function(e){var t,s;if(s=e.querySelector(".link a"),this.options.baseUrl&&null!=s)return t=s.dataset.path,s.href=this.options.baseUrl+t},t.prototype.addTargetBlank=function(e){var t,s,r,n,i;for(i=[],t=0,s=(n=e.querySelectorAll(".slideBody a")).length;t<s;t++)(r=n[t]).target="_blank",i.push(r.rel="noopener noreferrer");return i},t.prototype.applyTranslations=function(){var e,t,s,r,n,i,o,a,l,h,u,c,d,p;if(null!=(l=this.current.data)?l.options.translations:void 0){if(null!=(d=this.current.data.options.translations).title&&(this.elements.title.textContent=d.title),null!=d.footer&&((a=document.createElement("a")).target="_blank",a.href=this.elements.seeMore.href,a.innerText=d.footer,this.elements.footer.innerHTML="",this.elements.footer.appendChild(a)),null!=d.labels)for(r in h=d.labels)for(p=h[r],t=0,i=(n=document.querySelectorAll("*[data-label-value='"+r+"']")).length;t<i;t++)n[t].textContent=p;if(null!=d.readMore){for(c=[],s=0,o=(u=this.elements.readMore).length;s<o;s++)e=u[s],c.push(e.textContent=d.readMore);return c}}},t}(s)}});
+
+//]]>
+</script>
+    <style>.videoThumbWidth:after{content:"";display:block;position:absolute;top:0;left:0;width:100%;height:100%;background-size:20%;background-position:50%;background-repeat:no-repeat}.videoThumbWidth.youtube:after{background-image:url(//assets0.headwayapp.co/assets/packs/media/images/editor/video/youtube-logo-252d9776ac807a54d44869b11fa55dac.png)}.videoThumbWidth.wistia:after{background-image:url(//assets0.headwayapp.co/assets/packs/media/images/editor/video/wistia-logo-7ab00495376b0066faec307f6bba4421.png)}.videoThumbWidth.vimeo:after{background-image:url(//assets0.headwayapp.co/assets/packs/media/images/editor/video/vimeo-logo-d73bdd39d4447bfdac60cbebc9fb2493.png)}.videoThumbWidth.loom:after{background-image:url(//assets0.headwayapp.co/assets/packs/media/images/editor/video/loom-logo-8e817a3feb67b2d1d7bbb2a3b7f93b6a.svg)}.videoContWidth,.videoThumbWidth{cursor:pointer;position:relative;display:inline-block;margin:0;line-height:0}.videoContWidth .videoContHeight,.videoThumbWidth .videoThumbHeight{width:100%;display:inline-block}.videoContWidth .videoContHeight .video,.videoContWidth .videoContHeight .videoThumb,.videoThumbWidth .videoThumbHeight .video,.videoThumbWidth .videoThumbHeight .videoThumb{position:absolute;top:0;left:0;width:100%;height:100%}.videoContWidth .videoContHeight .videoThumb,.videoThumbWidth .videoThumbHeight .videoThumb{background-position:50%;background-repeat:no-repeat;background-size:cover}*{box-sizing:border-box}*,body,button,input,select,textarea{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale}body,html{height:100vh}html{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:13px;overflow:hidden}body,h2,h3,p{padding:0;margin:0}p{font-size:13px}h1,h2,h3{font-weight:500;margin-bottom:5px}h1{font-size:1.3rem}h2{font-size:1.15rem}h3{font-weight:400;font-size:1rem}a.noOutline{outline:none!important}.outercont{color:#222c36}.outercont .cont{overflow:hidden;position:relative;height:100vh;width:100vw}.outercont .innercont{transform:translate(0);position:relative;overflow:hidden;will-change:left;transition:left .3s;width:200vw;height:100%;left:0}.outercont .innercont .logList{overflow-y:auto}.outercont .innercont .slideBody{overflow-y:hidden}.outercont .innercont.detailsOpen{left:-100%}.outercont .innercont.detailsOpen .logList{overflow-y:hidden}.outercont .innercont.detailsOpen .slideBody{overflow-y:auto}.outercont .innercont #details,.outercont .innercont #index{width:100vw;position:absolute}.outercont .innercont #index{left:0}.outercont .innercont #details{left:100vw}.outercont .innercont #index{height:100vh;display:flex;flex-direction:column}.outercont .innercont #index .logList{overflow-x:hidden;-ms-scroll-chaining:none;overscroll-behavior:contain}.outercont .innercont .logDetailsItem{text-overflow:ellipsis}.outercont .innercont .logDetailsItem .slideBody{padding:16px 16px 0}.outercont .innercont .logDetailsItem .slideBody:after{content:"";display:block;padding-bottom:20px}.outercont .innercont .logDetailsItem .slideBody .label{margin-bottom:10px}.outercont .innercont .logDetailsItem .slideBody .long{clear:both}.outercont .innercont .logDetailsItem .slideBody p{margin-bottom:10px;line-height:19px;color:#222c36;clear:both}.outercont .innercont .logDetailsItem .slideBody p:last-child{margin-bottom:0}.outercont .innercont .logDetailsItem .slideBody a{color:#3778ff}.outercont .innercont .logDetailsItem .slideBody ul{clear:both;padding:0;margin:10px 0 10px 15px;line-height:22px}.outercont .innercont .logDetailsItem{height:100vh;display:flex;flex-direction:column}.outercont .innercont .logDetailsItem .slideBody{overflow-x:hidden;-ms-scroll-chaining:none;overscroll-behavior:contain}.outercont .innercont .logItem{display:block;clear:both;line-height:19px;padding:7px 16px 7px 12px;color:#666;text-decoration:none;border-left:3px solid #3778ff}.outercont .innercont .logItem.read{border-left:0;padding:7px 15px}.outercont .innercont .logItem:first-child{padding-top:14px}.outercont .innercont .logItem:last-child{padding-bottom:14px}.outercont .innercont .logItem:hover strong{text-decoration:underline}.outercont .innercont strong{color:#222c36;font-weight:600}.outercont .innercont .back{position:absolute;display:block;height:46px;opacity:.25;z-index:2}.outercont .innercont .back:after,.outercont .innercont .back:before{content:"";height:12px;width:1px;display:block;background:#222c36;position:absolute}.outercont .innercont .back:before{top:14px}.outercont .innercont .back:after{bottom:12px}.outercont .innercont h3.title{text-align:center;font-weight:600;font-size:14px;margin:0}.outercont .innercont .bottomBar,.outercont .innercont .topBar{margin:0 10px;position:relative}.outercont .innercont .topBar{border-bottom:1px solid #f1f1f1;padding:15px 23px}.outercont .innercont .topBar .back{top:2px;padding:5px 15px 0}.outercont .innercont .bottomBar{border-top:1px solid #f1f1f1;padding:17px 23px}.outercont .innercont .bottomBar .back{bottom:-5px;padding:5px 15px 0}.outercont .innercont .link{margin:15px 0 5px}.outercont .innercont .link a{color:#3778ff;font-weight:700;text-decoration:none;display:none}.outercont .innercont .link a.more{display:inline-block}.outercont .innercont .footer{background:#fcfcfc;color:#a8a8a8;font-size:12px;text-align:center;border-top:1px solid #f1f1f1;height:35px;line-height:35px;border-radius:0 0 4px 4px}.outercont .innercont .footer a{color:#a8a8a8}.outercont .innercont .label{border-radius:10px;font-size:11px;padding:0 6px;height:18px;line-height:18px}body.top #details .topBar .back{display:none}body.top #details .bottomBar .back{display:block}body.bottom #details .bottomBar,body.center #details .bottomBar{display:none}body.left .back{right:0}body.left .back:before{transform:rotate(-45deg)}body.left .back:after{transform:rotate(45deg)}body.right .back{left:0}body.right .back:before{transform:rotate(45deg)}body.right .back:after{transform:rotate(-45deg)}.ltr{direction:ltr}.ltr .label{margin-right:5px;float:left}.rtl{direction:rtl}.rtl .label{margin-left:5px;float:right}.headwayVideo{position:relative;display:inline-block}.headwayVideo:before{content:"";width:100%;height:100%;background:pink;opacity:.5;position:absolute;left:0;top:0;z-index:10000}</style>
+    <script>
+//<![CDATA[
+
+      var HW_config =  {"badgeDelay":0,"softHide":true,"eyecatcher":false,"expireAfter":null,"token":null,"activeStorage":"local","autorefresh":false,"track":null}
+
+      document.addEventListener("DOMContentLoaded", function(){
+        new App(HW_config);
+      }, false);
+
+//]]>
+</script>
+
+    <style>
+  .category_0 {
+    display: none;
+  }
+
+    .category_17606 {
+      background-color: #ff4772;
+      color: #fff;
+    }
+
+    #editor-body .head.head_category_17606 .background {
+      background-color: #ff4772;
+    }
+    .category_17605 {
+      background-color: #b26cee;
+      color: #fff;
+    }
+
+    #editor-body .head.head_category_17605 .background {
+      background-color: #b26cee;
+    }
+    .category_17604 {
+      background-color: #3778ff;
+      color: #fff;
+    }
+
+    #editor-body .head.head_category_17604 .background {
+      background-color: #3778ff;
+    }
+</style>
+  <script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+  <body class="ltr right bottom">
+    <div class="outercont">
+      <div class="cont">
+        <div class="innercont">
+          <div id="index">
+  <div class="topBar">
+    <h3 class="title">Latest changes</h3>
+  </div>
+  <div class="logList">
+    <a href="#" class="logItem" data-id="182830" data-date="2021-01-20T15:48:24Z">
+  <span class="label category category_17605" data-label-value="improvement">Improvement</span>
+    <strong class="title">PostgreSQL 13 Updated to Stable Release</strong><strong>.</strong>
+  <span class="short">The PostgresSQL 13 database engine has been upgraded to the latest stable release (13.1) 🎉</span>
+</a> <!-- /logItem -->
+<a href="#" class="logItem" data-id="166808" data-date="2020-09-02T09:29:41Z">
+  <span class="label category category_17605" data-label-value="improvement">Improvement</span>
+    <strong class="title">Keyboard Shortcuts Updated</strong><strong>.</strong>
+  <span class="short">The keyboard shortcuts for switching between the editor panels were previously using key...</span>
+</a> <!-- /logItem -->
+<a href="#" class="logItem" data-id="166807" data-date="2020-09-02T09:26:40Z">
+  <span class="label category category_17604" data-label-value="new">New</span>
+    <strong class="title">Multi-line Comments Support</strong><strong>.</strong>
+  <span class="short">As of today, you can make use multi-line comments in your fiddles 🎉</span>
+</a> <!-- /logItem -->
+
+  </div> <!-- /logList -->
+  <div class="footer">
+    <a target="_blank" rel="noopener noreferrer" href="https://headwayapp.co/db-fiddle-changelog?utm_medium=widget">DB Fiddle changelog</a>
+      powered by <a target="_blank" href="https://headwayapp.co/?utm_medium=widget&amp;utm_source=db-fiddle" rel="noopener noreferrer">Headway</a>
+  </div>
+</div> <!-- /logListCont -->
+
+<div id="details">
+  <div class="logDetailsItem">
+  <div class="topBar">
+    <a href="#back" class="back"></a>
+    <h3 class="title">PostgreSQL 13 Updated to Stable Release</h3>
+  </div>
+  <div class="slideBody">
+      <div class="label category_17605" data-label-value="improvement">Improvement</div>
+    <div class="long"><noscript><p>The PostgresSQL 13 database engine has been upgraded to the latest stable release (13.1) 🎉</p></noscript></div>
+    <p class="link"><a target="_blank" href="https://headwayapp.co/db-fiddle-changelog/postgresql-13-updated-to-stable-release-182830" data-path="/postgresql-13-updated-to-stable-release-182830" rel="noopener noreferrer" class="">Read the whole post</a></p>
+  </div>
+  <div class="bottomBar">
+    <a href="#back" class="back"></a>
+  </div>
+</div>
+<div class="logDetailsItem">
+  <div class="topBar">
+    <a href="#back" class="back"></a>
+    <h3 class="title">Keyboard Shortcuts Updated</h3>
+  </div>
+  <div class="slideBody">
+      <div class="label category_17605" data-label-value="improvement">Improvement</div>
+    <div class="long"><noscript><p>The keyboard shortcuts for switching between the editor panels were previously using key combinations that were already commonly used for other actions.</p>
+<p>As a result, we have updated these shortcuts as follows:</p>
+<p><strong>Focus Schema SQL:</strong><br>
+<code>Cmd</code> + <code>Shift</code> + <code>1</code> <em>or</em> <code>Ctrl</code> + <code>Shift</code> + <code>1</code></p>
+<p><strong>Focus Query SQL:</strong><br>
+<code>Cmd</code> + <code>Shift</code> + <code>2</code> <em>or</em> <code>Ctrl</code> + <code>Shift</code> + <code>2</code></p></noscript></div>
+    <p class="link"><a target="_blank" href="https://headwayapp.co/db-fiddle-changelog/keyboard-shortcuts-updated-166808" data-path="/keyboard-shortcuts-updated-166808" rel="noopener noreferrer" class="">Read the whole post</a></p>
+  </div>
+  <div class="bottomBar">
+    <a href="#back" class="back"></a>
+  </div>
+</div>
+<div class="logDetailsItem">
+  <div class="topBar">
+    <a href="#back" class="back"></a>
+    <h3 class="title">Multi-line Comments Support</h3>
+  </div>
+  <div class="slideBody">
+      <div class="label category_17604" data-label-value="new">New</div>
+    <div class="long"><noscript><p>As of today, you can make use multi-line comments in your fiddles 🎉</p></noscript></div>
+    <p class="link"><a target="_blank" href="https://headwayapp.co/db-fiddle-changelog/multi-line-comments-support-166807" data-path="/multi-line-comments-support-166807" rel="noopener noreferrer" class="">Read the whole post</a></p>
+  </div>
+  <div class="bottomBar">
+    <a href="#back" class="back"></a>
+  </div>
+</div>
+
+</div> <!-- /logDetails -->
+
+        </div> <!-- /innercont -->
+      </div> <!-- /cont -->
+    </div> <!-- /outercont -->
+
+
+  
+
+  
+  
+
+</body></html>

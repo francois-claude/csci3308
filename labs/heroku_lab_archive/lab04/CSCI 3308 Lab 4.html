@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSCI 3308 Lab 4</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%204_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%204_files/prism.css">
+
+	<script src="CSCI%203308%20Lab%204_files/jquery-3.js"></script>
+	<script src="CSCI%203308%20Lab%204_files/popper.js"></script>
+	<script src="CSCI%203308%20Lab%204_files/bootstrap.js"></script>
+	<script src="CSCI%203308%20Lab%204_files/clipboard.js"></script>
+	<script src="CSCI%203308%20Lab%204_files/prism.js"></script><script src="CSCI%203308%20Lab%204_files/clipboard_002.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%204_files/labLayout.css">
+	<script src="CSCI%203308%20Lab%204_files/labScripts.js"></script>
+	<script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 4 HTML &amp; CSS</h1>
+					<p class="lead"> In the next few lab sessions, we will be building 
+an interactive website. Today, we will be working on building the 
+front-end using<b> Hypertext Markup Language (HTML)</b> and <b>Cascading Style Sheets (CSS)</b>.
+						You will learn how to work with html and css and back up your code
+ to your git repository. Please download the template files below to get
+ started.
+						<b>To receive credit for this lab, you MUST check in with your TA during lab and submit lab_4_link.txt on Canvas by the deadline.</b></p>
+					<p class="h5"><a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab4_html_css/Lab_Website.zip">Download </a> files to work with, make sure you extract the files before using them.</p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">125</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">This lab is due right before 
+recitation next week.
+							For Example, If your lab is on this Friday at 10 AM, the 
+submission deadline will be next Friday at 10 AM. There is no late 
+policy for labs.
+						</p>
+					</div>
+				</div>
+			</div>
+<!--
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Prerequisite Knowledge</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+
+				</div>
+
+				<div class="collapse" id="multiCollapseExample1">
+					<p>This lab assumes some basic familiarity with HTML & CSS.  If you are new to html & css, you'll find a few resources below to help you get up-to-speed.
+					<div class="row">
+						<div class="col-6">
+							<img src="img/w3schools.jpg" alt="The W3 Schools Logo">
+						</div>
+						<div class="col-6">
+							<p>At W3 Schools, you'll find a reference that provides explanations & examples for just about every html tag and css property.  You'll also find
+							   a handy "Try it Yourself" which provides an html editor & viewer right in your browser to help you test out the provided examples.</p>
+							   Link: <a href="https://www.w3schools.com/html/default.asp">HTML</a> & <a href="https://www.w3schools.com/css/default.asp"> CSS </a>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							<img src="img/tutorials_point.png" alt="The TutorialsPoint Logo">
+						</div>
+						<div class="col-6">
+							<p>For a more guided online resource, checkout tutorialspoint's html & css lessons.  Where as W3 schools serves as an online reference/dictionary,
+							tutorialspoint is more akin to an actual textboook / guided reading.</p>
+							   Link: <a href="https://www.tutorialspoint.com/html/">HTML</a> & <a href="https://www.tutorialspoint.com/css/"> CSS </a>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-6">
+							<img src="img/jon_duckett.jpg" alt="The cover to Jon Duckett's book on HTML & CSS: Design and Build Websites" style="height:150px;">
+						</div>
+						<div class="col-6">
+							<p>Jon Duckett's book on html & css focuses on making web design accessible to all, not just the experienced programmer!  You can read the book
+							   cover to cover or just pick out a specific chapter/topic to help you dive deeper into a specific part of web design</p>
+							   CU Boulder Library PermaLink: <a href="http://ucblibraries.summon.serialssolutions.com/#!/search?bookMark=ePnHCXMw42JgAfZbUxkhpykZgs8HtwRtvuUCccAnqAHrTy5QvQNsOgArIA7YiAiwcjQzNDPlZODyCPH1UVBTcA4O5mFgKSkqTeVlYE0DxgawwNRwcw1x9tAtTYb3JuONzQxAxz7Eo5hizM2gBlFanJ2Zk1MMLNPiQc3WYiOTCvP4pOxi8MXLQBcCFWpCFCYWZwPLFWCZU1IcX5YDnqssjkfxBFCtItTQxDSg5fHY1ShjUWOIoQpqa2Z6AXy8Kb4AcsJEPPg8bSdwc8zACGEiZCIVrgrdRCWIKtBoSEo-XBWEawJsdhiCzjolOgAB8LB_Ww">Online Book</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		-->
+<div class="card card-body" id="step0">
+				<div class="stepLine">
+					<p class="alignleft h5">Directory Structure Explanation</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample0" aria-expanded="false" aria-controls="multiCollapseExample0">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample0">
+
+					<div class="row" style="padding:15px">
+						<p class="h3"></p>
+						<p>We will be building our website incrementally. Today, we will 
+create the visual elements for our website using html and css. In the 
+next few labs, we'll be adding client-side
+						   javascript for improved functionality, a database to store our 
+website's data, and tie everything together with a NodeJS backend 
+server.
+						   To that end, we will be laying down the groundwork for our 
+website by storing all of our html web pages in a views folder. In our 
+later labs, we will add additional
+						   files and incorporate a templating engine to format to handle 
+our server-side code!  So to make sure our future labs run smoothly, go 
+ahead and ensure all of your
+						   files fit into the following directory structure.
+						</p><pre>Directory Structure:
+|--Lab_Website
+	|--views
+		|--login.html
+		|--register.html
+		|--home.html
+		|--team_stats.html
+		|--player_info.html
+	|--resources
+		|--css
+			|--signin.css
+			|--my_style.css
+		|--img
+			|--beproudcapaabanner.jpg
+			|--cu_boulder_logo.jpg
+			|--favicon.ico
+			|--temp_image.svg
+</pre>
+					</div>
+</div>
+			</div>
+			
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 0. Tutorial</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample1">
+
+
+					<div class="row" style="padding:15px">
+						<p class="h3"></p>
+						<p>TAs will walk you through how to open an HTML file and edit it 
+using a text editor.  We would recommend not to use the vim editor. 
+Instead, use <a href="https://www.sublimetext.com/3" target="_blank"> Sublime</a>, <a href="https://atom.io/" target="_blank"> Atom</a>, or <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> text editors.
+							TAs will also show you how to inspect an HTML page in a web browser and go over the elements in the page. </p>
+							<p> Useful links: </p>
+							<ul>
+								<li>w3schools: <a href="https://www.w3schools.com/html/default.asp" target="_blank">HTML</a> &amp; <a href="https://www.w3schools.com/css/default.asp" target="_blank"> CSS </a> </li>
+							 <li> Bootstrap: <a href="https://getbootstrap.com/docs/4.1/getting-started/introduction/" target="_blank">Documentation</a> </li>
+
+					</ul></div>
+</div>
+			</div>
+			
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 1. Lab Website - Login Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample2">
+					<br>
+                <p class="h5">NOTHING TO DO</p>
+          <p>Nothing to add. Leave as-is</p>
+					<div class="row">
+						<div class="col-6">
+							<p> This webpage has been provided for you. For now, all it does 
+is link directly to the registration page and home pages. In a future 
+lab,
+							 we will implement a basic login service to our site (using 
+Node.js) to verify users.</p>
+						</div>
+            <div class="col-6" style="text-align:center;">
+              <img class="img-fluid" src="CSCI%203308%20Lab%204_files/login_page.png" alt="Screenshot of the login page" style="height:400px;">
+            </div>
+					</div>
+
+
+			</div>
+		</div>
+			<!-- Not using this section for Fall 2019 CSCI 3308 Lab 4 -->
+			<!-- <div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Abbreviated Instructions</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+				</div>
+				<div style="padding-left:20px" class="collapse" id="multiCollapseExample3">
+          <br><br>
+
+
+
+				</div>
+			</div> -->
+
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 2. Lab Website - Home Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample3">
+
+          <br>
+					<div class="row">
+						<div class="col-6">
+							<p>Only a basic template has been provided for the home page.  You will need to create your own home page (including the components
+							listed further down in the instructions). </p>
+							<p class="h5">TO DO</p>
+						<p>Your home page must include the following components:</p>
+						<ol>
+							<li>A header tag with a message welcoming the user to your website</li>
+							<li>An image (related to Football or specifically the Buffs team)</li>
+							<li>A short description of your website (2 sentences).</li>
+							<li>A Hyperlink to the Buffs official home page [https://cubuffs.com/]</li>
+							<li>At least 1 Bootstrap class to modify your content</li>
+						</ol>
+						</div>
+            <div class="col-6" style="text-align:center;">
+							<img class="img-fluid" src="CSCI%203308%20Lab%204_files/home_page.png" alt="Screenshot of the home page" width="840px" height="403.5">
+						</div>
+					</div>
+					<dl>
+
+						<hr>
+						<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Headings - Structuring Content vs Changing Font</li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>This is a heading! <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>h1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This LOOKS like a heading <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as: </p><h1>This is a heading!</h1> <p class="h1">This LOOKS like a heading</p><p></p>
+
+                 <a id="hidetext1" class="btn btn-warning dropdown-toggle" href="#explanation1" data-toggle="collapse" data-target="#explanation1" aria-expanded="false" aria-controls="explanation1" onclick="showExplanation(1)">More information</a>
+                 <div id="explanation1" class="collapse">
+  								<dl class="row">
+  									<dt class="col-sm-3">&lt;h1&gt;-&lt;h6&gt;</dt>
+  									<dd class="col-sm-9">The headings tags are semantic tags.  
+Meaning they add structure to the html document that can help an 
+assistive agent (screen reader) correctly
+  									parse the file and know what each piece of text is for.  A 
+lot of times it is used to quickly make text larger and bold, but THIS 
+IS BAD and if you do this you're basically a terrible person.  We're 
+only slightly kidding... Using the headings tags for changing fonts can 
+cause a lot of problems for screen readers which can cause some serious 
+accessibility concerns.  If you're working on a corporate site this 
+could even be a potential lawsuit!  So only use heading tags to actually
+ mark up sections of your document (think like an outline for a research
+ paper). For a deeper explanation, check out W3's outline for how 
+heading tags should be used <a href="https://www.w3.org/TR/html52/sections.html#elementdef-h1"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+  									<dt class="col-sm-3">.h1 -.h6 classes</dt>
+  									<dd class="col-sm-9">The heading classes, provided by 
+Bootstrap, allow you to have the font styling of a headings tag, without
+ breaking the semantic rules of using one.  This lets you have your page
+ appear stylistically the way you want, but also follow the proper rules
+ for only using heading tags for structuring the content of your 
+webpage.</dd>
+  								</dl>
+              </div>
+							</dd>
+							<dt><li>Working with images</li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>img/tree.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>An image of a tree taken by Brian Green &amp; listed on Wikipedia<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>120px<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>90px<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> </code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as: <img src="CSCI%203308%20Lab%204_files/tree.jpg" alt="An image of a tree taken by Brian Green &amp; listed on Wikipedia" width="90px" height="120px"></p>
+								<a id="hidetext2" class="btn btn-warning dropdown-toggle" href="#explanation2" data-toggle="collapse" data-target="#explanation2" aria-expanded="false" aria-controls="explanation2" on-click="showExplanation(2)">More information</a>
+                 <div id="explanation2" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">src="..."</dt>
+									<dd class="col-sm-9">The src attribute is a filepath (relative 
+or absolute), that details where the web browser will find the image. 
+Image not showing? Try this:<a data-toggle="modal" href="#imageErrorModal"><img src="CSCI%203308%20Lab%204_files/alert.svg" alt="Octicon alert icon" height="20px"></a></dd>
+									<dt class="col-sm-3">alt="..."</dt>
+									<dd class="col-sm-9">The alt or alternative text serves two 
+purposes.  The first is if the image isn't able to load, the alt text 
+will be loaded by the browser instead.  The second purpose is for 
+accessibility.  A screen reader can read the alt text to a user so that 
+they can understand what the image is about.  For stylistic images (ex. a
+ background image), the alt text can be a short description like "A 
+sunny oceanview", but if content in the image is being referenced in 
+your webpage be more detailed!  Ex. "Make sure you eat mushrooms that 
+look like the one on the left, because the ones one the right are 
+poisonous!!" alt="A healthy mushroom, with all brown coloring. Left 
+mushroom" alt="A poisonous mushroom, with all white coloring. Right 
+mushroom."</dd>
+									<dt class="col-sm-3">height="..." &amp; width="..."</dt>
+									<dd class="col-sm-9">The height &amp; width attributes define 
+how tall or wide an image is.  If neither is set, then the browser will 
+try to load the image at its full resolution (unless you have applied 
+CSS to override the default image resolution).  If only 1 value is set, 
+then the browser will scale the other.  For example if an image is 320 x
+ 180 and you set the width="160px", the browser will reduce the height 
+by half to 90px.</dd>
+									<dt class="col-sm-3">Referencing the owner</dt>
+									<dd class="col-sm-9">Always make sure to properly cite the 
+owner of an image!  Either add a caption detailing who owns the image, 
+provide a link to the licensor's page, or reference the page you 
+retrieved the image from.  <a href="https://commons.wikimedia.org/wiki/File:Ash_Tree_-_geograph.org.uk_-_590710.jpg">Wikipedia Link</a> | <a href="https://www.geograph.org.uk/photo/590710"> Original Source/Owner </a></dd>
+								</dl>
+								</div>
+								</dd><dt><li>Anchor Tag - Hyperlinks</li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://www.google.com<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Link to Google <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as: <a href="https://www.google.com/">Link to Google </a></p>
+								<a id="hidetext3" class="btn btn-warning dropdown-toggle" href="#explanation3" data-toggle="collapse" data-target="#explanation3" aria-expanded="false" aria-controls="explanation3" on-click="showExplanation(3)">More information</a>
+                 <div id="explanation3" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">href="..."</dt>
+									<dd class="col-sm-9">The href, hypertext reference, says where 
+(locally or on the network) the anchor tag is pointing too.  This can 
+either be a relative or absolute path.</dd>
+									<dt class="col-sm-3">Relative Path</dt>
+									<dd class="col-sm-9">A relative path, defines how the operating
+ system can retrieve a file from your webpage's current directory.  To 
+help use navigate around our directory structures, we can use a few 
+handy shortcuts.
+										<dl class="row">
+											<dt class="col-sm-3">../</dt>
+											<dd class="col-sm-9"> Step up one directory</dd>
+											<dt class="col-sm-3">directory_name/</dt>
+											<dd class="col-sm-9"> if text is followed by a forward slash "/" then it will be treated as a directory to step into</dd>
+											<dt class="col-sm-3">file_name.ext</dt>
+											<dd class="col-sm-9"> the final piece of text is generally the file you are trying to reference (make sure to include the file extension!)</dd>
+										</dl>
+										Example: ../resources/css/signin.css - this is a relative path
+ from your views folder to the css file used to stylize our login page.</dd>
+									<dt class="col-sm-3">Absolute Path</dt>
+									<dd class="col-sm-9">An absolute path, defines how the 
+operating system can retrieve a file based on it's Drive location or 
+network location.  In general, this should only be used for referencing 
+files that are on another computer across the network or the Internet.  
+You should avoid using absolute paths with your local hard drive (ex. 
+C:// or F://), because these paths will not work if you try to open the 
+webpages in a different computer.  For example, the TA's will be grading
+ on a different computer. So an absolute path for your personal 
+computer's C:// drive will break ... and so will your grade :( </dd>
+								</dl>
+							</div>
+							</dd>
+						</ol>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 3. Lab Website - Football Season Statistics Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample4">
+          <br>
+					<div class="row">
+						<div class="col-6">
+							<p>For today's lab you will be working on creating an <a href="https://www.w3schools.com/html/html_tables.asp">html table</a> to hold the 2021 season
+							   stats for the Buffs Football Team.  You'll also be stylizing your page with Bootstrap's <a href="https://getbootstrap.com/docs/4.1/components/jumbotron/">Jumbotron</a> and
+							   <a href="https://getbootstrap.com/docs/4.1/content/tables/">table classes</a>.
+ In future labs, we will add client-side Javascript to help update
+							   our Wins/Losses table &amp; build our table server-side by 
+pulling in the statistics from our database (postgreSQL &amp; Node.js).
+							   </p><dl>
+					<p class="h5">TO DO</p>
+						<p>Add to your team_stats.html page the following components:</p>
+						<ol>
+							<li>JumboTron announcing the Spring 2021 Season</li>
+							<li>A table listing 3 different football matches (Colorado State, Nebraska, &amp; Texas State)</li>
+							<li>A second table listing the Win/Loss ratio for the season</li>
+						</ol>
+						</dl></div>
+            <div class="col-6" style="text-align:center;">
+              <img class="img-fluid" src="CSCI%203308%20Lab%204_files/stats_page.png" alt="Screenshot of the football season statistics page" style="height:400px;">
+            </div>
+					</div>
+          <dl>
+
+
+						<hr>
+						<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Bootstrap Jumbotron </li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>jumbotron<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>display-4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hello, world!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lead<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>my-4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>It uses utility classes for typography and spacing to space content out within the larger container.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as: </p><div class="jumbotron">
+									  <h1 class="display-4">Hello, world!</h1>
+									  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+									  <hr class="my-4">
+									  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+									</div><p></p>
+
+									<a id="hidetext4" class="btn btn-warning dropdown-toggle" href="#explanation4" data-toggle="collapse" data-target="#explanation4" aria-expanded="false" aria-controls="explanation4" on-click="showExplanation(4)">More information</a>
+                 <div id="explanation4" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">class="jumbotron"</dt>
+									<dd class="col-sm-9">The jumbotron class can be applied to just
+ about any block level element, but most of the time it will be applied 
+to &lt;div&gt; tags. This will alter the tag's width to be the same as 
+it's container.</dd>
+									<dt class="col-sm-3">class="lead"</dt>
+									<dd class="col-sm-9">The lead class modifies the text's font to "pop out" and have a relatively large size.</dd>
+									<dt class="col-sm-3">class="my-4"</dt>
+									<dd class="col-sm-9">This is modifying the horizontal rule tag to use Bootstrap's Spacing classes: <a href="https://getbootstrap.com/docs/4.3/utilities/spacing//"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a> </dd>
+									<dt class="col-sm-3">Documentation</dt>
+									<dd class="col-sm-9">To learn more about how the Jumbotron can be customized, check out the source documentation: <a href="https://getbootstrap.com/docs/4.3/components/jumbotron/"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+							</dd>
+							<dt><li>Working With Tables</li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">&gt;</span></span>Header 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">rowspan</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Header 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>Cell 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>Cell 2 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>Cell 3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+		<span class="token comment">&lt;!-- Edit the column span here --&gt;</span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<style>
+									.exampletable
+									{
+										border:solid 1px black;
+									}
+									.exampletable th
+									{
+										border:solid 1px black;
+									}
+									.exampletable td
+									{
+										border:solid 1px black;
+									}
+								</style>
+								<p>Displayed as (additional CSS added to show the borders):
+									</p><table class="exampletable">
+										<tbody><tr>
+											<th>Header 1</th><th rowspan="2">Header 2</th>
+										</tr>
+										<tr>
+											<td>Cell 1</td>
+										</tr>
+										<tr>
+											<td>Cell 2 </td><td>Cell 3</td>
+										</tr>
+										<tr>
+										<td colspan="2">Cell 4</td>
+										</tr>
+									</tbody></table>
+								<p></p>
+								<a id="hidetext5" class="btn btn-warning dropdown-toggle" href="#explanation5" data-toggle="collapse" data-target="#explanation5" aria-expanded="false" aria-controls="explanation5" on-click="showExplanation(5)">More information</a>
+                 <div id="explanation5" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">&lt;table&gt;</dt>
+									<dd class="col-sm-9">The table tag defines the boundaries of where the tabular data begins &amp; ends.</dd>
+									<dt class="col-sm-3">&lt;tr&gt; - table row</dt>
+									<dd class="col-sm-9">The &lt;tr&gt; tag, or table row tag, groups all of the cells together that make up a single row of the table </dd>
+									<dt class="col-sm-3">&lt;th&gt; - table header</dt>
+									<dd class="col-sm-9">The &lt;th&gt; tag, or table header tag, 
+defines the header cells of a table.  Typically this is in the first row
+ of a table only.  But it is sometimes used in the first column of a 
+table (depending on how the information is being presented). </dd>
+									<dt class="col-sm-3">&lt;td&gt; - table data</dt>
+									<dd class="col-sm-9">The &lt;td&gt; tag, or table data tag, defines the data for an individual table cell</dd>
+									<dt class="col-sm-3">rowspan="#"</dt>
+									<dd class="col-sm-9">The rowspan attribute allows a cell to 
+increase in "height" by expanding downwards and merging into the number 
+of adjacent rows specified</dd>
+									<dt class="col-sm-3">colspan="#</dt>
+									<dd class="col-sm-9">The column span attribute allows a cell to
+ increase in "width" by expanding to the right and merging the number of
+ adjacent rows specified </dd>
+									<dt class="col-sm-3">Further Examples</dt>
+									<dd class="col-sm-9">Want more help with tables?  Try checking out W3 schools examples:  <a href="https://www.w3schools.com/html/html_tables.asp" target="_blank"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+									<dt class="col-sm-3">Bootstrap Styling</dt>
+									<dd class="col-sm-9">Make sure and apply some Bootstrap styling to your tables for a more professional look &amp; feel.  <a href="https://getbootstrap.com/docs/4.3/content/tables/"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+							</dd>
+						</ol>
+					</dl>
+          
+				</div>
+			</div>
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 4. Lab Website - Player Information Page</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">30</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample5">
+
+					<br>
+					<div class="row">
+						<div class="col-6">
+							<p> For today's lab we will be creating a starter page for 
+holding football player information.  For part of the page you will be 
+working with
+							    Bootstrap's <a href="https://getbootstrap.com/docs/4.1/layout/grid/">grid system</a>,
+ but this can also be implemented with html tables.  In
+							    future labs, we will implement the dropdown list to update 
+which player's information is shown (client-side javascript) and then 
+later pull in our player
+							    information from our database (postgreSQL &amp; Node.js).
+							    </p><dl>
+						<p class="h5">TO DO</p>
+						<p>Add to your player_info.html page the following components:</p>
+						<ol>
+							<li>A Bootstrap Card to hold the player image &amp; a Bootstrap dropdown menu listing 3 Football players (placeholders)</li>
+							<li>A table listing the player's information:
+								<ul>
+									<li>Year in School</li>
+									<li>Major</li>
+									<li>Games Played</li>
+									<li>Passing Yards &amp; Average Passing Yards</li>
+									<li>Rushing Yards &amp; Average Rushing Yards</li>
+									<li>Receiving Yards &amp; Average Receiving Yards</li>
+								</ul>
+							</li>
+						</ol>
+						</dl></div>
+            <div class="col-6" style="text-align:center;">
+							<img class="img-fluid" src="CSCI%203308%20Lab%204_files/player_page.png" alt="Screenshot of the player information page" style="height:400px;">
+
+						</div>
+					</div>
+          <dl>
+						<hr>
+						<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Bootstrap Cards</li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-img-top<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>img/tree.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>An image of a tree taken by Brian Green &amp; listed on Wikipedia<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>120px<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>90px<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-body<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-title<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Card title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>card-text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Some quick example text to build on the card title and make up the bulk of the card's content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div><br>
+								<div class="row">
+									<div class="col-2">Displayed as (width was modified): </div>
+									<div class="col-2">
+										<div class="card">
+										  <img class="card-img-top" src="CSCI%203308%20Lab%204_files/tree.jpg" alt="An image of a tree taken by Brian Green &amp; listed on Wikipedia" width="90px" height="120px">
+										  <div class="card-body">
+										    <p class="card-title">Card title</p>
+										    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+										  </div>
+										</div>
+									</div>
+								</div>
+								<a id="hidetext6" class="btn btn-warning dropdown-toggle" href="#explanation6" data-toggle="collapse" data-target="#explanation6" aria-expanded="false" aria-controls="explanation6" on-click="showExplanation(6)">More information</a>
+                 <div id="explanation6" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">clas="card"</dt>
+									<dd class="col-sm-9">The card class provides a block level 
+wrapper that will expand to fill up the entire width of it's parent 
+container.  It also provides rounded edges for the content it is 
+surrounding.  It's a versatile option for giving attention to different 
+types of content on your webpage. </dd>
+									<dt class="col-sm-3">class="card-body"</dt>
+									<dd class="col-sm-9">The card-body class provides padding to help provide better spacing for content inside the card</dd>
+									<dt class="col-sm-3">class="card-title"</dt>
+									<dd class="col-sm-9">The card-title modifies a section of text to have a larger font (suitable for a title)</dd>
+									<dt class="col-sm-3">class="card-text"</dt>
+									<dd class="col-sm-9">The card-text class modifies a section of text to have size/spacing to better fit inside the card's body.</dd>
+									<dt class="col-sm-3">Bootstrap Styling</dt>
+									<dd class="col-sm-9">Checkout the complete Bootstrap Card Documentation for more styling options.  <a href="https://getbootstrap.com/docs/4.3/components/card/"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+							</dd>
+							<dt><li>Bootstrap Dropdowns</li></dt>
+							<dd>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdown<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-secondary dropdown-toggle<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdownMenuButton<span class="token punctuation">"</span></span> <span class="token attr-name">data-toggle</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdown<span class="token punctuation">"</span></span> <span class="token attr-name">aria-haspopup</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">aria-expanded</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    Dropdown button
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdown-menu<span class="token punctuation">"</span></span> <span class="token attr-name">aria-labelledby</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdownMenuButton<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdown-item<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Action<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdown-item<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Another action<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dropdown-item<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Something else here<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>&gt;</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div> <br>
+								<p>Displayed as:</p><div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    Dropdown button
+								  </button>
+								  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								    <a class="dropdown-item" href="#">Action</a>
+								    <a class="dropdown-item" href="#">Another action</a>
+								    <a class="dropdown-item" href="#">Something else here</a>
+								  </div>
+								</div>
+								<p></p>
+								<a id="hidetext7" class="btn btn-warning dropdown-toggle" href="#explanation7" data-toggle="collapse" data-target="#explanation7" aria-expanded="false" aria-controls="explanation7" on-click="showExplanation(7)">More information</a>
+                 <div id="explanation7" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">class="dropdown"</dt>
+									<dd class="col-sm-9">The dropdown class is applied to a &lt;div&gt; tag and help contain all of the links contained in the dropdown.</dd>
+									<dt class="col-sm-3">&lt;button data-toggle="dropdown"&gt;</dt>
+									<dd class="col-sm-9">The button acts as a toggle, to open/close
+ the dropdown menu.  The most important attribute here is the 
+data-toggle, which activates Bootstrap's Javascript and has it modify 
+the dropdown-menu's visibility.</dd>
+									<dt class="col-sm-3">&lt;div class="dropdown-menu"&gt;</dt>
+									<dd class="col-sm-9">The button acts as a toggle, to open/close
+ the dropdown menu.  The most important attribute here is the 
+data-toggle, which activates Bootstrap's Javascript and has it modify 
+the dropdown-menu's visibility.</dd>
+									<dt class="col-sm-3">&lt;div class="dropdown-item"&gt;</dt>
+									<dd class="col-sm-9">The dropdown-item class will need to be added to each item in your dropdown menu so that it will appear/disappear correctly.</dd>
+									<dt class="col-sm-3">Bootstrap Styling</dt>
+									<dd class="col-sm-9">Checkout the complete Bootstrap Dropdown Documentation for more styling options.  <a href="https://getbootstrap.com/docs/4.3/components/dropdowns/"><img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" height="20px"> </a></dd>
+								</dl>
+							</div>
+						</dd></ol>
+					</dl>
+          
+				</div>
+			</div>
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 5. Lab Website - Registration Page</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample6">
+          <br>
+          			<br>
+					<div class="row">
+						<div class="col-6">
+							<p>For today's lab you will be creating an html form and stylizing it with <a href="https://getbootstrap.com/docs/4.1/components/forms/">Bootstrap</a>
+							.  In future labs we will add client-side validation for our form
+ (javascript) and later on update our database with new registered users
+ (postgreSQL &amp; Node.js).
+												</p><dl>
+						<p class="h5">TO DO</p>
+						<p>Create a form with the following fields:</p>
+						<ol>
+							<li>Name Text Field</li>
+							<li>Email Text Field</li>
+							<li>Password Text Field</li>
+							<li>Password Confirmation Text Field</li>
+							<li>Email Text Field</li>
+							<li>CU Boulder Alumni Radio Button</li>
+							<li>CU Boulder Student Radio Button</li>
+							<li>CU Boulder Undergrad/Grad Radio Button</li>
+							<li>Undergraduate Select (Freshman-Senior)</li>
+							<li>Graduate Select (MA, MBA, PhD)</li>
+							<li>Submit Button (links to home page)</li>
+						</ol>
+						</dl></div>
+            <div class="col-6" style="text-align:center;">
+							<img class="img-fluid" src="CSCI%203308%20Lab%204_files/register_page.png" alt="Screenshot of the registration page" style="height:400px;">
+						</div>
+
+
+					<hr>
+					<p class="h5">Examples</p>
+						<ol>
+							<dt><li>Working With Forms</li></dt>
+							<dd>
+								<a href="https://www.w3schools.com/html/html_forms.asp" target="_blank"> Online Tutorial on Forms </a>
+								<p>We'll start with a basic html form layout.  Between a set of 
+opening/closing &lt;form&gt; tags we'll list all of the different input 
+fields we want our user to work with.</p>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>home.html<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn btn-primary btn-block<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+				<a id="hidetext8" class="btn btn-warning dropdown-toggle" href="#explanation8" data-toggle="collapse" data-target="#explanation8" aria-expanded="false" aria-controls="explanation8" on-click="showExplanation(8)">More information</a>
+                 <div id="explanation8" class="collapse">
+									<dl class="row">
+										<dt class="col-sm-3">action="home.html"</dt>
+										<dd class="col-sm-9">The action field acts similiar to the 
+anchor tags href in that it lists an address for where the form data 
+should be directed too.  For now, we'll simply 	point it towards the 
+home page.</dd>
+										<dt class="col-sm-3">&lt;input type="submit" ...&gt; </dt>
+										<dd class="col-sm-9">The submit button has been provided for 
+you.  This will activate the form submission.  We've added some 
+Bootstrap CSS to make it look like a bootstrap button.</dd>
+									</dl>
+							</div>
+							</dd>
+								<dt><li>Code Examples</li></dt>
+							<dd>
+								<div style="padding-left:15px">
+									<b><p>Labels</p></b>
+									<p>A label defines what an input field is for and adds some accessibility features for helping screen readers navigate your form.</p>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input_id<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Label:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input_id<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>field_name<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as: <label for="input_id">Label:</label><input type="text" id="input_id" name="field_name"></p>
+									<a id="hidetext9" class="btn btn-warning dropdown-toggle" href="#explanation9" data-toggle="collapse" data-target="#explanation9" aria-expanded="false" aria-controls="explanation9" on-click="showExplanation(9)">More information</a>
+                 <div id="explanation9" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">for="input_id"</dt>
+									<dd class="col-sm-9">The for attribute pairs the label with it's intended input field's id (ex. input_id)</dd>
+								</dl>
+							</div>
+									<hr>
+									<b><p>Text Field</p></b>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>my_text_field<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Placeholder Text To Display<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <input type="text" name="my_text_field" placeholder="Placeholder Text To Display"></p>
+									<a id="hidetext10" class="btn btn-warning dropdown-toggle" href="#explanation10" onclick="showExplanation(10)">More information</a>
+                 <div id="explanation10" class="collapse">
+									<dl class="row">
+										<dt class="col-sm-3">type="text"</dt>
+										<dd class="col-sm-9">Set the input field to be a single line text box</dd>
+										<dt class="col-sm-3">name="my_text_field"</dt>
+										<dd class="col-sm-9"> Set this to a unique name to allow your 
+server-side code to reference the submitted value for this field.  Ex. 
+student_name or student_phone_number</dd>
+										<dt class="col-sm-3">placholder="..."</dt>
+										<dd class="col-sm-9">Example text or hint for what type of information the user should enter.</dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Email Field</p></b>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>my_email_field<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>john@email.com<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <input type="email" name="my_email_field" placeholder="john@email.com"></p>
+										<a id="hidetext11" class="btn btn-warning dropdown-toggle" href="#explanation11" onclick="showExplanation(11)">More information</a>
+                 <div id="explanation11" class="collapse">
+									<dl class="row">
+										<dt class="col-sm-3">type="email"</dt>
+										<dd class="col-sm-9">The "email" input type will look the 
+exact same as the "text" type. Its purpose is to allow the browser to 
+pull in autofill data, provide email suggestions (from saved emails) or 
+alter the user's keyboard's layout (mobile or non-pc devices like Roku 
+or Amazon Fire TV)</dd>
+										<dt class="col-sm-3">name="my_email_field"</dt>
+										<dd class="col-sm-9"> Set this to a unique name to allow your 
+server-side code to later reference the submitted value for this field. 
+ Ex. student_name or student_phone_number</dd>
+										<dt class="col-sm-3">placholder="..."</dt>
+										<dd class="col-sm-9">Example text or hint for what type of information the user should enter./dd&gt;
+									</dd></dl>
+								</div>
+									<hr>
+									<b><p>Password Field</p></b>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>my_pw_field<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <input type="password" name="my_pw_field"></p>
+										<a id="hidetext12" class="btn btn-warning dropdown-toggle" href="#explanation12" data-toggle="collapse" data-target="#explanation12" aria-expanded="false" aria-controls="explanation12" on-click="showExplanation(12)">More information</a>
+                 <div id="explanation12" class="collapse">
+									<dl class="row">
+										<dt class="col-sm-3">type="password"</dt>
+										<dd class="col-sm-9">The "password" input type will replace 
+the characters the user types in with a series of *'s or dots.  Please 
+note this only prevents nearby people from loooking over your shoulder 
+and sneaking a peak at your password.  This is not encrypting your 
+password, it is still treated as plain text!!</dd>
+										<dt class="col-sm-3">name="my_pw_field"</dt>
+										<dd class="col-sm-9"> Set this to a unique name to allow your 
+server-side code to later reference the submitted value for this field. 
+ Ex. student_name or student_phone_number</dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Radio Button</p></b>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choice<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">checked</span><span class="token punctuation">&gt;</span></span> 1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>choice<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> 2</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as: <input type="radio" name="choice" value="1" checked="checked"> 1 <input type="radio" name="choice" value="2"> 2</p>
+										<a id="hidetext13" class="btn btn-warning dropdown-toggle" href="#explanation13" data-toggle="collapse" data-target="#explanation13" aria-expanded="false" aria-controls="explanation13" on-click="showExplanation(13)">More information</a>
+                 <div id="explanation13" class="collapse">
+									<dl class="row">
+										<dt class="col-sm-3">type="radio"</dt>
+										<dd class="col-sm-9">The "radio" type is like a checkbox, but only 1 radio button can be selected within its group.</dd>
+										<dt class="col-sm-3">name="choice"</dt>
+										<dd class="col-sm-9"> The name must field must be the same for
+ all radio buttons within a group.  This is how the browser ensures that
+ only one of them is selected.</dd>
+										<dt class="col-sm-3">value=""</dt>
+										<dd class="col-sm-9"> Unlike a text field, the user doesn't 
+manually enter in a unique value.  Instead, the value attribute 
+determines what kind of information is returned when the form is 
+submitted.  The value could be a number or string/text.</dd>
+										<dt class="col-sm-3">checked</dt>
+										<dd class="col-sm-9"> checked is an optional attribute.  It 
+will set a radio button to be pre-selected when the browser loads the 
+form.  As a note, only 1 radio button can have the checked attribute, 
+since only one can be selected at a time.</dd>
+									</dl>
+								</div>
+									<hr>
+									<b><p>Select List</p></b>
+									<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>select_choice<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">selected</span><span class="token punctuation">&gt;</span></span>Pick an Option<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+									<p>Displayed as:
+										<select name="select_choice">
+										  <option selected="selected">Pick an Option</option>
+										  <option value="1">One</option>
+										  <option value="2">Two</option>
+										  <option value="3">Three</option>
+										</select></p>
+											<a id="hidetext14" class="btn btn-warning dropdown-toggle" href="#explanation14" data-toggle="collapse" data-target="#explanation14" aria-expanded="false" aria-controls="explanation14" on-click="showExplanation(14)">More information</a>
+                 <div id="explanation14" class="collapse">
+									<dl class="row">
+										<dt class="col-sm-3">select</dt>
+										<dd class="col-sm-9">The &lt;select&gt; tag will surround a group of options and display them as a clickable list.</dd>
+										<dt class="col-sm-3">name="select_choice</dt>
+										<dd class="col-sm-9">Only the &lt;select&gt; tag will use the name attribute.  The &lt;option&gt; tags should NOT have a name field listed.</dd>
+										<dt class="col-sm-3">option</dt>
+										<dd class="col-sm-9"> The &lt;option&lt; tag is like the the 
+&lt;li&gt; for ordered &amp; unordered lists.  It will denote each 
+individual choice a user can make for the selection list </dd>
+										<dt class="col-sm-3">value=""</dt>
+										<dd class="col-sm-9"> Each &lt;option&gt; tag needs a value 
+attribute set, which will let the server know which option was chosen.  
+The &lt;select&gt; tag should NOT have a value field listed.</dd>
+										<dt class="col-sm-3">selected</dt>
+										<dd class="col-sm-9"> selected is an optional attribute.  It 
+will set which option will be shown first and be pre-selected for the 
+user.  In our example, the first option is considered default text, 
+which is why it has no value listed.</dd>
+									</dl>
+								</div>
+								</div>
+							</dd>
+							<dt><li>Bootstrap Forms</li></dt>
+							<dd>
+								<a href="https://getbootstrap.com/docs/4.1/components/forms/" target="_blank"> Bootstrap Form Documentation </a>
+								<p>The primary goal for our lab, with respect to the 
+registration page, is to have a complete html form.  Adding the 
+Bootstrap CSS to our registration page is important, but not required. 
+You'll get additional bonus points for including the Bootstrap CSS.</p>
+								<div style="padding-left:15px">
+								<b><p>Form Group &amp; Form Control</p></b>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-group<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>formGroupExampleInput<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Example label<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>formGroupExampleInput<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Example input<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as:
+									  </p><div class="form-group">
+									    <label for="formGroupExampleInput">Example label</label>
+									    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+									  </div><p></p>
+									  	<a id="hidetext15" class="btn btn-warning dropdown-toggle" href="#explanation15" data-toggle="collapse" data-target="#explanation15" aria-expanded="false" aria-controls="explanation15" on-click="showExplanation(15)">More information</a>
+                 <div id="explanation15" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">class="form-group"</dt>
+									<dd class="col-sm-9">The form-group class helps to ensure labels &amp; form inputs are grouped together in a responsive web layout.</dd>
+									<dt class="col-sm-3">class="form-control"</dt>
+									<dd class="col-sm-9">The form-control class is applied to 
+&lt;input&gt; tags, &lt;select&gt; tags, and &lt;textarea&gt; tags.  It 
+helps control sizing for each input option and helps it to flex/shrink 
+to fit a responsive web layout.</dd>
+								</dl>
+							</div>
+								<hr>
+								<b><p>Form Inline &amp; Screen Reader Labels</p></b>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-inline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sr-only<span class="token punctuation">"</span></span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>firstName<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>firstName<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>First Name<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sr-only<span class="token punctuation">"</span></span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Username
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-control<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lastName<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Last Name<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as:
+									  </p><form class="form-inline">
+										  <label class="sr-only" for="firstName">First Name</label>
+										  <input type="text" class="form-control" id="firstName" placeholder="First Name">
+										  <label class="sr-only" for="lastName">Last Name</label>
+										  <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+										</form><p></p>
+											<a id="hidetext16" class="btn btn-warning dropdown-toggle" href="#explanation16" data-toggle="collapse" data-target="#explanation16" aria-expanded="false" aria-controls="explanation16" on-click="showExplanation(16)">More information</a>
+                 <div id="explanation16" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">class="form-inline"</dt>
+									<dd class="col-sm-9">Instead of having the labels &amp; inputs 
+stacked on top of each other vertically, form-inline will layout the 
+labels &amp; inputs side by side horizontally.</dd>
+									<dt class="col-sm-3">class="sr-only"</dt>
+									<dd class="col-sm-9">For screen readers to read your form 
+properly, you must ALWAYS use &lt;label&gt; tags. But if you don't want 
+your user to actually see the label, for aesthetic/design resigns, you 
+can use the sr-only class to hide your label. This is great option to 
+meet both accessibility concerns and design concerns for your website!</dd>
+								</dl>
+							</div>
+								<hr>
+								<b><p>Form Check</p></b>
+								<div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check-input<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleRadios<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleRadios1<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>option1<span class="token punctuation">"</span></span> <span class="token attr-name">checked</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check-label<span class="token punctuation">"</span></span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleRadios1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    Default radio
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check-input<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleRadios<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleRadios2<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>option2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-check-label<span class="token punctuation">"</span></span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>exampleRadios2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    Second default radio
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+								<p>Displayed as:
+									    </p><div class="form-check">
+										  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked="checked">
+										  <label class="form-check-label" for="exampleRadios1">
+										    Default radio
+										  </label>
+										</div>
+										<div class="form-check">
+										  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+										  <label class="form-check-label" for="exampleRadios2">
+										    Second default radio
+										  </label>
+										</div><p></p>
+											<a id="hidetext17" class="btn btn-warning dropdown-toggle" href="#explanation17" data-toggle="collapse" data-target="#explanation17" aria-expanded="false" aria-controls="explanation17" on-click="showExplanation(17)">More information</a>
+                 <div id="explanation17" class="collapse">
+								<dl class="row">
+									<dt class="col-sm-3">class="form-check"</dt>
+									<dd class="col-sm-9">The form-check class helps to ensure labels &amp; checkboxes/radios are grouped together in a responsive web layout.</dd>
+									<dt class="col-sm-3">class="form-check-input"</dt>
+									<dd class="col-sm-9">The form-check-input class is applied to &lt;input&gt; tags to properly align the radio button or checkbox with its label.</dd>
+									<dt class="col-sm-3">class="form-check-label"</dt>
+									<dd class="col-sm-9">The form-check-label class is applied to &lt;label&gt; tags to properly align the label with its radio button or checkbox.</dd>
+								</dl>
+							</div>
+							</div></dd>
+
+						</ol>
+					
+				</div>
+				</div></div>
+
+			<!-- part b     ######################################################## -->
+			<!-- <div class="card card-body" id="partbstep1">
+			  <div class="stepLine">
+			    <p class="alignleft h5">Part B: Section Section 0. Objectives</p>
+			    <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse"
+			      data-target="#multiCollapseExamplePartB1" aria-expanded="false"
+			      aria-controls="multiCollapseExamplePartB1">Expand</button>
+			  </div>
+			  <div class="collapse" id="multiCollapseExamplePartB1" style="padding-top:30px;">
+			    <table>
+			      <tr>
+			        <th>Check</th>
+			        <th>Details</th>
+			      </tr>
+			      <tr id="row1">
+			        <td class="check"><input type="checkbox" id="check1" onclick="isChecked(1)" /></td>
+			        <td class="details">Create a HTML page with different HTML elements.</td>
+			      </tr>
+			      <tr id="row2">
+			        <td class="check"><input type="checkbox" id="check2" onclick="isChecked(2)" /></td>
+			        <td class="details">Understand basic elements in Bootstrap.</td>
+			      </tr>
+			      <tr id="row3">
+			        <td class="check"><input type="checkbox" id="check3" onclick="isChecked(3)" /></td>
+			        <td class="details">Use Bootstrap to create a project page (optionally with carousels).</td>
+			      </tr>
+			    </table>
+			    <br />
+			    <div class="alert alert-primary">
+			      You are allowed to work with a partner for this part of the lab. However, each of you have to turn in your original submission.
+			    </div>
+			  </div>
+			</div> -->
+			<!-- partb: home page ################################################## -->
+			<div class="card card-body" id="partbstep3">
+			  <div class="stepLine">
+			    <p class="alignleft h5">Part B: Section 1. Personal Website - Creating your home page</p>
+			    <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExamplePartB3" aria-expanded="false" aria-controls="multiCollapseExamplePartB3">Expand</button>
+			  </div>
+			  <div class="collapse" id="multiCollapseExamplePartB3" style="padding-top:30px;">
+			    <dl>
+			      <dd>
+			        <div class="alert alert-primary" role="alert">
+			          <u>Motivation:</u> HTML and CSS are popular programming 
+languages for building websites. In this part we’ll introduce you to 
+HTML code and it’s structure and you’ll be tasked to build your own 
+Professional Profile using Bootstrap.
+			        </div>
+			      </dd>
+			      <dd>Recommended tutorial before you begin: <a href="https://www.w3schools.com/html/" target="_blank">Html tutorial</a></dd>
+			      <dt>Step 0. Create a simple <u>HTML document</u> by placing the below content in a file and name it mypage.html</dt>
+			      <dd><div class="code-toolbar"><pre class=" language-html"><code class=" language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Page Title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>My First Heading<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>My first paragraph.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+			      <dd> Replace the <u>title</u> of the HTML document (Page Title) to About Me. </dd>
+			      <dt>Step 1: Learn how to incorporate bootstrap into your HTML.</dt>
+				  <dd>The bootstrap tutorial can be found <a href="https://www.w3schools.com/bootstrap4/default.asp" target="_blank">here</a>. You will be required to understand how to incorporate Bootstrap into your HTML files.</dd>
+			      <dd> Hint: You will need to add some code in the 
+&lt;Head&gt;&lt;/Head&gt; of your HTML. Please use CDN’s for including 
+bootstrap in your files. <a href="https://www.w3schools.com/bootstrap4/bootstrap_get_started.asp" target="_blank">This</a> tutorial has a Bootstrap 4 CDN section to help you set that up.</dd>
+			      <dt>Step 2: Create a <a href="https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp" target="_blank">navigation bar</a> at the top of this page to link back to the homepage.</dt>
+			      <dd> Feel free to use any bootstrap class to make your 
+navigation bar suit your website design. Here's an example of what it 
+can look like: <br>
+			        <img src="CSCI%203308%20Lab%204_files/Part2-Step2-Navbar.png" class="img-fluid" alt="step2">
+			      </dd>
+			      <dt>Step 3: Use the <a href="https://getbootstrap.com/docs/4.0/layout/overview/#containers" target="_blank">container</a> class to format all the content of your webpage. </dt>
+			      <dt>Step 4: Add your Name</dt>
+			      <dd>Replace the <u>header(h1)</u> of the HTML document to your Last Name, First Name. Now use the <b>Bootstrap heading options</b> to get the following look for the heading. </dd>
+			      <dd>
+			        <img src="CSCI%203308%20Lab%204_files/part2-2.png" class="img-fluid" alt="step3">
+			      </dd>
+			      <dt>Step 5: Add a description</dt>
+			      <dd>Within the <u>paragraph(p)</u> tags, write three interesting facts about yourself and explain why
+			        you are studying Computer Science. Use the <a href="https://www.w3schools.com/bootstrap4/bootstrap_cards.asp" target="_blank">cards</a> class from Bootstrap to format the description as below</dd>
+			      <dd><img src="CSCI%203308%20Lab%204_files/part2-step4-description.png" class="img-fluid" alt="step3"></dd>
+
+			      <dt>Step 6: Add an image of yourself</dt>
+			      <dd>
+			        <div class="row">
+				        <div class="col-sm-8">
+				          <ol>
+				            <li>Insert an image of yourself, or any picture that can
+ be found online (keep in mind that any image URL has to be public else 
+it cannot be seen).</li>
+				            <li>Limit the size of your image using width and height, it should be between 500 and 700.</li>
+				            <li>Give the image a value. This is especially useful when the image cannot be displayed.</li>
+				            <li>Finally, display the image in a circle as shown to the right.</li>
+				          </ol>
+				        </div>
+				        <div class="col-md-auto" style="text-align:center;">
+				          <img class="img-fluid" src="CSCI%203308%20Lab%204_files/part2-step5-circle.png" alt="step5">
+				        </div>
+			        </div>
+			      </dd>
+
+			      <dt>Step 7: Add to the Navigation Bar</dt>
+			      <dd>In Part 3, you will be working on creating a page called 
+projects.html and in part 4. Add a link for these new pages in 
+navigation bar created in Step 2.</dd>
+			      <dd><img src="CSCI%203308%20Lab%204_files/part2-nav-project.png" class="img-fluid" alt="step6"></dd>
+
+			      <dt>Step 8: Add your GitHub</dt>
+			      <dd>Link your github profile page to a github icon and place it
+ on your nav bar. The icon should be aligned to the right of the page. 
+Your final nav bar should resemble the image below.</dd>
+			      <dd><img src="CSCI%203308%20Lab%204_files/part2-step6-github.png" class="img-fluid" alt="step7"></dd>
+
+			      <dt>Step 9: Add your Interests</dt>
+			      <dd>Create a horizontal list of 3 <a href="https://getbootstrap.com/docs/4.0/components/card/" target="_blank"> cards</a>,
+ each representing one of your top interests. In each card, include an 
+image that represents the interest, a title of the interest, and why you
+ like the interest. In future homeworks this will be replaced by Twitter
+ tweets that include #YourInterest.</dd>
+			      <dd><img src="CSCI%203308%20Lab%204_files/part2-7.png" class="img-fluid" alt="step8"></dd>
+			      <dt>Step 10: Adding a footer.</dt>
+			      <dd>Create an HTML footer for your page. Link your linkedin 
+account to a linkedin icon and place it in the center of the footer as 
+shown below. Clicking on the icon should redirect to your linkedin 
+profile page.</dd>
+			      <dd><img src="CSCI%203308%20Lab%204_files/footer.png" class="img-fluid" alt="step10"></dd>
+			    </dl>
+			    <div class="alert alert-success" role="alert">
+			      Refer to the following image resembling your website at this point.
+			    </div>
+			    <div><img src="CSCI%203308%20Lab%204_files/part2-final.png" class="img-fluid" alt="example1"></div>
+			  </div>
+			</div>
+
+			<!-- projects page ######################################################-->
+			<div class="card card-body" id="partbstep4">
+		  		<div class="stepLine">
+			    	<p class="alignleft h5">Part B: Section 2. Personal Website - Creating a projects page</p>
+			    	<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExamplePartB4" aria-expanded="false" aria-controls="multiCollapseExamplePartB4">Expand</button>
+			  	</div>
+		        <div class="collapse" id="multiCollapseExamplePartB4" style="padding-top:30px;">
+			    	<dl>
+						<!-- <div class="alert alert-primary" role="alert">
+					        The following instructions explain how to create a carousel with Bootstrap to showcase your projects.
+							Creating carousels is extra credit, but you must implement an interactive projects page with 3 projects.
+							In other words, steps 0, 1, and 6 are required. If you choose not to use carousels, you must still complete this process with the element type of your choosing (e.g. <a href="https://getbootstrap.com/docs/4.0/components/card/"  target="_blank"> cards</a>).
+			        	</div> -->
+						<dt>Step 0.1: Create the page</dt>
+						<dd>Create an HTML file and name it projects.html. This is where you will build the projects page. Start by including bootstrap.</dd>
+						<dt>Step 0.2: Add a Navbar</dt>
+			      		<dd>Create a navbar that is consistent with the other pages of your website <a href="https://www.w3schools.com/howto/howto_js_topnav.asp" target="_blank"> Navbar info here!</a>
+					</dd></dl>
+					<div class="alert alert-primary" role="alert">
+						You must now choose a layout for your interactive projects page. 
+You can use an element type of your choosing or create Carousels. Using 
+carousels will give you extra credit. Choose an option below, and 
+perform one of the tasks.
+					</div>
+					<div class="alert alert-light" role="alert">
+						<div class="btn-group" role="group">
+							<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#multiCollapseProjects1" aria-expanded="false" aria-controls="multiCollapseProjects1">Option 1: Choose your template</button>
+							<button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#multiCollapseProjects2" aria-expanded="false" aria-controls="multiCollapseProjects2">Option 2: Use Carousels (extra credit)</button>
+						 </div>
+					 </div>
+
+					<div id="multiCollapseProjects">
+						<div class="collapse" id="multiCollapseProjects1" data-parent="#multiCollapseProjects">
+							<dl>
+								<dt>Step 1: Setup</dt>
+						      	<dd>Once you have set up the basics in your html file and included Bootstrap, choose a format for your page.</dd>
+						      	<dt>Step 2: Add Projects</dt>
+								<dd>Create three containers (<code>&lt;div&gt;</code> tags), one
+ for each project. Each container should include an image for the 
+project as well as the project name and description on a Bootstrap <a href="https://getbootstrap.com/docs/4.0/components/card/" target="_blank"> card</a>.
+  Feel free to add links to your projects hosted on the cloud or to the 
+github repositories that contain the codebase for the projects.</dd>
+						      	<dt>Step 3: Formatting</dt>
+						      	<dd>How you format the cards within the page is up to you, just make sure everything is functional and visible.</dd>
+						      	<dt>Step 4: Verify everything works.</dt>
+						      	<dd>Double check to make sure that the name and description of project is visible when you resize the page.</dd>
+							</dl>
+					 	</div>
+						<div class="collapse" id="multiCollapseProjects2" data-parent="#multiCollapseProjects">
+							<dl>
+								<dt>Step 1: Setup</dt>
+						      	<dd>Once you have set up the basics in your html file and 
+included Bootstrap, start by creating a new &lt;div&gt; object and 
+making it a class of type <code>carousel slide</code>. Bootstrap has a good documentation on using <a href="https://getbootstrap.com/docs/4.1/components/carousel/" target="_blank">carousels</a>.</dd>
+						      	<dt>Step 2: Add projects</dt>
+								<dd>You will be adding your projects as carousel elements. Create three containers (<code>&lt;div&gt;</code>
+ tags), one for each project. Each container should include an image for
+ the project as the background and project name and description should 
+be on a Bootstrap <a href="https://getbootstrap.com/docs/4.0/components/card/" target="_blank"> card</a>,
+ inside the carousel. Feel free to add links to your projects hosted on 
+the cloud or to the github repositories that contain the codebase for 
+the projects.</dd>
+						      	<dt>Step 3: Add controls</dt>
+						      	<dd>In this step, you will add controls for navigating 
+through the carousels. Add anchor tags for navigating to the previous 
+and next slide respectively.</dd>
+						      	<dt>Step 4: Add indicators</dt>
+						      	<dd>Next, add indicators on the carousel element to denote,
+ which project we are currently viewing. Clicking on the indicators 
+should move to their respective carousels. You should add at least three
+ indicators, one for each project.</dd>
+						      	<dt>Step 5: Verify everything works</dt>
+						      	<dd>Double check to make sure that the name and description
+ of project, controls and indicators for navigation are visible over the
+ image on the carousel elements.</dd>
+
+						      	<dd><div class="alert alert-success" role="alert">
+						          Your carousel would have the following functionalities.
+						        </div></dd>
+						      	<dd><img src="CSCI%203308%20Lab%204_files/sample.gif" alt="This is an animated gif image, but it does not move" style="height:auto; width:100%;"></dd>
+							</dl>
+						</div>
+			   		</div>
+<!--
+							<dt>Step 1:</dt>
+					      	<dd>Once you have set up the basics in your html file and included Bootstrap, start by creating a new &lt;div> object and making it a class of type <code>carousel slide</code>. Bootstrap has a good documentation on using <a href="https://getbootstrap.com/docs/4.1/components/carousel/" target="_blank">carousels</a>.</dd>
+					      	<dt>Step 2:</dt>
+							<dd>You will be adding your projects as carousel elements. Create three containers (<code>&lt;div></code> tags), one for each project. Each container should include an image for the project as the background and project name and description should be on a Bootstrap <a href="https://getbootstrap.com/docs/4.0/components/card/"  target="_blank"> card</a>, inside the carousel. Feel free to add links to your projects hosted on the cloud or to the github repositories that contain the codebase for the projects.</dd>
+					      	<dt>Step 3:</dt>
+					      	<dd>In this step, you will add controls for navigating through the carousels. Add anchor tags for navigating to the previous and next slide respectively.</dd>
+					      	<dt>Step 4:</dt>
+					      	<dd>Next, add indicators on the carousel element to denote, which project we are currently viewing. Clicking on the indicators should move to their respective carousels. You should add at least three indicators, one for each project.</dd>
+					      	<dt>Step 5:</dt>
+					      	<dd>Double check to make sure that the name and description of project, controls and indicators for navigation are visible over the image on the carousel elements.</dd>
+						<dt>Step 2:</dt>
+						<dd>Create three containers (<code>&lt;div></code> tags), one for each project. Each </dd>
+ -->
+
+
+			  </div>
+			</div>
+
+			<!-- submission ######################################################## -->
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(7)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="false" aria-controls="multiCollapseExample7">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time5">5</span> Minutes)</p>
+				</div>
+				<div class="collapse" id="multiCollapseExample7">
+					<dl>
+						<dt>Prepare your submission</dt>
+						<dd>Create a folder Lab_4, and copy both folders Lab_Website (from part a) and Personal_Website (from part b) into that folder.</dd>
+						<dd> Final Directory Structure (make sure to double check this is how it is on github afeter you push):
+						<pre>|--Lab_4
+	|--Lab_Website
+	|	|--views
+	|	|	|--login.html
+	|	|	|--register.html
+	|	|	|--home.html
+	|	|	|--team_stats.html
+	|	|	|--player_info.html
+	|	|--resources
+	|		|--css
+	|		|	|--signin.css
+	|		|	|--my_style.css
+	|		|--img
+	|			|--beproudcapaabanner.jpg
+	|			|--cu_boulder_logo.jpg
+	|			|--favicon.ico
+	|			|--temp_image.svg
+	|--Personal_Website
+		|--mypage.html
+		|--projects.html
+		|--img
+			|--...</pre></dd>
+						<dd> Note that ALL images included in your page. e.g. 
+img/your_image.jpg should be contained in the GitHub repository, unless 
+it's publicly available on the web</dd>
+						<dt>Upload files to the Lab_4 folder which you will create inside 
+the github repo created for you. Look at 2.4 in the appendix of Lab 1 
+for instructions on creating a folder inside a repository.</dt>
+						<dd>Use the github WebGUI to upload your Lab_4 folder into repo <b>or</b>,
+ if you are confident in your git skills, run the following commands 
+inside your local git directory. Make sure you copy your screenshots 
+into your local git directory.
+							 <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Adding all of the files for lab4"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dt>Create a link to your github repo</dt>
+						<dd>In a text file (lab_4_{your name}_link.txt), write down the following:
+							<ol>
+								<li>Your name</li>
+								<li>The link to your Github Repo.</li>
+							</ol>
+						</dd>
+						<dt>Submit to Canvas</dt>
+						<dd>Submit your text file to Canvas by the deadline.</dd>
+			    <dt><div class="alert alert-success" role="alert">
+			        **Write your name and your partner’s (if any) on the first line of each file.**
+			      </div></dt>
+				</dl></div>
+			</div>
+
+			<div class="card card-body" id="step8">
+				<div class="stepLine">
+					<p class="alignleft h5">Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="false" aria-controls="multiCollapseExample8">Expand</button>
+				</div>
+				<div class="collapse" id="multiCollapseExample8">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-2" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-8">Description</th>
+									<th class="col-2 text-center" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-2">Home page</td>
+									<td class="col-8">Your home page has a heading with a welcome 
+message, an image, a short description of your site, a hyperlink to the 
+Buffs official home page, and at least 1 Bootstrap class to beautify 
+your page. </td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Football Season Statistics Page</td>
+									<td class="col-8">Your statistics page has a Bootstrap 
+JumboTron announcing the Fall 2020 season, a table listing 3 different 
+football matches, and a second table listing the win/loss ratio.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">15</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Player Information page</td>
+									<td class="col-8">Your player page has a bootstrap card with 
+the player image and a dropdown menu listing 3 players, and a table 
+listing the player's information.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">15</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2">Registration Page</td>
+									<td class="col-8">Your registration page has a form with all of the specified fields.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Personal Website - Home Page</td>
+									<td class="col-8">Your personal website home page has all of the requested HTML elements as per specification </td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">15</td>
+								</tr>
+                <tr class="d-flex">
+									<td class="col-2">Personal Website - Projects Page</td>
+									<td class="col-8">Your projects page has at least 3 projects 
+with description displayed within cards. If you implement the carousel 
+you receive extra credit worth 15 points</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">15 (+15 EC)</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-8" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-2" style="border:0;"></td>
+									<td class="col-8" style="border:0;"></td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100 (+ 15)</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%204_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%204_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modals -->
+		<div class="modal fade" id="imageErrorModal" tabindex="-1" role="dialog" aria-labelledby="imageErrorModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="imageErrorModalLabel">Image Isn't Loading!</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">×</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        If your image isn't loading, trying running through this quick "debugging" list to try and narrow down the problem:
+		        <dl class="row">
+					<dt class="col-sm-3">Filename</dt>
+					<dd class="col-sm-9">Some operating systems are case sensitive 
+about the file names being referenced (for example, Linux is case 
+sensitive but depending on the version/settings of Windows you have, it 
+may not be!).  So make sure you filename is not only spelled correctly, 
+but it also is the correct case.</dd>
+					<dt class="col-sm-3">Absolute Path</dt>
+					<dd class="col-sm-9">If you are using an absolute file path, make 
+sure it includes the entire address (http:// or https://).  Also, make 
+sure it isn't a "local" absolute path that references your local hard 
+drive (C://user/my_documents/folder/image.jpg).  An absolute path that 
+references YOUR hard drive can't be used on another computer!</dd>
+					<dt class="col-sm-3">Relative Path</dt>
+					<dd class="col-sm-9">Make sure your relative path is formatted 
+correctly.  Sometimes you may have added too many ../ and stepped too 
+far away from your webpage's directory.  Try following your relative 
+path manually with your OS's file browser.  Do you end in the correct 
+directory?</dd>
+				</dl>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	
+
+</body></html>

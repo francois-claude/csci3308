@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSCI 3308 Lab 2</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%202_files/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%202_files/prism.css">
+
+	<script src="CSCI%203308%20Lab%202_files/jquery-3.js"></script>
+	<script src="CSCI%203308%20Lab%202_files/popper.js"></script>
+	<script src="CSCI%203308%20Lab%202_files/bootstrap.js"></script>
+	<script src="CSCI%203308%20Lab%202_files/clipboard_002.js"></script>
+	<script src="CSCI%203308%20Lab%202_files/prism.js"></script><script src="CSCI%203308%20Lab%202_files/clipboard.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%202_files/labLayout.css">
+	<script src="CSCI%203308%20Lab%202_files/labScripts.js"></script>
+	<script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 2 - Project Team Formation &amp; Project Management</h1>
+					<p class="lead">In this lab, we will be setting up the project 
+teams for this semester and learn how to use JIRA to manage our class 
+projects. You will work on this lab as a group. To complete this lab, 
+each group should get through all sections of part A below as instructed
+ and complete the associated activities. Upload the completed files to 
+Canvas.
+						<b>To receive TA credit for this lab, show your work to your TA.</b><br>
+				</p></div>
+
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center; border: 0;">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center; border: 0;"><span id="eta">155</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<p class="card card-body deadline">Please note that submissions 
+will be due exactly one week after your respective lab sessions. For 
+Example, If your lab is on this Friday 10 AM, the submission deadline 
+will be next Friday 10 AM.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-primary mt-1" role="alert">You will have access to <a href="https://training.atlassian.com/free-training-catalog?ref=product&amp;quickstart&amp;jsw_admin&amp;visit_au" target="_blank">JIRA tutorials here </a> once you are done with <strong>PART A: Section 3 Creating JIRA Account.</strong></div>
+			<div class="card card-body" id="step1">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 1. Meet Your Team</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample1" style="">
+					<dl>
+						<dt>1. Find your group members</dt>
+						<dd>Gather everyone on your team and arrange yourselves in a small
+ circle (in this case we'll be adding all of you to a breakout room). 
+Make sure your audio and/or video are functional so that everyone can 
+see and hear all group members.</dd>
+						<dd><div class="alert alert-warning">
+              You should have received an invite to a GitHub repository 
+for the group project. Accept the invite right away. The invite link 
+expires within 7 days.
+            </div> </dd>
+            <hr>
+						<dt>2. Assign a SCRIBE</dt>
+						<dd>You should pick one person to document today's lab in a MS 
+Word doc your Google doc. You will show your documentation to your TA at
+ the end of lab AND your team will upload a single PDF to Canvas at the 
+end of lab time. Make sure everyone's name is on this document.</dd>
+            <hr>
+						<dt>3. Introductions</dt>
+						<dd>Go around in a circle, state your name, home town, major, year
+ in school, and where in the world you would like to go for a three-week
+ "dream" vacation after the end of this semester (this is hypothetical 
+so pick anything). <br>
+							After all team members have introduced themselves, each team 
+member should go around in a circle and state the names of the other 
+team members. It is okay to ask your team members for help. <br><br>
+							<b>The team scribe should document everyone's name. </b>
+						</dd>
+            <hr>
+            <dt>4. Team name</dt>
+						<dd>As a team, decide on a team name. This can be anything but must be appropriate (i.e., no profanity, etc.).<br><br>
+							<b>The team scribe should write down your team name.</b>
+						</dd>
+            <hr>
+						<dt>5. GitHub usernames</dt>
+						<dd>Go around in a circle and document each group member's GitHub username. <br><br>
+							<b>The team scribe should write each person's GitHub username next to their name. </b>
+						</dd>
+            <hr>
+						<dt>6. Schedule a meeting time with your Team</dt>
+						<dd>As a team, decide on a weekly meeting time and place to work on your group project.<br>
+							<ul>
+								<li>You MUST pick a time outside of class/recitation.</li>
+								<li>All team members MUST be able to attend the meeting. Pick a time that works for EVERYONE.</li>
+								<li>You MUST meet for two hours each week. This can be one 2-hour meeting or two 1-hour meetings.</li>
+								<li>Think about where you might meet. You don't have to decide this right now, but come up with some options that work for everyone.</li>
+                <li>Create a meeting invite on a platform of your choosing and share that link with your TA.</li>
+							</ul>
+							<b>The team scribe should document your weekly meeting time.</b>
+						</dd>
+          <hr>
+						<dt>7. Schedule a meeting time with your TA</dt>
+						<dd>You will be participating in a standup meeting with your TA 
+every week. This meeting will be short, approximately 10 minutes. During
+ this meeting, you will show the TA your progress towards completing the
+ project and have an opportunity to ask questions and get feedback.<br>
+							<ul>
+								<li>You MUST pick a time outside of class/recitation.</li>
+								<li>All team members MUST be able to attend the meeting. Pick a time that works for EVERYONE.</li>
+								<li>You MUST meet for 20 minutes each week.</li>
+								<li>One of your team members will be presenting the team's 
+progress. You may choose to make slides, but it is not required. We 
+expect each team member to be working on development of the project 
+every week.</li>
+								<li>You will meet your TA on Zoom. The TA will setup a Zoom meeting for you.</li>
+							</ul>
+							<b>The team scribe should document the weekly meeting time with the TA.</b>
+						</dd>
+            <hr>
+						<dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, you will create a document (1 per group) containing the following:<br>
+              <ol>
+                <li>Your team's GROUP NUMBER (ask your TA)</li>
+                <li>The first and last name, and GitHub username of all of your team members</li>
+                <li>Your team name</li>
+                <li>The scheduled time for your weekly team meetings with the link to the meeting</li>
+                <li>The scheduled time for your weekly standup meeting 
+with your TA with the link to the meeting (You may add the zoom meeting 
+link after the TA has sent you the link. Even if it is outside of 
+recitation time.)</li>
+              </ol>
+            </dd>
+          </dl>
+        </div>
+			</div>
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 2. Brainstorming</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="true" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">30</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample3" style="">
+					<dl>
+						<dt>1. Solicit ideas for your group project</dt>
+						<dd>- As a team, you must decide what kind of software application
+ you want to build. Each team member, should come up with at least ONE 
+application idea or concept. <br>
+							- Next, go around in a circle and discuss each of the ideas you 
+came up with. Then, choose your TOP FOUR ideas. You do not need to rank 
+these, but your team must come to a consensus on which ideas are the top
+ four. <br><br>
+							<b>Document the TOP FOUR ideas.</b>
+						</dd>
+            <hr>
+						<dt>2. Application architecture</dt>
+						<dd>- For EACH of your top FOUR ideas, document the basic 
+application architecture that you might use to implement the idea. This 
+should include front-end and back-end. <br>
+							- Examples: a website hosted on your PC, a website hosted in the 
+cloud and available to the public, a Raspberry Pi data collector, a 
+mobile application that connects to a cloud service, etc. <br><br>
+							<b>Write down each applicaton architecture</b>
+						</dd>
+            <hr>
+						<dt>Note</dt>
+						<dd>Today's decisions are NOT locked in stone. You have another week or so to decide your final application idea and team name.</dd>
+            <hr>
+						<dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, you will add your TOP FOUR application
+ ideas or concepts, including a brief description of the architecture 
+and platform for each idea to the document you already created in PART 
+A: Section 1.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step4">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 3. Create a JIRA account</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(4)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample4" aria-expanded="true" aria-controls="multiCollapseExample4">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time1">10</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample4" style="">
+					<dl>
+						<dt>1. Go to Jira</dt>
+						<dd>
+							<div class="row mt-1">
+								Go to the &nbsp;<a href="https://www.atlassian.com/software/jira" target="_blank"> Jira Software </a> &nbsp;product page and
+								click the 'Get it free' button.
+							</div>
+							<div class="row mt-1">
+								<img src="CSCI%203308%20Lab%202_files/1-jiraProductPage.PNG" width="950px" height="459px">
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">2. Add Confluence</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+									Select Confluence. Make sure that it is highlighted and shows the 'Remove' button.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/2-selectConfluence.PNG" width="520px" height="291px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">3. Sign up with email</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+                  Click on the 'Sign up with email' option.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/3-signUpWithEmail.PNG" width="339px" height="276px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">4. Create a new account </dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-6">
+									Fill out the form using the following information: <br><br>
+									<b>Work email:</b> &lt;your_identiy_key&gt;@colorado.edu <br>
+									(e.g., xxxx9887@colorado.edu) <br>
+									<b>Password:</b> &lt;password&gt; <br>
+									<b>First name:</b> &lt;your_first_name&gt; <br>
+									<b>Last name:</b> &lt;your_last_name&gt; <br><br>
+									Click 'Agree'.
+								</div>
+								<div class="col-6">
+									<img src="CSCI%203308%20Lab%202_files/4-createAccount.PNG" width="300px" height="439px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">5. Confirm your account</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+									Go to your colorado.edu email account and click 'Yes, verify me!'
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/5-emailConfirmation.PNG" width="577px" height="400px">
+								</div>
+							</div>
+						</dd>
+            <br>
+            <hr>
+						<dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, each of you will take a screenshot of 
+step 5 to show that you have created the account. Add your screenshots 
+to the document you created in Part A: Section 1.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="card card-body" id="step5">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 4. Create a Jira site and project (ONLY 1 GROUP MEMBER)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(5)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample5" aria-expanded="true" aria-controls="multiCollapseExample5">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample5" style="">
+					<dl>
+						<div class="alert alert-warning col-6" role="alert">
+							Only 1 group member should complete the steps below!
+						</div>
+						<dt class="mt-2">1. Choose a site name</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-6">
+									In Jira, the site name refers to a Jira instance or domain.
+									In general, a small company will have a single Jira instance 
+(or site) whereas a large company may have multiple Jira instances 
+across different company divisions, product lines, or products. <br><br>
+									<b>Please use the following format for your site name:</b><br>
+									csci-3308-spring21-&lt;yourGroupNumer&gt; (e.g.,csci-3308-spring21-202-3)
+									<br><br>
+									Click 'Continue'.
+								</div>
+								<div class="col-6">
+									<img src="CSCI%203308%20Lab%202_files/6-siteName.PNG" width="365px" height="399px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">2. Skip the Welcome pages</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/7-welcomePage.PNG" width="455px" height="508px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">3. Invite the TA and GSS to your site</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+									Enter your TA's and GSS's colorado email addresses.<br><br>
+                  <p class="alert alert-warning">You can find the email Ids <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab2_team_formation_project_management/emailids.html" target="_blank">here</a></p><br><br>
+									<b>Uncheck the option 'Let anyone with a verified colorado.edu email join your Jira site'. </b>
+									<br>
+									Click 'Next'.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/8-inviteTeamMembers.PNG" width="643px" height="321px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">4. Set up your site</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-2">
+								</div>
+								<div class="col-10">
+									<img src="CSCI%203308%20Lab%202_files/9-jiraSetUpOptions.PNG" width="840px" height="423px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">5. Select the 'Scrum' template  </dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-2">
+								</div>
+								<div class="col-0">
+									<img src="CSCI%203308%20Lab%202_files/10-scrumBoard.PNG" width="719px" height="563px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">6. Create a new project</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-6">
+									Fill out the form using the following information: <br><br>
+									<b>Name:</b> &lt;your_group_name&gt;-&lt;your_group_number&gt; <br>
+									(e.g., SpaceBuffs-114-2) <br>
+									<b>Key:</b> &lt;3 letter/number combo&gt; (e.g., SB, Y12, etc.)<br> <br>
+
+									Click 'Create'.
+								</div>
+								<div class="col-6">
+									<img src="CSCI%203308%20Lab%202_files/11-createProject.PNG" width="455px" height="447px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">7. Invite your team members</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+									You should invite everyone on your team to your Jira project. 
+Select settings in the upper right-hand corner of the Jira dashboard.
+									Next, select 'User Management'.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/12-selectUserManagement.PNG" width="552px" height="185px">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-3">
+									Click the 'Invite' button in the upper right-hand corner.
+								</div>
+								<div class="col-9">
+									<img src="CSCI%203308%20Lab%202_files/13-inviteUsers.PNG" width="712px" height="495px">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-4">
+									Enter your team members colorado email addresses separated by a comma. Click 'Invite users'. <br>
+									<b>Ask your team members to accept the invite before moving onto the next set of steps.</b>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/14-inviteExtraUsers.PNG" width="420px" height="488px">
+								</div>
+							</div>
+						</dd>
+            <hr>
+						<dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, you will add a link to your project 
+JIRA board &amp; a screen shot of your JIRA board (project dashbaord) to
+ the document you already created in PART A: Section 1.</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step6">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 5. Create an Epic and a user story (ONLY 1 GROUP MEMBER)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(6)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample6" aria-expanded="true" aria-controls="multiCollapseExample6">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">25</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample6" style="">
+					<dl>
+						<div class="alert alert-warning col-6" role="alert">
+							Only one group member should complete the steps below!
+						</div>
+						<dt class="mt-2">1. Navigate to your project dashboard</dt>
+						<dd>
+							<img src="CSCI%203308%20Lab%202_files/15-projectDashboard.PNG" class="mt-1" width="957px" height="425px">
+						</dd>
+						<hr>
+						<dt class="mt-2">2. Create a new Epic</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+									<b>One of your group members</b> should create a new epic. In the left-hand sidebar, select 'Backlog'.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/16-clickOnBackLogAndEpic.PNG" width="646px" height="550px">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-4">
+									Then, click on dropdown 'Epic' as shown in figure, then enable Epic panel and 'Create epic'.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/17-createEpic.PNG" width="451px" height="375px">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-4">
+									Give the name of the Epic as shown in figure &amp; click ENTER: <br><br>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/18-epicDetails.PNG">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">3. Create a new Issue(User Story)</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-2">
+									<b>One of your group members</b> <br>
+									should create a new issue (User Story). <br>
+									Click 'Create issue' as shown in figure.
+								</div>
+								<div class="col-6">
+									<img src="CSCI%203308%20Lab%202_files/19-createUserStories.PNG">
+									<img src="CSCI%203308%20Lab%202_files/19-createUserStories_2.PNG">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-6">
+									Once the issue is created, click on that issue &amp; add epic to it,<br> include description &amp; assign it to any group memeber as highlighted in the figure: <br><br>
+									<b>Description:</b><br>
+									Acceptance criteria:<br>
+                  <ul>
+                    <li>A user cannot submit a form without completing all of the mandatory fields. Mandatory fields include:
+                      <ul>
+                        <li>Name</li>
+                        <li>Email Address</li>
+                        <li>Password</li>
+                        <li>Confirm Password</li>
+                      </ul>
+                  </li>
+                  <li>Information from the form is stored in the 'user' table in the 'football_db' database.</li>
+                  </ul>
+									Scroll down to inspect the remaining fields. Note that now this issue is linked to the Epic 'Registration-Page'.
+									<br><br>
+								</div>
+								<div class="col-6">
+									<img src="CSCI%203308%20Lab%202_files/20-partialUserStorySummaryCopy.PNG">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-4">
+									Click 'Save' once the description is added.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/21-partialUserStorySummary.PNG">
+								</div>
+							</div>
+						</dd>
+					</dl>
+          <dl>
+            <hr>
+            <dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, no output required. We will be referring directly to your project board on JIRA.</dd>
+          </dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step7">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 6. Planning Poker</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(7)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="true" aria-controls="multiCollapseExample7">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time4">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample7" style="padding-top: 1%;">
+					<dl>
+						<div class="col-12">
+							As a team, you will decide how difficult it will be to implement a
+ given User Story in terms of Story Points.
+							Story Points are an abstract measure of the effort required to 
+implement a User Story. In this step, you will assign Story Points to 
+your user story using a process called 'Planning Poker'. <br><br>
+							<b>Planning Poker: </b>Planning poker is a game wherein each 
+individual team member proposes Story Points for a given User Story, the
+ team discusses each others proposals,
+							and collaborativality assigns story points to a given User Story.
+ <br>
+							<div class="alert alert-primary mt-1" role="alert">You can watch a short video on how to play Planning Poker <a href="https://www.youtube.com/watch?v=_jYiuYtrpp8" target="_blank">here</a>.</div>
+
+						</div>
+						<hr>
+						<dt class="mt-2">1. Create your cards</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-12">
+									Each individual team member should create a set of cards 
+numbered 1, 2, 3, 5, 8, and 13. You can use sticky notes or pieces of 
+paper. Set these cards in front of you.
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">2. Discuss the User Story diffculty</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-12">
+									As a team, discuss how difficult you think the User Story will 
+be to implement. How much time do you think it will take to code? Do you
+ anticipate any challenges with APIs or libraries?
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">3. Choose the number of Story Points</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-12">
+									In secret, each individual will choose a Story Point to assign 
+to the given Story. It is important that each team member chooses in 
+secret so that they do not influence another team member's choice.
+									On the count of 3, each team member will hold up the Story 
+Point that they think is most appropriate given how difficult they think
+ the User Story is to implement.
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">4. Come to a consensus</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-12">
+									* Did everyone choose the same value or close to the same 
+value? Great, you all agree and you can assign the choosen value to the 
+User Story. <br>
+									* Did some individuals pick significantly higher values than 
+others? Why? Are there anticipated challenges? Discuss your differences 
+in opinion and come to a consensus.
+									You may have to convince someone to change their rating.<br>
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">5. Assign Story Points</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-3">
+									In Jira, click on your User Story. A sidebar will appear. In 
+the sidebar, click on 'Story Points' and assign your choosen value. You 
+may have to scroll to see the 'Story Points' form field.
+								</div>
+								<div class="col-8">
+										<img src="CSCI%203308%20Lab%202_files/22-assignStoryPoints.PNG">
+								</div>
+							</div>
+						</dd>
+					</dl>
+          <dl>
+            <hr>
+            <dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, no output required. We will be referring directly to your project board on JIRA.</dd>
+          </dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step8">
+				<div class="stepLine">
+					<p class="alignleft h5">PART A: Section 7. Create and start a sprint (ONLY 1 GROUP MEMBER)</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(8)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample8" aria-expanded="true" aria-controls="multiCollapseExample8">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time5">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample8" style="">
+					<dl>
+						<div class="alert alert-warning col-6" role="alert">
+							Only one group member should complete the steps below!
+						</div>
+						<dt class="mt-2">1. Create a new Sprint</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-3">
+									A Sprint is a short short, time-boxed period when a scrum team 
+works to complete a set amount of work. The purpose of each Sprint is to
+ deliver increments of potentially releasable functionality.<br><br>
+									Create your first Sprint by clicking 'Create sprint'.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/23-createSprint.PNG">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-4">
+									Then, edit the sprint details by clicking the three dots to the right of the Sprint name.
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/24-editSprint.PNG" width="608px" height="176px">
+								</div>
+							</div>
+							<div class="row mt-5">
+								<div class="col-4">
+									Fill out the form using the following information: <br><br>
+									<b>Sprint name:</b> Dummy Sprint <br>
+									<b>Summary:</b> This is a dummy Sprint. Please do not delete this later.<br>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/25-editSprintName.PNG" width="575px" height="330px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">2. Assign a Issue (User Story) to a Sprint</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-3">
+									Drag and drop your Issue (User Story) to your first Sprint.
+								</div>
+								<div class="col-9">
+									<img src="CSCI%203308%20Lab%202_files/26-dragBackLogsIntoSprint.PNG" width="719px" height="300px">
+								</div>
+							</div>
+						</dd>
+						<hr>
+						<dt class="mt-2">3. Start your first Sprint</dt>
+						<dd>
+							<div class="row mt-1">
+								<div class="col-4">
+									Click 'Start' next to Dummy Sprint to start your first Sprint. 
+You may edit the duration of your Sprint. Please make sure duration is 1
+ day since it is a dummy spring.(Usually Sprints are of 4 weeks 
+duration.) Then, click start Sprint. <br><br>
+								</div>
+								<div class="col-8">
+									<img src="CSCI%203308%20Lab%202_files/27-startDummySprint.PNG" width="515px" height="450px">
+								</div>
+							</div>
+						</dd>
+					</dl>
+          <dl>
+            <hr>
+            <dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, no output required. We will be referring directly to your project board on JIRA.</dd>
+          </dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step9">
+				<div class="stepLine">
+					<p class="alignleft h5">PART B (TAKE HOME) : Section 1. Start planning and managing your project</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(9)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample9" aria-expanded="true" aria-controls="multiCollapseExample9">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time6">25</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample9" style="padding-top: 1%;">
+					<dl>
+						<div class="col-12">
+							You will now start planning and managing your class project. As 
+part of this lab, you have to create at least 2 Epic, 12 User Stories, 
+and 1 Sprint as part of your submission. You are encouraged to create 
+more!
+              <br><br>
+							Each member needs to create at least 2 user stories and assign those to themselves.
+              <br><br>
+              As a team, you will continue to add epics and user stories
+ to this project board regularly throughout the semester.
+							<div class="alert alert-primary mt-1" role="alert">Do not delete the Dummy Sprint. This is your proof that you completed this lab.</div>
+						</div>
+					</dl>
+          <dl>
+            <hr>
+            <dt>Recording Output</dt>
+            <hr>
+            <dd>For this section, no output required. We will be referring directly to your project board on JIRA.</dd>
+          </dl>
+				</div>
+			</div>
+
+			<div class="card card-body" id="step10">
+				<div class="stepLine">
+					<p class="alignleft h5">Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(10)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample10" aria-expanded="true" aria-controls="multiCollapseExample10">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time7">5</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample10" style="">
+					<ol>
+						<dl>
+							<dt>1. Create a single PDF for the team</dt>
+								<dd>Create a single PDF containing the following: <br>
+									<ul>
+										<li>Your team's GROUP NUMBER (ask your TA)</li>
+										<li>The first and last name, and <strong>GitHub username</strong> of all of your team members</li>
+										<li>Your team name</li>
+										<li>The scheduled time for your weekly team meetings with the link to the meeting.</li>
+										<li>The scheduled time for your weekly 15 minute standup meeting with your TA</li>
+										<li>Your TOP FOUR application ideas or concepts, including a brief description of the architecture and platform for each idea</li>
+										<li>Take a screenshots of your Jira dashboard</li>
+										<li>The link to your Jira dashboard (Make sure you add TA and GSS(s) as collabrators!!!)</li>
+									</ul>
+								</dd>
+
+							<dt><li>Submit to Canvas</li></dt>
+							<dd>
+								Submit your pdf to Canvas by the deadline.
+							</dd>
+						</dl>
+					</ol>
+				</div>
+			</div>
+			<div class="card card-body" id="step11">
+				<div class="stepLine">
+					<p class="alignleft h5">Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample11" aria-expanded="true" aria-controls="multiCollapseExample11">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample11" style="">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-3" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-8">Description</th>
+									<th class="col-1" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-3">Team info</td>
+									<td class="col-8">The document includes a the team name, group 
+members' names and GitHub usernames, a clear schedule for team meetings 
+with day and time, a day and time when you would like to meet with the 
+TA.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">Application ideas</td>
+									<td class="col-8">The document includes 4 application ideas, each with a brief description of the architecture and platform.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20 (each idea is worth 5)</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">Dummy Sprint</td>
+									<td class="col-8">You created a Jira project board that contains a Dummy Sprint with an Epic 'Registration-Page' and an issue</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">Epic</td>
+									<td class="col-8">You created at least 2 Epic that contains some User Stories</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">User Stories</td>
+									<td class="col-8">You created at least 12 User Stories that are relevant to your group project</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3">Sprint</td>
+									<td class="col-8">You created at least 1 Sprint that contains some User Stories</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-8" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-3" style="border:0;"></td>
+									<td class="col-8" style="border:0;"></td>
+									<td class="col-1" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+        					  	<hr>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%202_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%202_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					  </div>
+        					</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	
+
+</body></html>

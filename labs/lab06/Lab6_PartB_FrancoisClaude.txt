@@ -1,0 +1,195 @@
+Lab #6 Take Home
+Your name: Francois Claude
+
+
+---------------------------------------- Question 1 Query ---------------------------------------- 
+```
+CREATE VIEW orders_by_city AS 
+SELECT 
+  ship_city, 
+  COUNT(*) 
+FROM 
+  orders 
+GROUP BY 
+  ship_city;
+CREATE VIEW max_city AS 
+SELECT 
+  MAX(count) 
+FROM 
+  orders_by_city;
+SELECT 
+  ship_city 
+FROM 
+  orders_by_city 
+  INNER JOIN max_city ON orders_by_city.count = max_city.max;
+```
+---------------------------------------- Question 1 Results ---------------------------------------- 
+```
+   ship_city    
+----------------
+ Rio de Janeiro
+(1 row)
+```
+---------------------------------------- Question 2 Query ---------------------------------------- 
+```
+CREATE VIEW graz_orders AS 
+SELECT 
+  * 
+FROM 
+  orders 
+WHERE 
+  ship_city = 'Graz';
+CREATE VIEW graz_details AS 
+SELECT 
+  order_details.order_id, 
+  product_id, 
+  quantity 
+FROM 
+  graz_orders 
+  INNER JOIN order_details ON graz_orders.order_id = order_details.order_id;
+CREATE VIEW min_quantity AS 
+SELECT 
+  MIN(quantity) 
+FROM 
+  graz_details;
+CREATE VIEW min_product AS 
+SELECT 
+  * 
+FROM 
+  graz_details 
+  INNER JOIN min_quantity ON graz_details.quantity = min_quantity.min;
+SELECT 
+  product_name 
+FROM 
+  min_product 
+  INNER JOIN products on min_product.product_id = products.product_id;
+```
+---------------------------------------- Question 2 Results ----------------------------------------
+```
+    product_name     
+---------------------
+ Sir Rodney's Scones
+(1 row)
+```
+---------------------------------------- Question 3 Query ---------------------------------------- 
+```
+CREATE VIEW num_orders AS 
+SELECT 
+  customer_id, 
+  COUNT(*) 
+FROM 
+  orders 
+GROUP BY 
+  customer_id;
+CREATE VIEW average_orders AS 
+SELECT 
+  AVG(count) 
+FROM 
+  num_orders;
+CREATE VIEW above_avg_customer_ids AS 
+SELECT 
+  customer_id 
+FROM 
+  num_orders 
+  INNER JOIN average_orders ON num_orders.count > average_orders.avg;
+SELECT 
+  company_name 
+FROM 
+  customers 
+  INNER JOIN above_avg_customer_ids ON customers.customer_id = above_avg_customer_ids.customer_id;
+```
+---------------------------------------- Question 3 Results ----------------------------------------
+```
+         company_name         
+------------------------------
+ Around the Horn
+ Berglunds snabbköp
+ Blondesddsl père et fils
+ Bon app'
+ Bottom-Dollar Markets
+ B's Beverages
+ Ernst Handel
+ Folk och fä HB
+ Frankenversand
+ Godos Cocina Típica
+ Great Lakes Food Market
+ Hanari Carnes
+ HILARION-Abastos
+ Hungry Owl All-Night Grocers
+ Island Trading
+ Königlich Essen
+ La maison d'Asie
+ Lehmanns Marktstand
+ LILA-Supermercado
+ LINO-Delicateses
+ Magazzini Alimentari Riuniti
+ Mère Paillarde
+ Old World Delicatessen
+ Ottilies Käseladen
+ Piccolo und mehr
+ Queen Cozinha
+ QUICK-Stop
+ Rattlesnake Canyon Grocery
+ Reggiani Caseifici
+ Ricardo Adocicados
+ Richter Supermarkt
+ Save-a-lot Markets
+ Suprêmes délices
+ Tortuga Restaurante
+ Vaffeljernet
+ Victuailles en stock
+ Die Wandernde Kuh
+ Wartian Herkku
+ White Clover Markets
+(39 rows)
+```
+---------------------------------------- Question 4 Query ---------------------------------------- 
+```
+CREATE VIEW category_product_count as 
+SELECT 
+  category_id, 
+  COUNT(*) 
+FROM 
+  products 
+GROUP BY 
+  category_id;
+SELECT 
+  categories.category_name, 
+  category_product_count.count 
+FROM 
+  categories 
+  INNER JOIN category_product_count ON categories.category_id = category_product_count.category_id 
+WHERE 
+  count >= 10;
+```
+---------------------------------------- Question 4 Results ----------------------------------------
+```
+ category_name  | count 
+----------------+-------
+ Beverages      |    12
+ Condiments     |    12
+ Confections    |    13
+ Dairy Products |    10
+ Seafood        |    12
+(5 rows)
+```
+---------------------------------------- Question 5 Query ---------------------------------------- 
+```
+CREATE VIEW max AS 
+SELECT 
+  MAX(units_on_order) 
+FROM 
+  products;
+SELECT 
+  product_name 
+FROM 
+  products 
+  INNER JOIN max ON products.units_on_order = max;
+```
+---------------------------------------- Question 5 Results ----------------------------------------
+```
+       product_name        
+---------------------------
+ Louisiana Hot Spiced Okra
+(1 row)
+```

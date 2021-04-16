@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSCI 3308 Lab 9</title>
+    <!-- Bootstrap core CSS & JS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%209_files/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%209_files/prism.css">
+
+	<script src="CSCI%203308%20Lab%209_files/jquery-3.js"></script>
+	<script src="CSCI%203308%20Lab%209_files/popper.js"></script>
+	<script src="CSCI%203308%20Lab%209_files/bootstrap.js"></script>
+	<script src="CSCI%203308%20Lab%209_files/clipboard.js"></script>
+	<script src="CSCI%203308%20Lab%209_files/prism.js"></script><script src="CSCI%203308%20Lab%209_files/clipboard_002.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSCI%203308%20Lab%209_files/labLayout.css">
+	<script src="CSCI%203308%20Lab%209_files/labScripts.js"></script>
+	<script>document.onselectstart = function () {return true; };document.oncontextmenu = function () { return true; }; document.onmousedown = function () { return true; }; document.onkeydown = function () { return true; }; document.body.onselectstart = function () {return true; };document.body.oncontextmenu = function () { return true; }; document.body.onmousedown = function () { return true; }; document.body.onkeydown = function () { return true; }; jQuery(document).unbind("keydown");jQuery(document).unbind("mousedown");</script></head>
+    <body onload="loadPage()">
+		<main role="main" class="container">
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-10">
+					<h1 class="display-4">Lab 9 - Web Services Test</h1>
+					 <div class="row mt-2">
+              <p class="alert alert-primary"><strong>To be eligible for 
+any credit for the lab, attendance is mandatory. Make sure to upload a 
+link to the GitHub repository. Unexcused absence or missing submissions 
+on Canvas will receive 0 grade even if code is completed and committed 
+to GitHub on time.</strong></p>
+          </div>
+					<p class="lead">In this lab, we will test a simple web application.
+ You will edit the template (below) which includes all of the files 
+necessary for this web application.
+					To receive credit for this lab, you MUST upload "lab_9_link.txt" to
+ Canvas by the deadline.</p>
+					<dd>
+            <div class="row">
+    					<div class="col-12">
+    						<p class="card card-body deadline">This lab is due right 
+before recitation next week.
+						For Example, If your lab is on this Friday at 10 AM, the 
+submission deadline will be next Friday at 10 AM. There is no late 
+policy for labs.</p>
+    					</div>
+    				</div>
+					</dd>
+				<p class="h5"><a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab9_webservices_test/Lab9_partA_website.zip" target="_blank">Download </a>the template and make sure you extract the files before using them.</p>
+				</div>
+				<div class="col-2">
+					<table class="table">
+						<tbody><tr>
+							<th class="h5" style="text-align:center">Est. Time  ⏱</th>
+						</tr>
+						<tr>
+							<td class="h5" style="text-align:center"><span id="eta">130</span> minutes</td>
+						</tr>
+					</tbody></table>
+				</div>
+			  </div>
+			</div>
+
+      <div class="card card-body" id="step1">
+        <div class="stepLine">
+          <p class="alignleft h5">Part A: Lab Overview</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(1)">Mark Complete</button>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">Expand</button>
+        </div>
+        <div class="collapse show" id="multiCollapseExample1" style="">
+          <br>
+          <p>In today's lab, we will test the given web application by 
+adding some test cases. The template includes all of the files necessary
+ to make this work, but is missing some code. You will need to edit one 
+of the files, <b>Lab9_Website/test/server.js</b> to add test cases for the API's defined in <b>Lab9_Website/server.js</b></p>
+          <hr>
+          <dt>Directory structure</dt>
+          <br>
+          <dd>
+            <pre>    |--Lab9_partA_website
+          |--node_modules
+          |--test
+              |--server.js             (You will need edit this file)
+          |--docker-compose.yml
+          |--package-lock.json
+          |--package.json
+          |--server.js
+            </pre>
+          </dd>
+          <!-- <dt>Final web page</dt>
+          <br>
+          <dd>
+            <img src="./img/output.png" alt="An Example of a completed Tweet Page" class="img-fluid">
+          </dd> -->
+        </div>
+      </div>
+
+			<div class="card card-body" id="step2">
+				<div class="stepLine">
+          <p class="alignleft h5">Part A: Section 1. Set up and run the application</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(2)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="true" aria-controls="multiCollapseExample2">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time2">10</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample2" style="">
+          <dl>
+            <dt>1. Navigate to the Lab9_partA_website folder</dt>
+            <dd>Once you've downloaded the Lab9_partA_website linked at 
+the top of this page, navigate to that directory in terminal. You should
+ see a file docker-compose.yml</dd>
+            <dd>MacOS and Linux Users:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span data-user="user" data-host="host"></span><span></span></span><span class="token function">ls</span>
+docker-compose.yml  package.json  package-lock.json test server.js  views
+<span class="token function">pwd</span>
+/[SOMEWHERE]/First_Last_Labs/Lab9_partA_website</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+            <!-- <dt>1. </dt> -->
+            <dd>
+              Windows Command Prompt:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span><span></span></span><span class="token function">dir</span> /b
+docker-compose.yml
+package.json
+package-lock.json
+test
+server.js
+views</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+            <!-- <dt>1. </dt> -->
+            <dd>
+              Windows Powershell:
+              <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span><span></span></span>cmd /c <span class="token function">dir</span> /b
+docker-compose.yml
+package.json
+package-lock.json
+test
+server.js
+views</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            </dd>
+            <dt>3. Shut down old containers from previous labs</dt>
+            <dd>Before we get started, make sure that your containers 
+from previous labs are shut down. We'll be using the same port, so if 
+they're still running we won't be able to move forward.
+            </dd><dt>4. Installing Packages</dt>
+            <dd>Currently, you'll notice their is no node_modules folder
+ in the current directory. We'll need to install some packages for our 
+app to work, and we can do this inside of docker as follows.</dd>
+            <dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span data-user="user" data-host="host"></span><span></span><span></span><span data-user="user" data-host="host"></span><span></span><span></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span data-user="user" data-host="host"></span><span></span><span data-user="user" data-host="host"></span><span></span><span></span><span data-user="user" data-host="host"></span><span></span></span>docker-compose run web <span class="token function">npm</span> <span class="token function">install</span>
+Creating lab9_parta_website_web_run ... done
+
+&gt; nodemon@2.0.7 postinstall /home/node/app/node_modules/nodemon
+&gt; node bin/postinstall || exit 0
+
+Love nodemon? You can now support the project via the open collective:
+&gt; https://opencollective.com/nodemon/donate
+
+  <span class="token punctuation">(</span>out<span class="token punctuation">)</span>npm WARN api-test-partA@1.0.0 No description
+npm WARN api-test-partA@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
+added 326 packages from 703 contributors and audited 327 packages in 19.456s
+
+41 packages are looking for funding
+run `npm fund` for details
+
+found 0 vulnerabilities</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+            <dd>Similar to a normal docker run command, this command runs the <code>web</code>
+ image (defined in docker-compose.yml). This allows us to install the 
+necessary packages with npm, even if npm isn't installed on our host 
+system.</dd>
+            <dt>5. Starting Docker Compose</dt>
+            <dd>Now that we're in the right place and have our packages installed, starting docker compose is quite simple.</dd>
+            <dd><div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host" data-filter-output="(out)"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>docker-compose up
+Starting lab9_parta_website_web_1 ... done
+Attaching to lab9_parta_website_web_1
+web_1  |
+web_1  | &gt; api-test-partA@1.0.0 testandrun /home/node/app
+web_1  | &gt; npm-run-all test start
+web_1  |
+web_1  |
+web_1  | &gt; api-test-partA@1.0.0 test /home/node/app
+web_1  | &gt; mocha
+web_1  |
+web_1  | 3000 is the magic port
+web_1  |
+web_1  |
+web_1  |   Server!
+web_1  |     ✓ Returns the default welcome message
+web_1  |
+web_1  |
+web_1  |   1 passing (10ms)
+web_1  |
+web_1  |
+web_1  | &gt; api-test-partA@1.0.0 start /home/node/app
+web_1  | &gt; node server.js
+web_1  |
+web_1  | 3000 is the magic port</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+
+            <dt>6. Checking it worked</dt>
+            <dd>Before we move on, open <a href="http://localhost:3000/" target="_blank">http://localhost:3000</a> in your browser and you should see the below page.</dd>
+            <dd>
+              <img src="CSCI%203308%20Lab%209_files/home_lab9.png" style="width:90%;">
+            </dd>
+            <dt>7. Docker Compose Resources</dt>
+            <dd>For the purposes of this lab, Ctrl-C and the command 
+from step 4 should be all you need. If you get stuck with any 
+docker-compose related issues or would simply like a reresher on some of
+ the commands, please refere to Part A Section 2 of Lab 7 (linked <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab7_nodejs/index.html" target="_blank"> here</a>).</dd>
+				</dl></div>
+			</div>
+
+      <div class="card card-body" id="step14">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 2. Mocha and Chai tutorial</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(14)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample14" aria-expanded="true" aria-controls="multiCollapseExample14">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time2">15</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample14" style="">
+            <dd>In this lab, we are using the libraries Mocha and Chai 
+to test the given application. In order to successfully test any 
+application, we need two things.
+              <ul>
+                <li><b>Mocha :</b>A framework that allows to you methodically call the API's and functions to be tested.</li>
+                <li><b>Chai :</b>An assertion library to validate the response received from the API.</li>
+              </ul>
+              Please find the links to the documentation of <a href="https://mochajs.org/#getting-started" target="_blank">Mocha</a> and <a href="https://www.chaijs.com/api/" target="_blank">Chai</a> for your reference.
+              <hr>
+              <b>Importing the libraries</b>
+              <div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token comment">//Assertion (Test Driven Development) and Should, Expect(Behaviour driven development) library</span>
+<span class="token keyword">let</span> chai <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"chai"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+chai<span class="token punctuation">.</span><span class="token function">should</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> expect <span class="token punctuation">}</span> <span class="token operator">=</span> chai<span class="token punctuation">;</span>
+<span class="token keyword">var</span> assert <span class="token operator">=</span> chai<span class="token punctuation">.</span>assert<span class="token punctuation">;</span>
+<span class="token comment">// Chai HTTP provides an interface for live integration testing of the API's.</span>
+<span class="token keyword">let</span> chaiHttp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"chai-http"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+chai<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>chaiHttp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+              <hr>
+              Here is a sample code describing the usage of Mocha with Chai.
+              <div class="code-toolbar"><pre class="row language-js"><code class=" language-js">calender <span class="token operator">=</span> <span class="token punctuation">{</span> year <span class="token punctuation">:</span> <span class="token number">2021</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">'Array'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'should return -1 when the value is not present'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">done</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">expect</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"Software Dev"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">property</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      calender<span class="token punctuation">.</span>should<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">property</span><span class="token punctuation">(</span>year<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">2021</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+                <dl class="row">
+                  <dt class="col-sm-2"><code>describe</code></dt>
+                  <dd class="col-sm-10">Begins a test suite of one or more tests. <code>describe</code>
+ is a function that encapsulates/groups together all our test 
+cases/expectations. The first argument is a string that describes the 
+feature and second argument is the function to test the features. Mainly
+ used for segmentation of code.</dd>
+                  <dt class="col-sm-2"><code>it</code></dt>
+                  <dd class="col-sm-10">The it function is very similar to the <code>describe</code> function, except that we cannot add any more <code>it</code> or <code>describe</code> functions under that. This is usually the place where we include all assert, expect and should statements.</dd>
+                  <dt class="col-sm-2"><code>assert</code></dt>
+                  <dd class="col-sm-10">Assert takes in two variables by default and compares them as needed. In the above mentioned example, <code>assert.equal</code> compares the value returned by <code>[1, 2, 3].indexOf(4)</code> and <code>-1</code>. It returns True if equal else returns False. Please find more details about using assert here.</dd>
+                  <dt class="col-sm-2"><code>expect</code></dt>
+                  <dd class="col-sm-10"><code>expect</code> is oriented 
+towards testing the behaviour of the system rather than compare actual 
+values. For example, in the above example, we are only interested in 
+checking if the json object contains a property called <i>name</i>.</dd>
+                  <dt class="col-sm-2"><code>done();</code></dt>
+                  <dd class="col-sm-10">For testing asynchronous methods, by adding an argument (usually named done) to <code>it()</code> to a test callback, Mocha will know that it should wait for this function to be called to complete the test.</dd>
+                </dl>
+
+            </dd>
+            <hr>
+            <dl>
+            This is the generic end point provided to check the health of your application.
+              <dt> GET <code>/</code></dt>
+              <dd>
+                This is a simple get api that returns a json object.
+                <div class="code-toolbar"><pre class="row language-js"><code class=" language-js">app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span> status<span class="token punctuation">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span> message<span class="token punctuation">:</span> <span class="token string">"Welcome!"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+
+                A test case for this API to should check if the response body of the API:
+                <dl class="row">
+                  <!-- <dt class="col-sm-4">status</dt> -->
+                  <dd class="col-sm-8">Has the property <code>status</code> equal to "success".</dd>
+                  <!-- <dt class="col-sm-4">message</dt> -->
+                  <dd class="col-sm-8">Has the property <code>message</code> equal to "Welcome To Testing API".</dd>
+
+                </dl>
+
+              Please find the respective test case for the API below:
+              <div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token keyword">let</span> server <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"../server"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">it</span><span class="token punctuation">(</span><span class="token string">"Returns the default welcome message"</span><span class="token punctuation">,</span> <span class="token parameter">done</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+chai
+  <span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">expect</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    res<span class="token punctuation">.</span>body<span class="token punctuation">.</span>should<span class="token punctuation">.</span>have<span class="token punctuation">.</span><span class="token function">property</span><span class="token punctuation">(</span><span class="token string">"status"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token string">'success'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    assert<span class="token punctuation">.</span><span class="token function">strictEqual</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>body<span class="token punctuation">.</span>message<span class="token punctuation">,</span> <span class="token string">"Welcome!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+              </dd>
+              </dl>
+              <div class="alert alert-primary">
+                <p><b>Note:</b> In order to integrate the tests with 
+server.js, we need a couple of changes. First off, in package.json, 
+under the scripts tag, an option for running tests have been added. It 
+runs <code>mocha</code> that starts up our test suite. The other change is in server.js, where we are writing the response of <code>app.listen()</code> into <code>module.exports</code> variable. Modules are self contained units of functionality and this helps us to reuse this module in our test file.</p>
+              </div>
+
+        </div>
+			</div>
+
+			<div class="card card-body" id="step3">
+				<div class="stepLine">
+					<p class="alignleft h5">Part A: Section 3. Writing test cases</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="true" aria-controls="multiCollapseExample3">Expand</button>
+					<p class="alignright h5">(<span class="time" id="time3">45</span> Minutes)</p>
+				</div>
+				<div class="collapse show" id="multiCollapseExample3" style="">
+          <dd>
+          <p>In this section, we will go through the API's provided by 
+the Lab9_website/server.js and test them. The server.js contains a JSON 
+array shown below and API's defined help in querying and modifying this 
+array.</p>
+          <div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token keyword">const</span> ops <span class="token operator">=</span> <span class="token punctuation">[</span>
+<span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">"Add"</span><span class="token punctuation">,</span>
+    sign <span class="token punctuation">:</span> <span class="token string">"+"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">"Subtract"</span><span class="token punctuation">,</span>
+    sign <span class="token punctuation">:</span> <span class="token string">"-"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">"Multiply"</span><span class="token punctuation">,</span>
+    sign <span class="token punctuation">:</span> <span class="token string">"*"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+					<hr>
+
+            <dl>
+						<dt>1. GET <code>/operations</code></dt>
+						<dd>
+              This API returns a list of operations.
+							<div class="code-toolbar"><pre class="row language-js"><code class=" language-js">app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/ops"</span> <span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">request<span class="token punctuation">,</span> response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  response<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>ops<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            Write a test case for this API to check if the response of the API :
+              <dl class="row">
+                <dd class="col-sm-8">Is of type array.</dd>
+                <!-- <dt class="col-sm-4">message</dt> -->
+                <dd class="col-sm-8">The size of the array should not be zero.</dd>
+              </dl>
+
+					</dd></dl>
+          <dl>
+            <dt>2. GET <code>/operations/:id</code></dt>
+						<dd>
+              This API returns the details of operation based on the ID passed.
+							<div class="code-toolbar"><pre class="row language-js"><code class=" language-js"><span class="token comment">// GET (BY ID)</span>
+app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"/operations/:id"</span> <span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">request<span class="token punctuation">,</span> response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> opsId <span class="token operator">=</span> request<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> op <span class="token operator">=</span> ops<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">op</span> <span class="token operator">=&gt;</span> op<span class="token punctuation">.</span>id <span class="token operator">===</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>opsId<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>op<span class="token punctuation">)</span> <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"The task with the provided ID does not exist."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+  Write a test case for this API to fetch the operation with <code>id=1</code> and check if the response of the API :
+  <dl class="row">
+    <dd class="col-sm-8">Has the property <code>id</code> equal to 1.</dd>
+    <dd class="col-sm-8">Has the property <code>name</code>.</dd>
+    <dd class="col-sm-8">Has the property <code>sign</code>.</dd>
+
+  </dl>
+							
+
+						</dd>
+          </dl>
+
+          <dl>
+            <dt>3. POST <code>/operations</code></dt>
+						<dd>
+              This API allows us to add a new operation to the ops list 
+in server.js. It takes in a POST request containing details about the 
+new operation, adds it to the list and returns back the newly added 
+object.
+							<div class="code-toolbar"><pre class="row language-js"><code class=" language-js">app<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/operations"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">request<span class="token punctuation">,</span> response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">const</span> op <span class="token operator">=</span> <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> ops<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> request<span class="token punctuation">.</span>body<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+      sign<span class="token punctuation">:</span> request<span class="token punctuation">.</span>body<span class="token punctuation">.</span>sign
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  ops<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  response<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">201</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>op<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div>
+            Write a test case for this API that adds a new operation and check if the response of the API :
+              <dl class="row">
+                <dd class="col-sm-8">Has the property <code>id</code> equal to 4.</dd>
+                <dd class="col-sm-8">Has the property <code>name</code> equal to the name of the newly added operation.</dd>
+                <dd class="col-sm-8">Has the property <code>sign</code> equal to the sign of the newly added operation.</dd>
+       
+
+              </dl>
+
+						</dd>
+          </dl>
+
+          <hr>
+          <dl>
+            <dt>Recording Output</dt>
+            <dd>At the end of this section your <b>test/server.js</b> file should be complete.</dd>
+          </dl>
+				</dd></div>
+			</div>
+      <div class="card card-body" id="step7">
+        <div class="stepLine">
+          <p class="alignleft h5">Part B : Take Home Section.</p>
+          <button class="btn btn-primary btn-sm alignbtn" type="button" onclick="updateProgressBar(3)">Mark Complete</button>
+
+          <button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample7" aria-expanded="true" aria-controls="multiCollapseExample7">Expand</button>
+          <p class="alignright h5">(<span class="time" id="time3">60</span> Minutes)</p>
+        </div>
+        <div class="collapse show" id="multiCollapseExample7" style="padding-top: 30px;">
+          <ul class="list-group">
+              <li class="list-group-item">
+                  In this assignment, you will be creating a simple API 
+and test it with positive and negative inputs. Starter code has been 
+provided with the <a href="https://cuboulder-csci-3308.herokuapp.com/Labs/lab9_webservices_test/Lab9_partb_website.zip" target="_blank">template</a>. It is similar to the setup in Part A, so please follow instructions from <b>Part A Section 1</b> to run the application.
+              </li>
+              <hr>
+              <dt>Directory structure</dt>
+          <br>
+          <dd>
+            <pre>    |--Lab9_partb_website
+          |--node_modules
+          |--test
+              |--server.js             (You will need edit this file to add Tests)
+          |--docker-compose.yml
+          |--package-lock.json
+          |--package.json
+          |--server.js                 (You will need edit this file to add API's)
+            </pre>
+          </dd>
+              <hr>
+              <li class="list-group-item">
+                  <b>Section 1: </b> Add the API's described below to <b>Lab9_partB_website/server.js</b>:
+                  <br>
+                  </li><li>
+                    <dl>
+                      <br>
+                      <dd>Endpoint : <code>/add</code></dd>
+                      <dd>Method : <code>POST</code></dd>
+
+                      <dd>Description: This API requires the request body to have two numbers <code>(num1, num2)</code> and returns their sum <code>(num1 + num2)</code> as response.</dd>
+                    </dl>
+                    <hr>
+                    <dl>
+                      <dd>Endpoint : <code>/divide</code></dd>
+                      <dd>Method : <code>POST</code></dd>
+
+                      <dd>Description: This API requires the request body to have two numbers  <code>(num1, num2)</code> and returns their quotient <code>num1 / num2</code> as response.</dd>
+                    </dl>
+                    <hr>
+                    <dl>
+                      <dt>Recording Output</dt>
+                      <dd>At the end of this section you should have added two API's to your main <b>server.js</b>.</dd>
+                    </dl>
+                  </li>
+                  <div class="alert alert-primary">
+                    <p><b>Note:</b> While working on section 1 of Part 
+B, you need to validate your inputs to make sure that add or divide 
+opertaion does not result in an error. For example, if <code>num2</code> is passed as <code>0</code> for the <code>/divide</code>
+ API, it would result in an error as divide by zero is not allowed. You 
+need atleast one validation step for each of the API's defined above.</p>
+                  </div>
+              
+              <li class="list-group-item">
+                <b>Section 2: </b> In this section, you would be modifying <b>Lab9_partB_website/test/server.js</b> file to add two test cases to each of the API's built above. Their descriptions are given below.
+                <br><br>
+              </li><li>
+                <dl>
+                  <br>
+                  <b>Positive Test Case:</b>
+                  <dd> In a positive test case, the API's are tested by 
+providing valid arguments/parameters as input. Write a positive test 
+case for each of the API's defined above.</dd>
+                </dl>
+                <hr>
+                <dl>
+                  <b>Negative Test Case:</b>
+                  <dd> In a negative test case, the API's are tested by 
+providing invalid arguments/parameters as input and test if it returns 
+error as response. Write a negative test case for each of the API's 
+defined above.</dd>
+                </dl>
+                <hr>
+                    <dl>
+                      <dt>Recording Output</dt>
+                      <dd>At the end of this section you should have added 4 test cases to your main <b>test/server.js</b>.</dd>
+                    </dl>
+              </li>
+
+            
+          </ul>
+        </div>
+      </div>
+
+
+
+			<div class="card card-body" id="step11">
+				<div class="stepLine">
+					<p class="alignleft h5">Submission Guidelines</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample11" aria-expanded="true" aria-controls="multiCollapseExample11">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample11" style="">
+          <dl>
+						<dt>Prepare your submission</dt>
+						<dd>After working on the Lab9 template folder files for both partA
+ and partB that you downloaded, include the respective folders in the 
+directory structure as shown below.</dd>
+            <dd>Make sure NOT to upload the node_modules folder.</dd>
+						<dd> Final Directory Structure (make sure to double check this is how it is on github after you push):<br><br>
+						<pre>|--Lab_9
+  |--Lab9_PartA_website
+        |--test
+              |--server.js             (You will need edit this file to add tests)
+  |     |--server.js
+  |     |--package.json
+  |     |--package-lock.json
+  |     |--docker-compose.yml
+  |--Lab9_Partb_website
+        |--test
+              |--server.js             (You will need edit this file to add tests)
+  |     |--server.js                   (You will need edit this file to add API's)
+  |     |--package.json
+  |     |--package-lock.json
+  |     |--docker-compose.yml
+</pre>
+            </dd>
+						<dt>Upload files to the Lab_9 folder which you will create inside 
+the github repo created for you. Look at 2.4 in the appendix of Lab 1 
+for instructions on creating a folder inside a repository.</dt>
+						<dd>Use the github WebGUI to upload your Lab_89folder into repo <b>or</b>,
+ if you are confident in your git skills, run the following commands 
+inside your local git directory. Make sure you copy your screenshots 
+into your local git directory.
+							 <div class="code-toolbar"><pre class="command-line language-bash" data-user="user" data-host="host"><code class=" language-bash"><span class="command-line-prompt"><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span><span data-user="user" data-host="host"></span></span><span class="token function">git</span> add <span class="token keyword">.</span>
+<span class="token function">git</span> commit -m <span class="token string">"Adding all of the files for lab9"</span>
+<span class="token function">git</span> push</code></pre><div class="toolbar"><div class="toolbar-item"><a>Copy</a></div></div></div></dd>
+						<dt>Create a link to your github repo</dt>
+						<dd>In a text file (lab_9_{your name}_link.txt), write down the following:
+							<ol>
+								<li>Your name</li>
+								<li>The link to your Github Repo.</li>
+							</ol>
+						</dd>
+						<dt>Submit to Canvas</dt>
+						<dd>Submit your text file to Canvas by the deadline.</dd>
+			    <dt><div class="alert alert-success" role="alert">
+			        **Write your name and your partner’s (if any) on the first line of each file.**
+			      </div></dt>
+				</dl></div>
+			</div>
+
+			<div class="card card-body" id="step12">
+				<div class="stepLine">
+					<p class="alignleft h5">Rubric</p>
+					<button class="btn btn-primary btn-sm alignbtn" type="button" data-toggle="collapse" data-target="#multiCollapseExample12" aria-expanded="true" aria-controls="multiCollapseExample12">Expand</button>
+				</div>
+				<div class="collapse show" id="multiCollapseExample12" style="">
+					<br>
+					<div class="container-fluid">
+						<table class="table">
+							<thead>
+								<tr class="d-flex">
+									<th class="col-4" style="border-right: 1px solid #dee2e6;"></th>
+									<th class="col-6">Description</th>
+									<th class="col-2" style="border-right: 1px solid #dee2e6; border-left: 1px solid #dee2e6">Points</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="d-flex">
+									<td class="col-4">Part A: GET /operations</td>
+									<td class="col-6">Testing all the specified conditions</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-4">Part A: GET /operations/:id</td>
+									<td class="col-6">Testing all the specified conditions</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+                <tr class="d-flex">
+                  <td class="col-4">Part A: POST /operations</td>
+                  <td class="col-6">Testing all the specified conditions</td>
+                  <td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+                </tr>
+								<tr class="d-flex">
+									<td class="col-4">Part B: Lab9_partb_website/server.js</td>
+									<td class="col-6">Adding the two specified API's with validations to the main server.js file. </td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">10</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-4">Part B: Lab9_partb_website/test/server.js </td>
+									<td class="col-6">Adding all 4 test cases to the test server.js file </td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-4" style="border-bottom: 1px solid #dee2e6;">TA check-in</td>
+									<td class="col-6" style="border-bottom: 1px solid #dee2e6;">You showed your work to the TA.</td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6;">20</td>
+								</tr>
+								<tr class="d-flex">
+									<td class="col-4" style="border:0;"></td>
+									<td class="col-6" style="border:0;"></td>
+									<td class="col-2" style="text-align: center; border-right: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6;"><b>100</b></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</main><!-- /.container -->
+		<div id="bottom_nav">
+			<div class="row">
+				<div class="col-10">
+				</div>
+				<div class="col-2">
+				    <div class="row">
+				        <div class="col-2">
+
+				        </div>
+				        <div class="col-10">
+        					<div class="card">
+        					  <div class="card-body">
+        					  	<p class="h4 text-center">Helper Icons</p>
+                      <hr>
+                      <div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%209_files/alert.svg" alt="Octicon alert icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">Common Errors</div>
+        					  	</div>
+        					  	<div class="row">
+        					  	    <div class="col-4">
+        					  	        <img src="CSCI%203308%20Lab%209_files/info.svg" alt="Octicon info icon" style="padding-right:15px" height="30px">
+        					  	    </div>
+        					  	    <div class="col-8">More Information</div>
+        					  	</div>
+        					<button class="btn btn-primary btn-block alignright expandAll" type="button">Expand All</button>
+        					<button class="btn btn-primary btn-block alignright collapseAll" type="button">Collapse All</button>
+        				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+
+</div></div></body></html>

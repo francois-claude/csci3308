@@ -1,0 +1,70 @@
+➜  FrancoisClaude_015_Labs git:(main) sudo apt-get install git 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+git is already the newest version (1:2.25.1-1ubuntu3).
+The following packages were automatically installed and are no longer required:
+  linux-headers-5.8.0-36-generic linux-hwe-5.8-headers-5.8.0-36 linux-image-5.8.0-36-generic linux-modules-5.8.0-36-generic linux-modules-extra-5.8.0-36-generic
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+➜  FrancoisClaude_015_Labs git:(main) git config --global user.name "F Claude"
+
+➜  FrancoisClaude_015_Labs git:(main) git config --global user.name           
+F Claude
+
+➜  FrancoisClaude_015_Labs git:(main) git config --global user.email "52762083+whoiscoos@users.noreply.github.com"
+
+➜  FrancoisClaude_015_Labs git:(main) git config --global user.email                                              
+52762083+whoiscoos@users.noreply.github.com
+
+➜  FrancoisClaude_015_Labs git:(main) git clone git@github.com:CSCI-3308-CU-Boulder/FrancoisClaude_015_Labs.git
+Cloning into 'FrancoisClaude_015_Labs'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 9 (delta 0), reused 6 (delta 0), pack-reused 0
+Receiving objects: 100% (9/9), done.
+➜  FrancoisClaude_015_Labs git:(main) ✗ cd FrancoisClaude_015_Labs
+
+➜  FrancoisClaude_015_Labs git:(main) vi test.txt
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    test
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	francois_claude_section3.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+➜  FrancoisClaude_015_Labs git:(main) ✗ git add .
+➜  FrancoisClaude_015_Labs git:(main) ✗ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   francois_claude_section3.txt
+	deleted:    test
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ git commit -S -m "lab 1 - initial system setup (section 3)"              
+[main 50c389a] lab 1 - initial system setup (section 3)
+ 2 files changed, 30 insertions(+)
+ create mode 100644 francois_claude_section3.txt
+ delete mode 100644 test
+
+➜  FrancoisClaude_015_Labs git:(main) git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 24 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.55 KiB | 1.55 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To github.com:CSCI-3308-CU-Boulder/FrancoisClaude_015_Labs.git
+   d7fbfeb..50c389a  main -> main

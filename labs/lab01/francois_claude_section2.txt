@@ -1,0 +1,88 @@
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker run hello-world > francois_claude_section2.txt
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker ps -a
+CONTAINER ID   IMAGE                 COMMAND                  CREATED              STATUS                          PORTS                                                           NAMES
+c4d7dc00b6bb   hello-world           "/hello"                 About a minute ago   Exited (0) About a minute ago                                                                   gallant_poincare
+d52111986a35   syncthing/syncthing   "/bin/entrypoint.sh …"   5 months ago         Up 19 hours (healthy)           127.0.0.1:8384->8384/tcp, 21027/udp, 0.0.0.0:22000->22000/tcp   syncthing
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker rm gallant_poincare
+gallant_poincare
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker ps -a
+CONTAINER ID   IMAGE                 COMMAND                  CREATED        STATUS                  PORTS                                                           NAMES
+d52111986a35   syncthing/syncthing   "/bin/entrypoint.sh …"   5 months ago   Up 20 hours (healthy)   127.0.0.1:8384->8384/tcp, 21027/udp, 0.0.0.0:22000->22000/tcp   syncthing
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker run --rm hello-world
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker run -it ubuntu bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+83ee3a23efb7: Pulling fs layer
+db98fc6f11f0: Pulling fs layer
+f611acd52c6c: Pulling fs layer
+f611acd52c6c: Verifying Checksum
+f611acd52c6c: Download complete
+db98fc6f11f0: Download complete
+83ee3a23efb7: Download complete
+83ee3a23efb7: Pull complete
+db98fc6f11f0: Pull complete
+f611acd52c6c: Pull complete
+Digest: sha256:703218c0465075f4425e58fac086e09e1de5c340b12976ab9eb8ad26615c3715
+Status: Downloaded newer image for ubuntu:latest
+
+root@160f784fc5f0:/# exit
+exit
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker run -dt ubuntu bash
+ac36c4590d682d634be5276dd80c5205f58a686f6df4914912bb9e21addd4ddb
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED              STATUS                  PORTS                                                           NAMES
+ac36c4590d68   ubuntu                "bash"                   About a minute ago   Up About a minute                                                                       exciting_dewdney
+d52111986a35   syncthing/syncthing   "/bin/entrypoint.sh …"   5 months ago         Up 20 hours (healthy)   127.0.0.1:8384->8384/tcp, 21027/udp, 0.0.0.0:22000->22000/tcp   syncthing
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker rm exciting_dewdney
+Error response from daemon: You cannot remove a running container ac36c4590d682d634be5276dd80c5205f58a686f6df4914912bb9e21addd4ddb. Stop the container before attempting removal or force remove
+
+➜  FrancoisClaude_015_Labs git:(main) ✗ docker rm -f exciting_dewdney
+exciting_dewdney
